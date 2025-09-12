@@ -31,7 +31,7 @@ jobs:
           path: mpw_precheck
 
       - name: Install Sky130 PDK
-        uses: TinyTapeout/volare-action@v2
+        uses: TinyTapeout/ciel-action@v1
         with:
           pdk_name: sky130
           pdk_version: ${{ env.SKY130_PDK_VERSION }}
@@ -119,7 +119,7 @@ jobs:
           sudo make install
 
       - name: Install Sky130 PDK
-        uses: TinyTapeout/volare-action@v1
+        uses: TinyTapeout/ciel-action@v1
         with:
           pdk_name: sky130
           pdk_version: ${{ env.SKY130_PDK_VERSION }}

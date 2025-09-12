@@ -35,7 +35,7 @@ jobs:
       - run: pip install -r tt/requirements.txt -r tt-multiplexer/py/requirements.txt -r verilog/dv/mux/requirements.txt
 
       - name: Install sky130A PDK
-        uses: TinyTapeOut/volare-action@v2
+        uses: TinyTapeout/ciel-action@v1
         with:
           pdk_version: ${{ env.SKY130_PDK_VERSION }}
           pdk_root: ${{ env.PDK_ROOT }}

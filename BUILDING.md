@@ -6,8 +6,8 @@
 export LIBRELANE_ROOT=~/librelane
 export SKY130_PDK_VERSION=6d4d11780c40b20ee63cc98e645307a9bf2b2ab8
 
-pip3 install volare
-volare enable --pdk sky130 $SKY130_PDK_VERSION
+pip3 install ciel
+ciel enable --pdk sky130 $SKY130_PDK_VERSION
 ```
 
 Then install LibreLane with Nix, as explained [here](https://librelane.readthedocs.io/en/latest/getting_started/common/nix_installation/installation_linux.html), taking care of the following:

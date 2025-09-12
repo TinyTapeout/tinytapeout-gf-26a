@@ -63,7 +63,7 @@ jobs:
             extra-trusted-public-keys = nix-cache.fossi-foundation.org:3+K59iFwXqKsL7BNu6Guy0v+uTlwsxYQxjspXzqLYQs=
 
       - name: Install SKY130 PDK
-        uses: TinyTapeout/volare-action@v2
+        uses: TinyTapeout/ciel-action@v1
         with:
           pdk_name: sky130
           pdk_version: ${{ env.SKY130_PDK_VERSION }}
