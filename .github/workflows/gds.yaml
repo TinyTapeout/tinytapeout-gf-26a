@@ -16,7 +16,7 @@ jobs:
     env:
       PYTHONIOENCODING: utf-8
       PDK_ROOT: ${{ github.workspace }}/pdk
-      TT_CONFIG: sky130.yaml
+      TT_CONFIG: ../../gf180mcuD.yaml
       # Uncomment the following line to build only the specified projects:
       #TT_ONLY_PROJECTS: tt_um_chip_rom,tt_um_factory_test
 
@@ -51,10 +51,6 @@ jobs:
           repository: librelane/librelane
           path: librelane
           ref: ${{ env.LIBRELANE_TAG }}
-
-      - name: Copy multiplexer configuration (temporary)
-        run: |
-          cp gf180mcuD.yaml tt-multiplexer/cfg
 
       - name: Update caravel configuration
         run: python ./tt/configure.py --update-shuttle

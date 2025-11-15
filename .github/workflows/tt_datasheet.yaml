@@ -15,7 +15,7 @@ jobs:
   build_datasheet:
     runs-on: ubuntu-24.04
     env:
-      TT_CONFIG: sky130.yaml
+      TT_CONFIG: ../../gf180mcuD.yaml
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -43,10 +43,6 @@ jobs:
         uses: typst-community/setup-typst@v4
         with:
             typst-version: '0.13.1'
-
-      - name: Copy multiplexer configuration (temporary)
-        run: |
-          cp gf180mcuD.yaml tt-multiplexer/cfg
 
       - name: Generate datasheet files
         run: python ./tt/configure.py --build-datasheet
