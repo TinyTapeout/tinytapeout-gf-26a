@@ -61,7 +61,7 @@ endif
 VERILOG_SOURCES += $(abspath test_mux_tb.v)
 
 # IO cell library is relevent for both RTL / GL sims
-VERILOG_SOURCES += $(PDK_ROOT)/gf180mcuD/libs.ref/gf180mcu_fd_io/verilog/gf180mcu_fd_io.v
+VERILOG_SOURCES += $(PDK_ROOT)/gf180mcuD/libs.ref/gf180mcu_ocd_io/verilog/gf180mcu_ocd_io.v
 
 PYTHON_PATHS += $(abspath .)
 export PYTHONPATH := $(subst $(SPACE),:,$(PYTHON_PATHS)):$(PYTHONPATH)

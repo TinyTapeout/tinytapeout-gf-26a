@@ -40,13 +40,13 @@ module test_mux_tb (
   assign pad_raw[54] = rst_n;
   assign pad_raw[55] = clk;
 
-  wire vgnd = 1'b0;
-  wire vdpwr = 1'b1;
+  wire dvss = 1'b0;
+  wire dvdd = 1'b1;
 
   tt_gf_wrapper tt_chip (
 `ifdef GL_TEST
-      .vgnd   (vgnd),
-      .vdpwr  (vdpwr),
+      .dvss (dvss),
+      .dvdd (dvdd),
 `endif
       .pad_raw(pad_raw)
   );

@@ -5,7 +5,7 @@ end_date: '2025-11-24'
 project_dir: 'projects'
 top_level_macro: 'tt_gf_wrapper'
 powered_netlists: true
-no_power_gating: true
+no_power_gating: false
 
 datasheet_config:
   theme_override_colour: tt.colours.THEME_SKY_BLUE
