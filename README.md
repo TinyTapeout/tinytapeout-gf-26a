@@ -3,7 +3,7 @@
 [![gds](../../actions/workflows/gds.yaml/badge.svg)](../../actions/workflows/gds.yaml)
 [![precheck](../../actions/workflows/precheck.yaml/badge.svg)](../../actions/workflows/precheck.yaml)
 
-# Tiny Tapeout GF 0.2
+# Tiny Tapeout GF 26a
 
 - Visit https://tinytapeout.com for more information on the project and how to get involved.
 
