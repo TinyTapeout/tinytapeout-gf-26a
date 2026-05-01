@@ -1,0 +1,1188 @@
+VERSION 5.7 ;
+  NOWIREEXTENSIONATPIN ON ;
+  DIVIDERCHAR "/" ;
+  BUSBITCHARS "[]" ;
+MACRO tt_um_utoss_riscv
+  CLASS BLOCK ;
+  FOREIGN tt_um_utoss_riscv ;
+  ORIGIN 0.000 0.000 ;
+  SIZE 1440.320 BY 736.960 ;
+  PIN VGND
+    DIRECTION INOUT ;
+    USE GROUND ;
+    PORT
+      LAYER Metal4 ;
+        RECT 22.180 3.620 23.780 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 61.050 3.620 62.650 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 99.920 3.620 101.520 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 138.790 3.620 140.390 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 177.660 3.620 179.260 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 216.530 3.620 218.130 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 255.400 3.620 257.000 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 294.270 3.620 295.870 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 333.140 3.620 334.740 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 372.010 3.620 373.610 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 410.880 3.620 412.480 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 449.750 3.620 451.350 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 488.620 3.620 490.220 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 527.490 3.620 529.090 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 566.360 3.620 567.960 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 605.230 3.620 606.830 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 644.100 3.620 645.700 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 682.970 3.620 684.570 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 721.840 3.620 723.440 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 760.710 3.620 762.310 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 799.580 3.620 801.180 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 838.450 3.620 840.050 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 877.320 3.620 878.920 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 916.190 3.620 917.790 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 955.060 3.620 956.660 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 993.930 3.620 995.530 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 1032.800 3.620 1034.400 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 1071.670 3.620 1073.270 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 1110.540 3.620 1112.140 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 1149.410 3.620 1151.010 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 1188.280 3.620 1189.880 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 1227.150 3.620 1228.750 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 1266.020 3.620 1267.620 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 1304.890 3.620 1306.490 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 1343.760 3.620 1345.360 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 1382.630 3.620 1384.230 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 1421.500 3.620 1423.100 733.340 ;
+    END
+  END VGND
+  PIN VPWR
+    DIRECTION INOUT ;
+    USE POWER ;
+    PORT
+      LAYER Metal4 ;
+        RECT 18.880 3.620 20.480 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 57.750 3.620 59.350 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 96.620 3.620 98.220 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 135.490 3.620 137.090 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 174.360 3.620 175.960 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 213.230 3.620 214.830 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 252.100 3.620 253.700 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 290.970 3.620 292.570 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 329.840 3.620 331.440 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 368.710 3.620 370.310 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 407.580 3.620 409.180 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 446.450 3.620 448.050 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 485.320 3.620 486.920 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 524.190 3.620 525.790 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 563.060 3.620 564.660 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 601.930 3.620 603.530 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 640.800 3.620 642.400 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 679.670 3.620 681.270 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 718.540 3.620 720.140 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 757.410 3.620 759.010 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 796.280 3.620 797.880 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 835.150 3.620 836.750 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 874.020 3.620 875.620 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 912.890 3.620 914.490 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 951.760 3.620 953.360 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 990.630 3.620 992.230 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 1029.500 3.620 1031.100 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 1068.370 3.620 1069.970 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 1107.240 3.620 1108.840 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 1146.110 3.620 1147.710 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 1184.980 3.620 1186.580 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 1223.850 3.620 1225.450 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 1262.720 3.620 1264.320 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 1301.590 3.620 1303.190 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 1340.460 3.620 1342.060 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 1379.330 3.620 1380.930 733.340 ;
+    END
+    PORT
+      LAYER Metal4 ;
+        RECT 1418.200 3.620 1419.800 733.340 ;
+    END
+  END VPWR
+  PIN clk
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 4.738000 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 331.090 735.960 331.390 736.960 ;
+    END
+  END clk
+  PIN ena
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal4 ;
+        RECT 338.370 735.960 338.670 736.960 ;
+    END
+  END ena
+  PIN rst_n
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 2.369000 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 323.810 735.960 324.110 736.960 ;
+    END
+  END rst_n
+  PIN ui_in[0]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal4 ;
+        RECT 316.530 735.960 316.830 736.960 ;
+    END
+  END ui_in[0]
+  PIN ui_in[1]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal4 ;
+        RECT 309.250 735.960 309.550 736.960 ;
+    END
+  END ui_in[1]
+  PIN ui_in[2]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal4 ;
+        RECT 301.970 735.960 302.270 736.960 ;
+    END
+  END ui_in[2]
+  PIN ui_in[3]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal4 ;
+        RECT 294.690 735.960 294.990 736.960 ;
+    END
+  END ui_in[3]
+  PIN ui_in[4]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal4 ;
+        RECT 287.410 735.960 287.710 736.960 ;
+    END
+  END ui_in[4]
+  PIN ui_in[5]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal4 ;
+        RECT 280.130 735.960 280.430 736.960 ;
+    END
+  END ui_in[5]
+  PIN ui_in[6]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal4 ;
+        RECT 272.850 735.960 273.150 736.960 ;
+    END
+  END ui_in[6]
+  PIN ui_in[7]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal4 ;
+        RECT 265.570 735.960 265.870 736.960 ;
+    END
+  END ui_in[7]
+  PIN uio_in[0]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal4 ;
+        RECT 258.290 735.960 258.590 736.960 ;
+    END
+  END uio_in[0]
+  PIN uio_in[1]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal4 ;
+        RECT 251.010 735.960 251.310 736.960 ;
+    END
+  END uio_in[1]
+  PIN uio_in[2]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal4 ;
+        RECT 243.730 735.960 244.030 736.960 ;
+    END
+  END uio_in[2]
+  PIN uio_in[3]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal4 ;
+        RECT 236.450 735.960 236.750 736.960 ;
+    END
+  END uio_in[3]
+  PIN uio_in[4]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal4 ;
+        RECT 229.170 735.960 229.470 736.960 ;
+    END
+  END uio_in[4]
+  PIN uio_in[5]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal4 ;
+        RECT 221.890 735.960 222.190 736.960 ;
+    END
+  END uio_in[5]
+  PIN uio_in[6]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal4 ;
+        RECT 214.610 735.960 214.910 736.960 ;
+    END
+  END uio_in[6]
+  PIN uio_in[7]
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER Metal4 ;
+        RECT 207.330 735.960 207.630 736.960 ;
+    END
+  END uio_in[7]
+  PIN uio_oe[0]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.360800 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 83.570 735.960 83.870 736.960 ;
+    END
+  END uio_oe[0]
+  PIN uio_oe[1]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.360800 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 76.290 735.960 76.590 736.960 ;
+    END
+  END uio_oe[1]
+  PIN uio_oe[2]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.360800 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 69.010 735.960 69.310 736.960 ;
+    END
+  END uio_oe[2]
+  PIN uio_oe[3]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.360800 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 61.730 735.960 62.030 736.960 ;
+    END
+  END uio_oe[3]
+  PIN uio_oe[4]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.360800 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 54.450 735.960 54.750 736.960 ;
+    END
+  END uio_oe[4]
+  PIN uio_oe[5]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.360800 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 47.170 735.960 47.470 736.960 ;
+    END
+  END uio_oe[5]
+  PIN uio_oe[6]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.360800 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 39.890 735.960 40.190 736.960 ;
+    END
+  END uio_oe[6]
+  PIN uio_oe[7]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.360800 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 32.610 735.960 32.910 736.960 ;
+    END
+  END uio_oe[7]
+  PIN uio_out[0]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.360800 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 141.810 735.960 142.110 736.960 ;
+    END
+  END uio_out[0]
+  PIN uio_out[1]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.360800 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 134.530 735.960 134.830 736.960 ;
+    END
+  END uio_out[1]
+  PIN uio_out[2]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.360800 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 127.250 735.960 127.550 736.960 ;
+    END
+  END uio_out[2]
+  PIN uio_out[3]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.360800 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 119.970 735.960 120.270 736.960 ;
+    END
+  END uio_out[3]
+  PIN uio_out[4]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.360800 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 112.690 735.960 112.990 736.960 ;
+    END
+  END uio_out[4]
+  PIN uio_out[5]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.360800 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 105.410 735.960 105.710 736.960 ;
+    END
+  END uio_out[5]
+  PIN uio_out[6]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.360800 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 98.130 735.960 98.430 736.960 ;
+    END
+  END uio_out[6]
+  PIN uio_out[7]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 0.360800 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 90.850 735.960 91.150 736.960 ;
+    END
+  END uio_out[7]
+  PIN uo_out[0]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 4.024000 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 200.050 735.960 200.350 736.960 ;
+    END
+  END uo_out[0]
+  PIN uo_out[1]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 5.592000 ;
+    ANTENNADIFFAREA 4.408000 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 192.770 735.960 193.070 736.960 ;
+    END
+  END uo_out[1]
+  PIN uo_out[2]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 12.832000 ;
+    ANTENNADIFFAREA 4.408000 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 185.490 735.960 185.790 736.960 ;
+    END
+  END uo_out[2]
+  PIN uo_out[3]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 12.832000 ;
+    ANTENNADIFFAREA 7.096800 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 178.210 735.960 178.510 736.960 ;
+    END
+  END uo_out[3]
+  PIN uo_out[4]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 10.936999 ;
+    ANTENNADIFFAREA 4.030500 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 170.930 735.960 171.230 736.960 ;
+    END
+  END uo_out[4]
+  PIN uo_out[5]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNAGATEAREA 10.738999 ;
+    ANTENNADIFFAREA 4.030500 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 163.650 735.960 163.950 736.960 ;
+    END
+  END uo_out[5]
+  PIN uo_out[6]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 4.030500 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 156.370 735.960 156.670 736.960 ;
+    END
+  END uo_out[6]
+  PIN uo_out[7]
+    DIRECTION OUTPUT ;
+    USE SIGNAL ;
+    ANTENNADIFFAREA 4.030500 ;
+    PORT
+      LAYER Metal4 ;
+        RECT 149.090 735.960 149.390 736.960 ;
+    END
+  END uo_out[7]
+  OBS
+      LAYER Pwell ;
+        RECT 2.930 731.280 1437.390 733.470 ;
+      LAYER Nwell ;
+        RECT 2.930 726.960 1437.390 731.280 ;
+      LAYER Pwell ;
+        RECT 2.930 723.440 1437.390 726.960 ;
+      LAYER Nwell ;
+        RECT 2.930 719.120 1437.390 723.440 ;
+      LAYER Pwell ;
+        RECT 2.930 715.600 1437.390 719.120 ;
+      LAYER Nwell ;
+        RECT 2.930 711.280 1437.390 715.600 ;
+      LAYER Pwell ;
+        RECT 2.930 707.760 1437.390 711.280 ;
+      LAYER Nwell ;
+        RECT 2.930 703.440 1437.390 707.760 ;
+      LAYER Pwell ;
+        RECT 2.930 699.920 1437.390 703.440 ;
+      LAYER Nwell ;
+        RECT 2.930 695.600 1437.390 699.920 ;
+      LAYER Pwell ;
+        RECT 2.930 692.080 1437.390 695.600 ;
+      LAYER Nwell ;
+        RECT 2.930 687.760 1437.390 692.080 ;
+      LAYER Pwell ;
+        RECT 2.930 684.240 1437.390 687.760 ;
+      LAYER Nwell ;
+        RECT 2.930 679.920 1437.390 684.240 ;
+      LAYER Pwell ;
+        RECT 2.930 676.400 1437.390 679.920 ;
+      LAYER Nwell ;
+        RECT 2.930 672.080 1437.390 676.400 ;
+      LAYER Pwell ;
+        RECT 2.930 668.560 1437.390 672.080 ;
+      LAYER Nwell ;
+        RECT 2.930 664.240 1437.390 668.560 ;
+      LAYER Pwell ;
+        RECT 2.930 660.720 1437.390 664.240 ;
+      LAYER Nwell ;
+        RECT 2.930 656.400 1437.390 660.720 ;
+      LAYER Pwell ;
+        RECT 2.930 652.880 1437.390 656.400 ;
+      LAYER Nwell ;
+        RECT 2.930 648.560 1437.390 652.880 ;
+      LAYER Pwell ;
+        RECT 2.930 645.040 1437.390 648.560 ;
+      LAYER Nwell ;
+        RECT 2.930 640.720 1437.390 645.040 ;
+      LAYER Pwell ;
+        RECT 2.930 637.200 1437.390 640.720 ;
+      LAYER Nwell ;
+        RECT 2.930 632.880 1437.390 637.200 ;
+      LAYER Pwell ;
+        RECT 2.930 629.360 1437.390 632.880 ;
+      LAYER Nwell ;
+        RECT 2.930 625.040 1437.390 629.360 ;
+      LAYER Pwell ;
+        RECT 2.930 621.520 1437.390 625.040 ;
+      LAYER Nwell ;
+        RECT 2.930 617.200 1437.390 621.520 ;
+      LAYER Pwell ;
+        RECT 2.930 613.680 1437.390 617.200 ;
+      LAYER Nwell ;
+        RECT 2.930 609.360 1437.390 613.680 ;
+      LAYER Pwell ;
+        RECT 2.930 605.840 1437.390 609.360 ;
+      LAYER Nwell ;
+        RECT 2.930 601.520 1437.390 605.840 ;
+      LAYER Pwell ;
+        RECT 2.930 598.000 1437.390 601.520 ;
+      LAYER Nwell ;
+        RECT 2.930 593.680 1437.390 598.000 ;
+      LAYER Pwell ;
+        RECT 2.930 590.160 1437.390 593.680 ;
+      LAYER Nwell ;
+        RECT 2.930 585.840 1437.390 590.160 ;
+      LAYER Pwell ;
+        RECT 2.930 582.320 1437.390 585.840 ;
+      LAYER Nwell ;
+        RECT 2.930 578.000 1437.390 582.320 ;
+      LAYER Pwell ;
+        RECT 2.930 574.480 1437.390 578.000 ;
+      LAYER Nwell ;
+        RECT 2.930 570.160 1437.390 574.480 ;
+      LAYER Pwell ;
+        RECT 2.930 566.640 1437.390 570.160 ;
+      LAYER Nwell ;
+        RECT 2.930 562.320 1437.390 566.640 ;
+      LAYER Pwell ;
+        RECT 2.930 558.800 1437.390 562.320 ;
+      LAYER Nwell ;
+        RECT 2.930 554.480 1437.390 558.800 ;
+      LAYER Pwell ;
+        RECT 2.930 550.960 1437.390 554.480 ;
+      LAYER Nwell ;
+        RECT 2.930 546.640 1437.390 550.960 ;
+      LAYER Pwell ;
+        RECT 2.930 543.120 1437.390 546.640 ;
+      LAYER Nwell ;
+        RECT 2.930 538.800 1437.390 543.120 ;
+      LAYER Pwell ;
+        RECT 2.930 535.280 1437.390 538.800 ;
+      LAYER Nwell ;
+        RECT 2.930 530.960 1437.390 535.280 ;
+      LAYER Pwell ;
+        RECT 2.930 527.440 1437.390 530.960 ;
+      LAYER Nwell ;
+        RECT 2.930 523.120 1437.390 527.440 ;
+      LAYER Pwell ;
+        RECT 2.930 519.600 1437.390 523.120 ;
+      LAYER Nwell ;
+        RECT 2.930 515.280 1437.390 519.600 ;
+      LAYER Pwell ;
+        RECT 2.930 511.760 1437.390 515.280 ;
+      LAYER Nwell ;
+        RECT 2.930 507.440 1437.390 511.760 ;
+      LAYER Pwell ;
+        RECT 2.930 503.920 1437.390 507.440 ;
+      LAYER Nwell ;
+        RECT 2.930 499.600 1437.390 503.920 ;
+      LAYER Pwell ;
+        RECT 2.930 496.080 1437.390 499.600 ;
+      LAYER Nwell ;
+        RECT 2.930 491.760 1437.390 496.080 ;
+      LAYER Pwell ;
+        RECT 2.930 488.240 1437.390 491.760 ;
+      LAYER Nwell ;
+        RECT 2.930 483.920 1437.390 488.240 ;
+      LAYER Pwell ;
+        RECT 2.930 480.400 1437.390 483.920 ;
+      LAYER Nwell ;
+        RECT 2.930 476.080 1437.390 480.400 ;
+      LAYER Pwell ;
+        RECT 2.930 472.560 1437.390 476.080 ;
+      LAYER Nwell ;
+        RECT 2.930 468.240 1437.390 472.560 ;
+      LAYER Pwell ;
+        RECT 2.930 464.720 1437.390 468.240 ;
+      LAYER Nwell ;
+        RECT 2.930 460.400 1437.390 464.720 ;
+      LAYER Pwell ;
+        RECT 2.930 456.880 1437.390 460.400 ;
+      LAYER Nwell ;
+        RECT 2.930 452.560 1437.390 456.880 ;
+      LAYER Pwell ;
+        RECT 2.930 449.040 1437.390 452.560 ;
+      LAYER Nwell ;
+        RECT 2.930 444.720 1437.390 449.040 ;
+      LAYER Pwell ;
+        RECT 2.930 441.200 1437.390 444.720 ;
+      LAYER Nwell ;
+        RECT 2.930 436.880 1437.390 441.200 ;
+      LAYER Pwell ;
+        RECT 2.930 433.360 1437.390 436.880 ;
+      LAYER Nwell ;
+        RECT 2.930 429.040 1437.390 433.360 ;
+      LAYER Pwell ;
+        RECT 2.930 425.520 1437.390 429.040 ;
+      LAYER Nwell ;
+        RECT 2.930 421.200 1437.390 425.520 ;
+      LAYER Pwell ;
+        RECT 2.930 417.680 1437.390 421.200 ;
+      LAYER Nwell ;
+        RECT 2.930 413.360 1437.390 417.680 ;
+      LAYER Pwell ;
+        RECT 2.930 409.840 1437.390 413.360 ;
+      LAYER Nwell ;
+        RECT 2.930 405.520 1437.390 409.840 ;
+      LAYER Pwell ;
+        RECT 2.930 402.000 1437.390 405.520 ;
+      LAYER Nwell ;
+        RECT 2.930 397.680 1437.390 402.000 ;
+      LAYER Pwell ;
+        RECT 2.930 394.160 1437.390 397.680 ;
+      LAYER Nwell ;
+        RECT 2.930 389.840 1437.390 394.160 ;
+      LAYER Pwell ;
+        RECT 2.930 386.320 1437.390 389.840 ;
+      LAYER Nwell ;
+        RECT 2.930 382.000 1437.390 386.320 ;
+      LAYER Pwell ;
+        RECT 2.930 378.480 1437.390 382.000 ;
+      LAYER Nwell ;
+        RECT 2.930 374.160 1437.390 378.480 ;
+      LAYER Pwell ;
+        RECT 2.930 370.640 1437.390 374.160 ;
+      LAYER Nwell ;
+        RECT 2.930 366.320 1437.390 370.640 ;
+      LAYER Pwell ;
+        RECT 2.930 362.800 1437.390 366.320 ;
+      LAYER Nwell ;
+        RECT 2.930 358.480 1437.390 362.800 ;
+      LAYER Pwell ;
+        RECT 2.930 354.960 1437.390 358.480 ;
+      LAYER Nwell ;
+        RECT 2.930 350.640 1437.390 354.960 ;
+      LAYER Pwell ;
+        RECT 2.930 347.120 1437.390 350.640 ;
+      LAYER Nwell ;
+        RECT 2.930 342.800 1437.390 347.120 ;
+      LAYER Pwell ;
+        RECT 2.930 339.280 1437.390 342.800 ;
+      LAYER Nwell ;
+        RECT 2.930 334.960 1437.390 339.280 ;
+      LAYER Pwell ;
+        RECT 2.930 331.440 1437.390 334.960 ;
+      LAYER Nwell ;
+        RECT 2.930 327.120 1437.390 331.440 ;
+      LAYER Pwell ;
+        RECT 2.930 323.600 1437.390 327.120 ;
+      LAYER Nwell ;
+        RECT 2.930 319.280 1437.390 323.600 ;
+      LAYER Pwell ;
+        RECT 2.930 315.760 1437.390 319.280 ;
+      LAYER Nwell ;
+        RECT 2.930 311.440 1437.390 315.760 ;
+      LAYER Pwell ;
+        RECT 2.930 307.920 1437.390 311.440 ;
+      LAYER Nwell ;
+        RECT 2.930 303.600 1437.390 307.920 ;
+      LAYER Pwell ;
+        RECT 2.930 300.080 1437.390 303.600 ;
+      LAYER Nwell ;
+        RECT 2.930 295.760 1437.390 300.080 ;
+      LAYER Pwell ;
+        RECT 2.930 292.240 1437.390 295.760 ;
+      LAYER Nwell ;
+        RECT 2.930 287.920 1437.390 292.240 ;
+      LAYER Pwell ;
+        RECT 2.930 284.400 1437.390 287.920 ;
+      LAYER Nwell ;
+        RECT 2.930 280.080 1437.390 284.400 ;
+      LAYER Pwell ;
+        RECT 2.930 276.560 1437.390 280.080 ;
+      LAYER Nwell ;
+        RECT 2.930 272.240 1437.390 276.560 ;
+      LAYER Pwell ;
+        RECT 2.930 268.720 1437.390 272.240 ;
+      LAYER Nwell ;
+        RECT 2.930 264.400 1437.390 268.720 ;
+      LAYER Pwell ;
+        RECT 2.930 260.880 1437.390 264.400 ;
+      LAYER Nwell ;
+        RECT 2.930 256.560 1437.390 260.880 ;
+      LAYER Pwell ;
+        RECT 2.930 253.040 1437.390 256.560 ;
+      LAYER Nwell ;
+        RECT 2.930 248.720 1437.390 253.040 ;
+      LAYER Pwell ;
+        RECT 2.930 245.200 1437.390 248.720 ;
+      LAYER Nwell ;
+        RECT 2.930 240.880 1437.390 245.200 ;
+      LAYER Pwell ;
+        RECT 2.930 237.360 1437.390 240.880 ;
+      LAYER Nwell ;
+        RECT 2.930 233.040 1437.390 237.360 ;
+      LAYER Pwell ;
+        RECT 2.930 229.520 1437.390 233.040 ;
+      LAYER Nwell ;
+        RECT 2.930 225.200 1437.390 229.520 ;
+      LAYER Pwell ;
+        RECT 2.930 221.680 1437.390 225.200 ;
+      LAYER Nwell ;
+        RECT 2.930 217.360 1437.390 221.680 ;
+      LAYER Pwell ;
+        RECT 2.930 213.840 1437.390 217.360 ;
+      LAYER Nwell ;
+        RECT 2.930 209.520 1437.390 213.840 ;
+      LAYER Pwell ;
+        RECT 2.930 206.000 1437.390 209.520 ;
+      LAYER Nwell ;
+        RECT 2.930 201.680 1437.390 206.000 ;
+      LAYER Pwell ;
+        RECT 2.930 198.160 1437.390 201.680 ;
+      LAYER Nwell ;
+        RECT 2.930 193.840 1437.390 198.160 ;
+      LAYER Pwell ;
+        RECT 2.930 190.320 1437.390 193.840 ;
+      LAYER Nwell ;
+        RECT 2.930 186.000 1437.390 190.320 ;
+      LAYER Pwell ;
+        RECT 2.930 182.480 1437.390 186.000 ;
+      LAYER Nwell ;
+        RECT 2.930 178.160 1437.390 182.480 ;
+      LAYER Pwell ;
+        RECT 2.930 174.640 1437.390 178.160 ;
+      LAYER Nwell ;
+        RECT 2.930 170.320 1437.390 174.640 ;
+      LAYER Pwell ;
+        RECT 2.930 166.800 1437.390 170.320 ;
+      LAYER Nwell ;
+        RECT 2.930 162.480 1437.390 166.800 ;
+      LAYER Pwell ;
+        RECT 2.930 158.960 1437.390 162.480 ;
+      LAYER Nwell ;
+        RECT 2.930 154.640 1437.390 158.960 ;
+      LAYER Pwell ;
+        RECT 2.930 151.120 1437.390 154.640 ;
+      LAYER Nwell ;
+        RECT 2.930 146.800 1437.390 151.120 ;
+      LAYER Pwell ;
+        RECT 2.930 143.280 1437.390 146.800 ;
+      LAYER Nwell ;
+        RECT 2.930 138.960 1437.390 143.280 ;
+      LAYER Pwell ;
+        RECT 2.930 135.440 1437.390 138.960 ;
+      LAYER Nwell ;
+        RECT 2.930 131.120 1437.390 135.440 ;
+      LAYER Pwell ;
+        RECT 2.930 127.600 1437.390 131.120 ;
+      LAYER Nwell ;
+        RECT 2.930 123.280 1437.390 127.600 ;
+      LAYER Pwell ;
+        RECT 2.930 119.760 1437.390 123.280 ;
+      LAYER Nwell ;
+        RECT 2.930 115.440 1437.390 119.760 ;
+      LAYER Pwell ;
+        RECT 2.930 111.920 1437.390 115.440 ;
+      LAYER Nwell ;
+        RECT 2.930 107.600 1437.390 111.920 ;
+      LAYER Pwell ;
+        RECT 2.930 104.080 1437.390 107.600 ;
+      LAYER Nwell ;
+        RECT 2.930 99.760 1437.390 104.080 ;
+      LAYER Pwell ;
+        RECT 2.930 96.240 1437.390 99.760 ;
+      LAYER Nwell ;
+        RECT 2.930 91.920 1437.390 96.240 ;
+      LAYER Pwell ;
+        RECT 2.930 88.400 1437.390 91.920 ;
+      LAYER Nwell ;
+        RECT 2.930 84.080 1437.390 88.400 ;
+      LAYER Pwell ;
+        RECT 2.930 80.560 1437.390 84.080 ;
+      LAYER Nwell ;
+        RECT 2.930 76.240 1437.390 80.560 ;
+      LAYER Pwell ;
+        RECT 2.930 72.720 1437.390 76.240 ;
+      LAYER Nwell ;
+        RECT 2.930 68.400 1437.390 72.720 ;
+      LAYER Pwell ;
+        RECT 2.930 64.880 1437.390 68.400 ;
+      LAYER Nwell ;
+        RECT 2.930 60.560 1437.390 64.880 ;
+      LAYER Pwell ;
+        RECT 2.930 57.040 1437.390 60.560 ;
+      LAYER Nwell ;
+        RECT 2.930 52.720 1437.390 57.040 ;
+      LAYER Pwell ;
+        RECT 2.930 49.200 1437.390 52.720 ;
+      LAYER Nwell ;
+        RECT 2.930 44.880 1437.390 49.200 ;
+      LAYER Pwell ;
+        RECT 2.930 41.360 1437.390 44.880 ;
+      LAYER Nwell ;
+        RECT 2.930 37.040 1437.390 41.360 ;
+      LAYER Pwell ;
+        RECT 2.930 33.520 1437.390 37.040 ;
+      LAYER Nwell ;
+        RECT 2.930 29.200 1437.390 33.520 ;
+      LAYER Pwell ;
+        RECT 2.930 25.680 1437.390 29.200 ;
+      LAYER Nwell ;
+        RECT 2.930 21.360 1437.390 25.680 ;
+      LAYER Pwell ;
+        RECT 2.930 17.840 1437.390 21.360 ;
+      LAYER Nwell ;
+        RECT 2.930 13.520 1437.390 17.840 ;
+      LAYER Pwell ;
+        RECT 2.930 10.000 1437.390 13.520 ;
+      LAYER Nwell ;
+        RECT 2.930 5.680 1437.390 10.000 ;
+      LAYER Pwell ;
+        RECT 2.930 3.490 1437.390 5.680 ;
+      LAYER Metal1 ;
+        RECT 3.360 3.620 1436.960 733.340 ;
+      LAYER Metal2 ;
+        RECT 5.740 3.730 1422.960 736.310 ;
+      LAYER Metal3 ;
+        RECT 5.690 3.780 1423.010 736.260 ;
+      LAYER Metal4 ;
+        RECT 33.210 735.660 39.590 735.960 ;
+        RECT 40.490 735.660 46.870 735.960 ;
+        RECT 47.770 735.660 54.150 735.960 ;
+        RECT 55.050 735.660 61.430 735.960 ;
+        RECT 62.330 735.660 68.710 735.960 ;
+        RECT 69.610 735.660 75.990 735.960 ;
+        RECT 76.890 735.660 83.270 735.960 ;
+        RECT 84.170 735.660 90.550 735.960 ;
+        RECT 91.450 735.660 97.830 735.960 ;
+        RECT 98.730 735.660 105.110 735.960 ;
+        RECT 106.010 735.660 112.390 735.960 ;
+        RECT 113.290 735.660 119.670 735.960 ;
+        RECT 120.570 735.660 126.950 735.960 ;
+        RECT 127.850 735.660 134.230 735.960 ;
+        RECT 135.130 735.660 141.510 735.960 ;
+        RECT 142.410 735.660 148.790 735.960 ;
+        RECT 149.690 735.660 156.070 735.960 ;
+        RECT 156.970 735.660 163.350 735.960 ;
+        RECT 164.250 735.660 170.630 735.960 ;
+        RECT 171.530 735.660 177.910 735.960 ;
+        RECT 178.810 735.660 185.190 735.960 ;
+        RECT 186.090 735.660 192.470 735.960 ;
+        RECT 193.370 735.660 199.750 735.960 ;
+        RECT 200.650 735.660 207.030 735.960 ;
+        RECT 207.930 735.660 214.310 735.960 ;
+        RECT 215.210 735.660 221.590 735.960 ;
+        RECT 222.490 735.660 228.870 735.960 ;
+        RECT 229.770 735.660 236.150 735.960 ;
+        RECT 237.050 735.660 243.430 735.960 ;
+        RECT 244.330 735.660 250.710 735.960 ;
+        RECT 251.610 735.660 257.990 735.960 ;
+        RECT 258.890 735.660 265.270 735.960 ;
+        RECT 266.170 735.660 272.550 735.960 ;
+        RECT 273.450 735.660 279.830 735.960 ;
+        RECT 280.730 735.660 287.110 735.960 ;
+        RECT 288.010 735.660 294.390 735.960 ;
+        RECT 295.290 735.660 301.670 735.960 ;
+        RECT 302.570 735.660 308.950 735.960 ;
+        RECT 309.850 735.660 316.230 735.960 ;
+        RECT 317.130 735.660 323.510 735.960 ;
+        RECT 324.410 735.660 330.790 735.960 ;
+        RECT 331.690 735.660 338.070 735.960 ;
+        RECT 338.970 735.660 1381.940 735.960 ;
+        RECT 32.620 733.640 1381.940 735.660 ;
+        RECT 32.620 41.530 57.450 733.640 ;
+        RECT 59.650 41.530 60.750 733.640 ;
+        RECT 62.950 41.530 96.320 733.640 ;
+        RECT 98.520 41.530 99.620 733.640 ;
+        RECT 101.820 41.530 135.190 733.640 ;
+        RECT 137.390 41.530 138.490 733.640 ;
+        RECT 140.690 41.530 174.060 733.640 ;
+        RECT 176.260 41.530 177.360 733.640 ;
+        RECT 179.560 41.530 212.930 733.640 ;
+        RECT 215.130 41.530 216.230 733.640 ;
+        RECT 218.430 41.530 251.800 733.640 ;
+        RECT 254.000 41.530 255.100 733.640 ;
+        RECT 257.300 41.530 290.670 733.640 ;
+        RECT 292.870 41.530 293.970 733.640 ;
+        RECT 296.170 41.530 329.540 733.640 ;
+        RECT 331.740 41.530 332.840 733.640 ;
+        RECT 335.040 41.530 368.410 733.640 ;
+        RECT 370.610 41.530 371.710 733.640 ;
+        RECT 373.910 41.530 407.280 733.640 ;
+        RECT 409.480 41.530 410.580 733.640 ;
+        RECT 412.780 41.530 446.150 733.640 ;
+        RECT 448.350 41.530 449.450 733.640 ;
+        RECT 451.650 41.530 485.020 733.640 ;
+        RECT 487.220 41.530 488.320 733.640 ;
+        RECT 490.520 41.530 523.890 733.640 ;
+        RECT 526.090 41.530 527.190 733.640 ;
+        RECT 529.390 41.530 562.760 733.640 ;
+        RECT 564.960 41.530 566.060 733.640 ;
+        RECT 568.260 41.530 601.630 733.640 ;
+        RECT 603.830 41.530 604.930 733.640 ;
+        RECT 607.130 41.530 640.500 733.640 ;
+        RECT 642.700 41.530 643.800 733.640 ;
+        RECT 646.000 41.530 679.370 733.640 ;
+        RECT 681.570 41.530 682.670 733.640 ;
+        RECT 684.870 41.530 718.240 733.640 ;
+        RECT 720.440 41.530 721.540 733.640 ;
+        RECT 723.740 41.530 757.110 733.640 ;
+        RECT 759.310 41.530 760.410 733.640 ;
+        RECT 762.610 41.530 795.980 733.640 ;
+        RECT 798.180 41.530 799.280 733.640 ;
+        RECT 801.480 41.530 834.850 733.640 ;
+        RECT 837.050 41.530 838.150 733.640 ;
+        RECT 840.350 41.530 873.720 733.640 ;
+        RECT 875.920 41.530 877.020 733.640 ;
+        RECT 879.220 41.530 912.590 733.640 ;
+        RECT 914.790 41.530 915.890 733.640 ;
+        RECT 918.090 41.530 951.460 733.640 ;
+        RECT 953.660 41.530 954.760 733.640 ;
+        RECT 956.960 41.530 990.330 733.640 ;
+        RECT 992.530 41.530 993.630 733.640 ;
+        RECT 995.830 41.530 1029.200 733.640 ;
+        RECT 1031.400 41.530 1032.500 733.640 ;
+        RECT 1034.700 41.530 1068.070 733.640 ;
+        RECT 1070.270 41.530 1071.370 733.640 ;
+        RECT 1073.570 41.530 1106.940 733.640 ;
+        RECT 1109.140 41.530 1110.240 733.640 ;
+        RECT 1112.440 41.530 1145.810 733.640 ;
+        RECT 1148.010 41.530 1149.110 733.640 ;
+        RECT 1151.310 41.530 1184.680 733.640 ;
+        RECT 1186.880 41.530 1187.980 733.640 ;
+        RECT 1190.180 41.530 1223.550 733.640 ;
+        RECT 1225.750 41.530 1226.850 733.640 ;
+        RECT 1229.050 41.530 1262.420 733.640 ;
+        RECT 1264.620 41.530 1265.720 733.640 ;
+        RECT 1267.920 41.530 1301.290 733.640 ;
+        RECT 1303.490 41.530 1304.590 733.640 ;
+        RECT 1306.790 41.530 1340.160 733.640 ;
+        RECT 1342.360 41.530 1343.460 733.640 ;
+        RECT 1345.660 41.530 1379.030 733.640 ;
+        RECT 1381.230 41.530 1381.940 733.640 ;
+  END
+END tt_um_utoss_riscv
+END LIBRARY
+
