@@ -1,0 +1,46 @@
+139. Printing statistics.
+
+=== tt_um_memory_game_top ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+      686        - wires
+      721        - wire bits
+      156        - public wires
+      191        - public wire bits
+        8        - ports
+       43        - port bits
+      702 1.98E+04 cells
+       47  825.395   gf180mcu_fd_sc_mcu7t5v0__and2_1
+        9  197.568   gf180mcu_fd_sc_mcu7t5v0__and3_1
+        7   169.03   gf180mcu_fd_sc_mcu7t5v0__and4_1
+       11  241.472   gf180mcu_fd_sc_mcu7t5v0__aoi211_1
+       44   772.71   gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+        4   96.589   gf180mcu_fd_sc_mcu7t5v0__aoi221_1
+        3    59.27   gf180mcu_fd_sc_mcu7t5v0__aoi22_1
+       43  377.574   gf180mcu_fd_sc_mcu7t5v0__clkinv_1
+      152 9.68E+03   gf180mcu_fd_sc_mcu7t5v0__dffq_1
+       22  724.416   gf180mcu_fd_sc_mcu7t5v0__mux2_2
+       20  1.4E+03   gf180mcu_fd_sc_mcu7t5v0__mux4_1
+       68  746.368   gf180mcu_fd_sc_mcu7t5v0__nand2_1
+        9  138.298   gf180mcu_fd_sc_mcu7t5v0__nand3_1
+        9  177.811   gf180mcu_fd_sc_mcu7t5v0__nand4_1
+       88 1.16E+03   gf180mcu_fd_sc_mcu7t5v0__nor2_1
+       36  632.218   gf180mcu_fd_sc_mcu7t5v0__nor3_1
+        4   87.808   gf180mcu_fd_sc_mcu7t5v0__nor4_1
+        2   43.904   gf180mcu_fd_sc_mcu7t5v0__oai211_1
+       70 1.23E+03   gf180mcu_fd_sc_mcu7t5v0__oai21_1
+        5  131.712   gf180mcu_fd_sc_mcu7t5v0__oai221_1
+        4   87.808   gf180mcu_fd_sc_mcu7t5v0__oai22_1
+        2   48.294   gf180mcu_fd_sc_mcu7t5v0__oai31_1
+        3   79.027   gf180mcu_fd_sc_mcu7t5v0__oai32_1
+        3   52.685   gf180mcu_fd_sc_mcu7t5v0__or2_1
+        2   52.685   gf180mcu_fd_sc_mcu7t5v0__or4_1
+       17  149.274   gf180mcu_fd_sc_mcu7t5v0__tiel
+        6  171.226   gf180mcu_fd_sc_mcu7t5v0__xnor2_1
+       12  316.109   gf180mcu_fd_sc_mcu7t5v0__xor2_1
+
+   Chip area for module '\tt_um_memory_game_top': 19848.998400
+     of which used for sequential elements: 9676.441600 (48.75%)
+
