@@ -1,0 +1,56 @@
+# Tiny Tapeout project information
+project:
+  title:        "GPS_Accelerator"      # Project title
+  author:       "jpigdon"      # Your name
+  discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "GNSS Accelerator to demonstrate acquisition and tracking on Tiny Tapeout "      # One line description of what your project does
+  language:     "VHDL" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     2200000       # close timing for max sample rate of clock
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "1x2"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_jpigdon_gps_accelerator_top"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  source_files:
+    - "tt_um_jpigdon_gps_accelerator_top.vhdl"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+# This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
+pinout:
+  # Inputs
+  ui[0]: "MAX2771 I0 - Quantised ADC I0 input stream"
+  ui[1]: "MAX2771 I1 - Quantised ADC I1 input stream"
+  ui[2]: "MAX2771 Q0 - Quantised ADC Q0 input stream"
+  ui[3]: "MAX2771 Q1 - Quantised ADC Q1 input stream"
+  ui[4]: "MAX2771 CLKOUT Pin - configured for ADC sample clock"
+  ui[5]: "MAX2771 Lock Detect"
+  ui[6]: "Unused"
+  ui[7]: "Unused"
+
+  # Outputs
+  uo[0]: "Interrupt to Software (Frame Timing or acq. exceedance)"
+  uo[1]: "Unused"
+  uo[2]: "Unused"
+  uo[3]: "Unused"
+  uo[4]: "Unused"
+  uo[5]: "Unused"
+  uo[6]: "Unused"
+  uo[7]: "Unused"
+
+  # Bidirectional pins
+  uio[0]: "SPI Registers - CS"
+  uio[1]: "SPI Registers - MOSI"
+  uio[2]: "SPI Registers - MISO"
+  uio[3]: "SPI Registers - SCK"
+  uio[4]: "Nice to have MAX2771 Passthrough - CS"
+  uio[5]: "Nice to have MAX2771 Passthrough - SDATA"
+  uio[6]: "Nice to have MAX2771 Passthrough - SCLK"
+  uio[7]: "Nice to have MAX2771 SHUTDOWN"
+
+# Do not change!
+yaml_version: 6
