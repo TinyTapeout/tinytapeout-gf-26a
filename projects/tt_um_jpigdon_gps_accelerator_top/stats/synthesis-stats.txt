@@ -1,0 +1,54 @@
+150. Printing statistics.
+
+=== tt_um_jpigdon_gps_accelerator_top ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     2728        - wires
+     2763        - wire bits
+      467        - public wires
+      502        - public wire bits
+        8        - ports
+       43        - port bits
+     2744 7.01E+04 cells
+       48  842.957   gf180mcu_fd_sc_mcu7t5v0__and2_1
+       29  636.608   gf180mcu_fd_sc_mcu7t5v0__and3_1
+       16  386.355   gf180mcu_fd_sc_mcu7t5v0__and4_1
+       15   329.28   gf180mcu_fd_sc_mcu7t5v0__aoi211_1
+      203 3.57E+03   gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+       34  821.005   gf180mcu_fd_sc_mcu7t5v0__aoi221_1
+        6  184.397   gf180mcu_fd_sc_mcu7t5v0__aoi222_1
+       56 1.11E+03   gf180mcu_fd_sc_mcu7t5v0__aoi22_1
+        3   39.514   gf180mcu_fd_sc_mcu7t5v0__buf_1
+      165 1.45E+03   gf180mcu_fd_sc_mcu7t5v0__clkinv_1
+        1   94.394   gf180mcu_fd_sc_mcu7t5v0__dffnrsnq_1
+      256 1.63E+04   gf180mcu_fd_sc_mcu7t5v0__dffq_1
+      158 1.18E+04   gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+       41 3.24E+03   gf180mcu_fd_sc_mcu7t5v0__dffsnq_1
+       44 1.45E+03   gf180mcu_fd_sc_mcu7t5v0__mux2_2
+      482 5.29E+03   gf180mcu_fd_sc_mcu7t5v0__nand2_1
+      118 1.81E+03   gf180mcu_fd_sc_mcu7t5v0__nand3_1
+       22   434.65   gf180mcu_fd_sc_mcu7t5v0__nand4_1
+      189 2.49E+03   gf180mcu_fd_sc_mcu7t5v0__nor2_1
+       54  948.326   gf180mcu_fd_sc_mcu7t5v0__nor3_1
+       17  373.184   gf180mcu_fd_sc_mcu7t5v0__nor4_1
+       29  636.608   gf180mcu_fd_sc_mcu7t5v0__oai211_1
+      417 7.32E+03   gf180mcu_fd_sc_mcu7t5v0__oai21_1
+        1   26.342   gf180mcu_fd_sc_mcu7t5v0__oai221_1
+       37  812.224   gf180mcu_fd_sc_mcu7t5v0__oai22_1
+       16  386.355   gf180mcu_fd_sc_mcu7t5v0__oai31_1
+       14  368.794   gf180mcu_fd_sc_mcu7t5v0__oai32_1
+       49  860.518   gf180mcu_fd_sc_mcu7t5v0__or2_1
+       11  241.472   gf180mcu_fd_sc_mcu7t5v0__or3_1
+        4   105.37   gf180mcu_fd_sc_mcu7t5v0__or4_1
+        2   17.562   gf180mcu_fd_sc_mcu7t5v0__tieh
+       19  166.835   gf180mcu_fd_sc_mcu7t5v0__tiel
+       44 1.26E+03   gf180mcu_fd_sc_mcu7t5v0__xnor2_1
+        7  368.794   gf180mcu_fd_sc_mcu7t5v0__xnor3_1
+      123 3.24E+03   gf180mcu_fd_sc_mcu7t5v0__xor2_1
+       14  706.854   gf180mcu_fd_sc_mcu7t5v0__xor3_1
+
+   Chip area for module '\tt_um_jpigdon_gps_accelerator_top': 70099.321600
+     of which used for sequential elements: 31424.288000 (44.83%)
+
