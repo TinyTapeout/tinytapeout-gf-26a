@@ -1,0 +1,51 @@
+176. Printing statistics.
+
+=== tt_um_bgao43 ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     1275        - wires
+     1310        - wire bits
+      177        - public wires
+      212        - public wire bits
+        8        - ports
+       43        - port bits
+     1291 3.31E+04 cells
+       40  702.464   gf180mcu_fd_sc_mcu7t5v0__and2_1
+       14  307.328   gf180mcu_fd_sc_mcu7t5v0__and3_1
+        5  120.736   gf180mcu_fd_sc_mcu7t5v0__and4_1
+       11  241.472   gf180mcu_fd_sc_mcu7t5v0__aoi211_1
+      102 1.79E+03   gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+        7   169.03   gf180mcu_fd_sc_mcu7t5v0__aoi221_1
+       42  829.786   gf180mcu_fd_sc_mcu7t5v0__aoi22_1
+       92  807.834   gf180mcu_fd_sc_mcu7t5v0__clkinv_1
+      162 1.21E+04   gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+        7   553.19   gf180mcu_fd_sc_mcu7t5v0__dffsnq_1
+       56 1.84E+03   gf180mcu_fd_sc_mcu7t5v0__mux2_2
+        6  421.478   gf180mcu_fd_sc_mcu7t5v0__mux4_1
+      208 2.28E+03   gf180mcu_fd_sc_mcu7t5v0__nand2_1
+       40  614.656   gf180mcu_fd_sc_mcu7t5v0__nand3_1
+       16  316.109   gf180mcu_fd_sc_mcu7t5v0__nand4_1
+      108  1422.49   gf180mcu_fd_sc_mcu7t5v0__nor2_1
+       21  368.794   gf180mcu_fd_sc_mcu7t5v0__nor3_1
+        4   87.808   gf180mcu_fd_sc_mcu7t5v0__nor4_1
+       17  373.184   gf180mcu_fd_sc_mcu7t5v0__oai211_1
+      103 1.81E+03   gf180mcu_fd_sc_mcu7t5v0__oai21_1
+        2   52.685   gf180mcu_fd_sc_mcu7t5v0__oai221_1
+       19  417.088   gf180mcu_fd_sc_mcu7t5v0__oai22_1
+       22  531.238   gf180mcu_fd_sc_mcu7t5v0__oai31_1
+        2   52.685   gf180mcu_fd_sc_mcu7t5v0__oai32_1
+        1   32.928   gf180mcu_fd_sc_mcu7t5v0__oai33_1
+       24  421.478   gf180mcu_fd_sc_mcu7t5v0__or2_1
+        7  153.664   gf180mcu_fd_sc_mcu7t5v0__or3_1
+        2   52.685   gf180mcu_fd_sc_mcu7t5v0__or4_1
+       23  201.958   gf180mcu_fd_sc_mcu7t5v0__tiel
+       28  799.053   gf180mcu_fd_sc_mcu7t5v0__xnor2_1
+        6  316.109   gf180mcu_fd_sc_mcu7t5v0__xnor3_1
+       75  1975.68   gf180mcu_fd_sc_mcu7t5v0__xor2_1
+       19  959.302   gf180mcu_fd_sc_mcu7t5v0__xor3_1
+
+   Chip area for module '\tt_um_bgao43': 33121.177600
+     of which used for sequential elements: 12644.352000 (38.18%)
+
