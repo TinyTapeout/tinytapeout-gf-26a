@@ -1,0 +1,49 @@
+135. Printing statistics.
+
+=== tt_um_joannec34_teenytpu ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     2368        - wires
+     2403        - wire bits
+      214        - public wires
+      249        - public wire bits
+        8        - ports
+       43        - port bits
+     2384 5.74E+04 cells
+       67 1.18E+03   gf180mcu_fd_sc_mcu7t5v0__and2_1
+       12  263.424   gf180mcu_fd_sc_mcu7t5v0__and3_1
+       15  362.208   gf180mcu_fd_sc_mcu7t5v0__and4_1
+        9  197.568   gf180mcu_fd_sc_mcu7t5v0__aoi211_1
+      146 2.56E+03   gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+       74 1.46E+03   gf180mcu_fd_sc_mcu7t5v0__aoi22_1
+        3   39.514   gf180mcu_fd_sc_mcu7t5v0__buf_1
+      118 1.04E+03   gf180mcu_fd_sc_mcu7t5v0__clkinv_1
+      202 1.51E+04   gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+        4  316.109   gf180mcu_fd_sc_mcu7t5v0__dffsnq_1
+       67 2.21E+03   gf180mcu_fd_sc_mcu7t5v0__mux2_2
+      554 6.08E+03   gf180mcu_fd_sc_mcu7t5v0__nand2_1
+       29  445.626   gf180mcu_fd_sc_mcu7t5v0__nand3_1
+       23  454.406   gf180mcu_fd_sc_mcu7t5v0__nand4_1
+      227 2.99E+03   gf180mcu_fd_sc_mcu7t5v0__nor2_1
+       18  316.109   gf180mcu_fd_sc_mcu7t5v0__nor3_1
+        4   87.808   gf180mcu_fd_sc_mcu7t5v0__nor4_1
+        3   65.856   gf180mcu_fd_sc_mcu7t5v0__oai211_1
+      206  3617.69   gf180mcu_fd_sc_mcu7t5v0__oai21_1
+       47 1.03E+03   gf180mcu_fd_sc_mcu7t5v0__oai22_1
+       13  313.914   gf180mcu_fd_sc_mcu7t5v0__oai31_1
+        9  237.082   gf180mcu_fd_sc_mcu7t5v0__oai32_1
+        1   32.928   gf180mcu_fd_sc_mcu7t5v0__oai33_1
+       39  684.902   gf180mcu_fd_sc_mcu7t5v0__or2_1
+        6  131.712   gf180mcu_fd_sc_mcu7t5v0__or3_1
+        1   26.342   gf180mcu_fd_sc_mcu7t5v0__or4_1
+       21  184.397   gf180mcu_fd_sc_mcu7t5v0__tiel
+       93 2.65E+03   gf180mcu_fd_sc_mcu7t5v0__xnor2_1
+       48  2528.87   gf180mcu_fd_sc_mcu7t5v0__xnor3_1
+      232 6.11E+03   gf180mcu_fd_sc_mcu7t5v0__xor2_1
+       93  4.7E+03   gf180mcu_fd_sc_mcu7t5v0__xor3_1
+
+   Chip area for module '\tt_um_joannec34_teenytpu': 57391.308800
+     of which used for sequential elements: 15392.742400 (26.82%)
+
