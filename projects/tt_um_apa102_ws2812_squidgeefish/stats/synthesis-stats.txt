@@ -1,0 +1,48 @@
+142. Printing statistics.
+
+=== tt_um_apa102_ws2812_squidgeefish ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     1483        - wires
+     1518        - wire bits
+      235        - public wires
+      270        - public wire bits
+        8        - ports
+       43        - port bits
+     1499 3.58E+04 cells
+       25   439.04   gf180mcu_fd_sc_mcu7t5v0__and2_1
+       10   219.52   gf180mcu_fd_sc_mcu7t5v0__and3_1
+       10  241.472   gf180mcu_fd_sc_mcu7t5v0__and4_1
+       19  417.088   gf180mcu_fd_sc_mcu7t5v0__aoi211_1
+      206  3617.69   gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+       19  458.797   gf180mcu_fd_sc_mcu7t5v0__aoi221_1
+      102 2.02E+03   gf180mcu_fd_sc_mcu7t5v0__aoi22_1
+        2   26.342   gf180mcu_fd_sc_mcu7t5v0__buf_1
+       66  579.533   gf180mcu_fd_sc_mcu7t5v0__clkinv_1
+      226 1.44E+04   gf180mcu_fd_sc_mcu7t5v0__dffq_1
+        6  197.568   gf180mcu_fd_sc_mcu7t5v0__mux2_2
+       17 1.19E+03   gf180mcu_fd_sc_mcu7t5v0__mux4_1
+      154 1.69E+03   gf180mcu_fd_sc_mcu7t5v0__nand2_1
+      158 2.43E+03   gf180mcu_fd_sc_mcu7t5v0__nand3_1
+       13  256.838   gf180mcu_fd_sc_mcu7t5v0__nand4_1
+      218 2.87E+03   gf180mcu_fd_sc_mcu7t5v0__nor2_1
+       77 1.35E+03   gf180mcu_fd_sc_mcu7t5v0__nor3_1
+       10   219.52   gf180mcu_fd_sc_mcu7t5v0__nor4_1
+       27  592.704   gf180mcu_fd_sc_mcu7t5v0__oai211_1
+       47  825.395   gf180mcu_fd_sc_mcu7t5v0__oai21_1
+        4   105.37   gf180mcu_fd_sc_mcu7t5v0__oai221_1
+        7  153.664   gf180mcu_fd_sc_mcu7t5v0__oai22_1
+       18   434.65   gf180mcu_fd_sc_mcu7t5v0__oai31_1
+        4   105.37   gf180mcu_fd_sc_mcu7t5v0__oai32_1
+        8  140.493   gf180mcu_fd_sc_mcu7t5v0__or2_1
+        2   43.904   gf180mcu_fd_sc_mcu7t5v0__or3_1
+        6  158.054   gf180mcu_fd_sc_mcu7t5v0__or4_1
+       22  193.178   gf180mcu_fd_sc_mcu7t5v0__tiel
+        4   114.15   gf180mcu_fd_sc_mcu7t5v0__xnor2_1
+       12  316.109   gf180mcu_fd_sc_mcu7t5v0__xor2_1
+
+   Chip area for module '\tt_um_apa102_ws2812_squidgeefish': 35794.931200
+     of which used for sequential elements: 14387.340800 (40.19%)
+
