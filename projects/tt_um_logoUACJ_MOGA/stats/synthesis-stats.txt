@@ -1,0 +1,50 @@
+142. Printing statistics.
+
+=== tt_um_logoUACJ_MOGA ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+      780        - wires
+      815        - wire bits
+       71        - public wires
+      106        - public wire bits
+        8        - ports
+       43        - port bits
+      796 1.75E+04 cells
+       23  403.917   gf180mcu_fd_sc_mcu7t5v0__and2_1
+        4   87.808   gf180mcu_fd_sc_mcu7t5v0__and3_1
+        6  144.883   gf180mcu_fd_sc_mcu7t5v0__and4_1
+       24  526.848   gf180mcu_fd_sc_mcu7t5v0__aoi211_1
+       61 1.07E+03   gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+       12  289.766   gf180mcu_fd_sc_mcu7t5v0__aoi221_1
+        1   30.733   gf180mcu_fd_sc_mcu7t5v0__aoi222_1
+       12  237.082   gf180mcu_fd_sc_mcu7t5v0__aoi22_1
+        2   26.342   gf180mcu_fd_sc_mcu7t5v0__buf_1
+       57  500.506   gf180mcu_fd_sc_mcu7t5v0__clkinv_1
+       69 4.39E+03   gf180mcu_fd_sc_mcu7t5v0__dffq_1
+        5   164.64   gf180mcu_fd_sc_mcu7t5v0__mux2_2
+      115  1262.24   gf180mcu_fd_sc_mcu7t5v0__nand2_1
+       23  353.427   gf180mcu_fd_sc_mcu7t5v0__nand3_1
+       22   434.65   gf180mcu_fd_sc_mcu7t5v0__nand4_1
+       70  921.984   gf180mcu_fd_sc_mcu7t5v0__nor2_1
+       18  316.109   gf180mcu_fd_sc_mcu7t5v0__nor3_1
+       23  504.896   gf180mcu_fd_sc_mcu7t5v0__nor4_1
+       20   439.04   gf180mcu_fd_sc_mcu7t5v0__oai211_1
+       69  1211.75   gf180mcu_fd_sc_mcu7t5v0__oai21_1
+        8  210.739   gf180mcu_fd_sc_mcu7t5v0__oai221_1
+        1   32.928   gf180mcu_fd_sc_mcu7t5v0__oai222_1
+        4   87.808   gf180mcu_fd_sc_mcu7t5v0__oai22_1
+        5  120.736   gf180mcu_fd_sc_mcu7t5v0__oai31_1
+        4   105.37   gf180mcu_fd_sc_mcu7t5v0__oai32_1
+       19   333.67   gf180mcu_fd_sc_mcu7t5v0__or2_1
+        4   87.808   gf180mcu_fd_sc_mcu7t5v0__or3_1
+        7  184.397   gf180mcu_fd_sc_mcu7t5v0__or4_1
+       16  140.493   gf180mcu_fd_sc_mcu7t5v0__tiel
+       12  342.451   gf180mcu_fd_sc_mcu7t5v0__xnor2_1
+       62 1.63E+03   gf180mcu_fd_sc_mcu7t5v0__xor2_1
+       18  908.813   gf180mcu_fd_sc_mcu7t5v0__xor3_1
+
+   Chip area for module '\tt_um_logoUACJ_MOGA': 17508.915200
+     of which used for sequential elements: 4392.595200 (25.09%)
+
