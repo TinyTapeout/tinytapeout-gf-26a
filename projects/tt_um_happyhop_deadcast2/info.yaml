@@ -1,0 +1,55 @@
+# Tiny Tapeout project information
+project:
+  title:        "happyhop"
+  author:       "deadcast2"
+  discord:      ""                 # optional
+  description:  "A bouncing smiley face rendered live to VGA via the standard TT VGA PMOD. No framebuffer; pixels computed on the fly."
+  language:     "Verilog"
+  clock_hz:     25175000           # 25.175 MHz pixel clock for 640x480 @ 60 Hz
+
+  # Single tile is fine for this design.
+  tiles: "1x1"
+
+  # Top module name must start with "tt_um_".
+  top_module:  "tt_um_happyhop_deadcast2"
+
+  # All Verilog files under ./src/, one per line.
+  source_files:
+    - "tt_um_happyhop_deadcast2.v"
+    - "vga_sync.v"
+    - "pixel_logic.v"
+
+# Pinout matches Matt Venn's TT VGA PMOD spec.
+pinout:
+  # Inputs (Phase 1: unused; later phases may use these for speed/color/size)
+  ui[0]: ""
+  ui[1]: ""
+  ui[2]: ""
+  ui[3]: ""
+  ui[4]: ""
+  ui[5]: ""
+  ui[6]: ""
+  ui[7]: ""
+
+  # Outputs - TT VGA PMOD pinout
+  uo[0]: "R1"
+  uo[1]: "G1"
+  uo[2]: "B1"
+  uo[3]: "VSync"
+  uo[4]: "R0"
+  uo[5]: "G0"
+  uo[6]: "B0"
+  uo[7]: "HSync"
+
+  # Bidirectional pins - unused
+  uio[0]: ""
+  uio[1]: ""
+  uio[2]: ""
+  uio[3]: ""
+  uio[4]: ""
+  uio[5]: ""
+  uio[6]: ""
+  uio[7]: ""
+
+# Do not change!
+yaml_version: 6
