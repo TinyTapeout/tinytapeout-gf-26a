@@ -1,0 +1,52 @@
+152. Printing statistics.
+
+=== tt_um_algofoogle_dottee ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     1772        - wires
+     1807        - wire bits
+      101        - public wires
+      136        - public wire bits
+        8        - ports
+       43        - port bits
+     1788 3.65E+04 cells
+       68 1.19E+03   gf180mcu_fd_sc_mcu7t5v0__and2_1
+       20   439.04   gf180mcu_fd_sc_mcu7t5v0__and3_1
+        3   72.442   gf180mcu_fd_sc_mcu7t5v0__and4_1
+       24  526.848   gf180mcu_fd_sc_mcu7t5v0__aoi211_1
+      145 2.55E+03   gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+       17  410.502   gf180mcu_fd_sc_mcu7t5v0__aoi221_1
+        1   30.733   gf180mcu_fd_sc_mcu7t5v0__aoi222_1
+       41  810.029   gf180mcu_fd_sc_mcu7t5v0__aoi22_1
+        3   39.514   gf180mcu_fd_sc_mcu7t5v0__buf_1
+      109  957.107   gf180mcu_fd_sc_mcu7t5v0__clkinv_1
+       87  5538.49   gf180mcu_fd_sc_mcu7t5v0__dffq_1
+       12  895.642   gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+       14  460.992   gf180mcu_fd_sc_mcu7t5v0__mux2_2
+      328  3.6E+03   gf180mcu_fd_sc_mcu7t5v0__nand2_1
+       58  891.251   gf180mcu_fd_sc_mcu7t5v0__nand3_1
+       14  276.595   gf180mcu_fd_sc_mcu7t5v0__nand4_1
+      216 2.84E+03   gf180mcu_fd_sc_mcu7t5v0__nor2_1
+       42  737.587   gf180mcu_fd_sc_mcu7t5v0__nor3_1
+        7  153.664   gf180mcu_fd_sc_mcu7t5v0__nor4_1
+       32  702.464   gf180mcu_fd_sc_mcu7t5v0__oai211_1
+      145 2.55E+03   gf180mcu_fd_sc_mcu7t5v0__oai21_1
+        6  158.054   gf180mcu_fd_sc_mcu7t5v0__oai221_1
+       33  724.416   gf180mcu_fd_sc_mcu7t5v0__oai22_1
+       15  362.208   gf180mcu_fd_sc_mcu7t5v0__oai31_1
+       11  289.766   gf180mcu_fd_sc_mcu7t5v0__oai32_1
+       49  860.518   gf180mcu_fd_sc_mcu7t5v0__or2_1
+       11  241.472   gf180mcu_fd_sc_mcu7t5v0__or3_1
+        3   79.027   gf180mcu_fd_sc_mcu7t5v0__or4_1
+        1    8.781   gf180mcu_fd_sc_mcu7t5v0__tieh
+       14  122.931   gf180mcu_fd_sc_mcu7t5v0__tiel
+       42  1.2E+03   gf180mcu_fd_sc_mcu7t5v0__xnor2_1
+        7  368.794   gf180mcu_fd_sc_mcu7t5v0__xnor3_1
+      175  4609.92   gf180mcu_fd_sc_mcu7t5v0__xor2_1
+       35 1.77E+03   gf180mcu_fd_sc_mcu7t5v0__xor3_1
+
+   Chip area for module '\tt_um_algofoogle_dottee': 36466.662400
+     of which used for sequential elements: 6434.131200 (17.64%)
+
