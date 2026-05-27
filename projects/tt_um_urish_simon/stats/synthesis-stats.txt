@@ -1,0 +1,149 @@
+151. Printing statistics.
+
+=== clock_divider_stage ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+        4        - wires
+        4        - wire bits
+        3        - public wires
+        3        - public wire bits
+        3        - ports
+        3        - port bits
+        2   72.442 cells
+        1    8.781   gf180mcu_fd_sc_mcu7t5v0__clkinv_1
+        1   63.661   gf180mcu_fd_sc_mcu7t5v0__dffq_1
+
+   Chip area for module '\clock_divider_stage': 72.441600
+     of which used for sequential elements: 63.660800 (87.88%)
+
+=== inverter ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+        2        - wires
+        2        - wire bits
+        2        - public wires
+        2        - public wire bits
+        2        - ports
+        2        - port bits
+        1    8.781 cells
+        1    8.781   gf180mcu_fd_sc_mcu7t5v0__clkinv_1
+
+   Chip area for module '\inverter': 8.780800
+     of which used for sequential elements: 0.000000 (0.00%)
+
+=== tt_um_urish_simon ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     1113        - wires
+     1148        - wire bits
+      191        - public wires
+      226        - public wire bits
+        8        - ports
+       43        - port bits
+     1105 2.64E+04 cells
+       32  561.971   gf180mcu_fd_sc_mcu7t5v0__and2_1
+        5   109.76   gf180mcu_fd_sc_mcu7t5v0__and3_1
+        7   169.03   gf180mcu_fd_sc_mcu7t5v0__and4_1
+       11  241.472   gf180mcu_fd_sc_mcu7t5v0__aoi211_1
+       78 1.37E+03   gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+        3   72.442   gf180mcu_fd_sc_mcu7t5v0__aoi221_1
+       29  572.947   gf180mcu_fd_sc_mcu7t5v0__aoi22_1
+        2   26.342   gf180mcu_fd_sc_mcu7t5v0__buf_1
+       62   544.41   gf180mcu_fd_sc_mcu7t5v0__clkinv_1
+      169 1.08E+04   gf180mcu_fd_sc_mcu7t5v0__dffq_1
+       37 1.22E+03   gf180mcu_fd_sc_mcu7t5v0__mux2_2
+      181 1.99E+03   gf180mcu_fd_sc_mcu7t5v0__nand2_1
+       52  799.053   gf180mcu_fd_sc_mcu7t5v0__nand3_1
+       12  237.082   gf180mcu_fd_sc_mcu7t5v0__nand4_1
+      151 1.99E+03   gf180mcu_fd_sc_mcu7t5v0__nor2_1
+       33  579.533   gf180mcu_fd_sc_mcu7t5v0__nor3_1
+       19  417.088   gf180mcu_fd_sc_mcu7t5v0__nor4_1
+       36  790.272   gf180mcu_fd_sc_mcu7t5v0__oai211_1
+       67 1.18E+03   gf180mcu_fd_sc_mcu7t5v0__oai21_1
+        6  158.054   gf180mcu_fd_sc_mcu7t5v0__oai221_1
+        2   43.904   gf180mcu_fd_sc_mcu7t5v0__oai22_1
+        5  120.736   gf180mcu_fd_sc_mcu7t5v0__oai31_1
+        1   26.342   gf180mcu_fd_sc_mcu7t5v0__oai32_1
+       24  421.478   gf180mcu_fd_sc_mcu7t5v0__or2_1
+        7  153.664   gf180mcu_fd_sc_mcu7t5v0__or3_1
+        2   52.685   gf180mcu_fd_sc_mcu7t5v0__or4_1
+        7   61.466   gf180mcu_fd_sc_mcu7t5v0__tieh
+        2   17.562   gf180mcu_fd_sc_mcu7t5v0__tiel
+       14  399.526   gf180mcu_fd_sc_mcu7t5v0__xnor2_1
+        1   52.685   gf180mcu_fd_sc_mcu7t5v0__xnor3_1
+       46  1211.75   gf180mcu_fd_sc_mcu7t5v0__xor2_1
+        2  100.979   gf180mcu_fd_sc_mcu7t5v0__xor3_1
+       24        - submodules
+       11        -   clock_divider_stage
+       13        -   inverter
+
+   Chip area for module '\tt_um_urish_simon': 26441.184000
+     of which used for sequential elements: 10758.675200 (40.69%)
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        |        +-Area including submodules.
+        |        | 
+     1140 2.74E+04 tt_um_urish_simon
+        2   72.442 clock_divider_stage
+        1    8.781 inverter
+
+        +----------Count including submodules.
+        |        +-Area including submodules.
+        |        | 
+     1183        - wires
+     1218        - wire bits
+      250        - public wires
+      285        - public wire bits
+       67        - ports
+      102        - port bits
+        -        - memories
+        -        - memory bits
+        -        - processes
+     1140 2.74E+04 cells
+       32  561.971   gf180mcu_fd_sc_mcu7t5v0__and2_1
+        5   109.76   gf180mcu_fd_sc_mcu7t5v0__and3_1
+        7   169.03   gf180mcu_fd_sc_mcu7t5v0__and4_1
+       11  241.472   gf180mcu_fd_sc_mcu7t5v0__aoi211_1
+       78 1.37E+03   gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+        3   72.442   gf180mcu_fd_sc_mcu7t5v0__aoi221_1
+       29  572.947   gf180mcu_fd_sc_mcu7t5v0__aoi22_1
+        2   26.342   gf180mcu_fd_sc_mcu7t5v0__buf_1
+       86  755.149   gf180mcu_fd_sc_mcu7t5v0__clkinv_1
+      180 1.15E+04   gf180mcu_fd_sc_mcu7t5v0__dffq_1
+       37 1.22E+03   gf180mcu_fd_sc_mcu7t5v0__mux2_2
+      181 1.99E+03   gf180mcu_fd_sc_mcu7t5v0__nand2_1
+       52  799.053   gf180mcu_fd_sc_mcu7t5v0__nand3_1
+       12  237.082   gf180mcu_fd_sc_mcu7t5v0__nand4_1
+      151 1.99E+03   gf180mcu_fd_sc_mcu7t5v0__nor2_1
+       33  579.533   gf180mcu_fd_sc_mcu7t5v0__nor3_1
+       19  417.088   gf180mcu_fd_sc_mcu7t5v0__nor4_1
+       36  790.272   gf180mcu_fd_sc_mcu7t5v0__oai211_1
+       67 1.18E+03   gf180mcu_fd_sc_mcu7t5v0__oai21_1
+        6  158.054   gf180mcu_fd_sc_mcu7t5v0__oai221_1
+        2   43.904   gf180mcu_fd_sc_mcu7t5v0__oai22_1
+        5  120.736   gf180mcu_fd_sc_mcu7t5v0__oai31_1
+        1   26.342   gf180mcu_fd_sc_mcu7t5v0__oai32_1
+       24  421.478   gf180mcu_fd_sc_mcu7t5v0__or2_1
+        7  153.664   gf180mcu_fd_sc_mcu7t5v0__or3_1
+        2   52.685   gf180mcu_fd_sc_mcu7t5v0__or4_1
+        7   61.466   gf180mcu_fd_sc_mcu7t5v0__tieh
+        2   17.562   gf180mcu_fd_sc_mcu7t5v0__tiel
+       14  399.526   gf180mcu_fd_sc_mcu7t5v0__xnor2_1
+        1   52.685   gf180mcu_fd_sc_mcu7t5v0__xnor3_1
+       46  1211.75   gf180mcu_fd_sc_mcu7t5v0__xor2_1
+        2  100.979   gf180mcu_fd_sc_mcu7t5v0__xor3_1
+       24  911.008 submodules
+       11  796.858   clock_divider_stage
+       13   114.15   inverter
+
+   Chip area for top module '\tt_um_urish_simon': 27352.192000
+     of which used for sequential elements: 11458.944000 (41.89%)
+
