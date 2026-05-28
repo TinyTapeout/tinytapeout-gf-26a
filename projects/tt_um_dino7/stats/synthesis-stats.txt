@@ -11,7 +11,7 @@
       159        - public wire bits
         8        - ports
        43        - port bits
-      899  2.1E+04 cells
+      900  2.1E+04 cells
        17  298.547   gf180mcu_fd_sc_mcu7t5v0__and2_1
         8  175.616   gf180mcu_fd_sc_mcu7t5v0__and3_1
        12  289.766   gf180mcu_fd_sc_mcu7t5v0__and4_1
@@ -42,6 +42,9 @@
         5  142.688   gf180mcu_fd_sc_mcu7t5v0__xnor2_1
        29   763.93   gf180mcu_fd_sc_mcu7t5v0__xor2_1
         1    50.49   gf180mcu_fd_sc_mcu7t5v0__xor3_1
+        1        -   tt_um_dino7_logo
+
+   Area for cell type \tt_um_dino7_logo is unknown!
 
    Chip area for module '\tt_um_dino7': 21040.992000
      of which used for sequential elements: 8403.225600 (39.94%)
