@@ -3,12 +3,12 @@ project:
   title:        "Simple Signal Generator"
   author:       "Matt Venn"
   discord:      "mattvenn"
-  description:  "2-channel square wave generator with SPI-programmable on/off counts per channel"
+  description:  "Square wave generator with a phase-shifting second channel for metastability experiments"
   language:     "Verilog"
   clock_hz:     50000000
 
   # How many tiles your design occupies? A single tile is about 340x160 uM.
-  tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 3x4 or 4x4
+  tiles: "1x2"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 3x4 or 4x4
 
   # Your top module name must start with "tt_um_". Make it unique by including your github username:
   top_module:  "tt_um_mattvenn_signal_generator"
@@ -19,6 +19,8 @@ project:
   source_files:
     - "project.v"
     - "sq_wave_gen.sv"
+    - "phase_shifted_gen.sv"
+    - "enc_decoder.sv"
     - "spi_wrapper.sv"
     - "spi_reg.sv"
     - "rising_edge_detector.sv"
@@ -34,8 +36,8 @@ pinout:
   ui[1]: "SPI CPHA"
   ui[2]: ""
   ui[3]: ""
-  ui[4]: ""
-  ui[5]: ""
+  ui[4]: "Encoder A"
+  ui[5]: "Encoder B"
   ui[6]: ""
   ui[7]: ""
 

@@ -1,68 +1,128 @@
 ## How it works
 
-Two independent square wave generators drive `uo[1:0]`. Each channel's high-time
-(`on_count`) and low-time (`off_count`) are programmed independently via SPI, giving
-full control over frequency and duty cycle per channel.
+Two square wave generators drive `uo[1:0]`.
 
-At 50 MHz, the formula for a 50% duty cycle square wave at frequency F is:
-`on_count = off_count = 25_000_000 // F`
+**Channel 0** (`uo[0]`): independent square wave. High-time (`on_count`) and
+low-time (`off_count`) are set independently via SPI, giving full control over
+frequency and duty cycle.
 
-Both counts are 16-bit, so the minimum programmable frequency is approximately 382 Hz
-(`on_count = off_count = 65535`).
+**Channel 1** (`uo[1]`): phase-shifted replica of ch0. It uses the same
+`on_count` and `off_count` as ch0, but its rising edge is offset by a
+programmable delay. This is designed for exploring metastability on an SR latch:
+by placing ch1's edge close to ch0's edge, the two inputs can be brought
+arbitrarily close together.
 
-Setting `on_count=0` silences the channel (output held LOW regardless of `off_count`).
-Setting `off_count=0` with `on_count>0` holds the output continuously HIGH.
+### Phase control
 
-The SPI peripheral is reused from [calonso88/tt07_alu_74181](https://github.com/calonso88/tt07_alu_74181)
-— all credit to Carlos Alonso for the SPI register bank design.
+The total delay applied to ch1's rising edge is:
+
+```
+total_delay = spi_offset + enc_int + sigma_delta_carry
+```
+
+**`spi_offset`** (registers 4–5): signed 16-bit static offset in clock cycles,
+set via SPI. Positive = ch1 lags ch0; negative = ch1 leads ch0. Range: ±32767
+cycles.
+
+**Encoder** (ui[4]=A, ui[5]=B): a quadrature encoder adjusts the phase in
+real time. Each click changes the phase by `enc_step / 256` cycles (Q8
+fixed-point). The integer part of the encoder accumulator is added directly to
+the delay; the fractional part is dithered via first-order sigma-delta
+modulation, so sub-cycle offsets are averaged accurately over multiple periods.
+Encoder range: ±127 cycles (use `spi_offset` for coarse positioning).
+
+**`enc_step`** (register 10): step size per encoder click in 1/256-cycle units.
+Examples:
+- `enc_step = 1` → ~0.004 cycles/click (~78 ps at 50 MHz), finest resolution
+- `enc_step = 64` → 0.25 cycles/click
+- `enc_step = 128` → 0.5 cycles/click
+- `enc_step = 255` → ~1 cycle/click
+
+Constraint: `|spi_offset + enc_int| < off_count` so ch1's pulse fits within
+the period.
+
+### Frequency formula
+
+At 50 MHz, for a 50% duty-cycle square wave at frequency F:
+
+```
+on_count = off_count = 25_000_000 // F
+```
+
+Both counts are 16-bit → minimum frequency ≈ 382 Hz (`on_count = off_count = 65535`).
+
+Setting `on_count = 0` silences both channels.
+
+The SPI peripheral is reused from
+[calonso88/tt07_alu_74181](https://github.com/calonso88/tt07_alu_74181).
 
 ## How to test
 
-The SPI master (e.g. RP2350 running MicroPython) programs each channel using
-`machine.SPI`. Each SPI frame is 2 bytes:
+The SPI master (e.g. RP2350 running MicroPython) programs the design using
+`machine.SoftSPI`. Each SPI frame is 2 bytes:
 
 - Byte 0: `0x80 | reg_addr` (write), or `reg_addr` (read)
 - Byte 1: data
 
-Register map (4 registers per channel, big-endian):
+SPI mode: CPOL and CPHA are set via `ui[0]` and `ui[1]` respectively (both 0
+for mode 0).
 
-| Reg | Ch | Field                   |
-|-----|----|-------------------------|
-| 0–1 | 0  | on_count [15:8], [7:0]  |
-| 2–3 | 0  | off_count [15:8], [7:0] |
-| 4–5 | 1  | on_count [15:8], [7:0]  |
-| 6–7 | 1  | off_count [15:8], [7:0] |
+### Register map
 
-SPI mode: CPOL and CPHA set via `ui[0]` and `ui[1]` respectively.
+| Reg | Field | Notes |
+|-----|-------|-------|
+| 0 | ch0 `on_count[15:8]` | MSB |
+| 1 | ch0 `on_count[7:0]` | LSB |
+| 2 | ch0 `off_count[15:8]` | MSB |
+| 3 | ch0 `off_count[7:0]` | LSB |
+| 4 | `spi_offset[15:8]` | Signed 16-bit MSB; +ve=lag, −ve=lead |
+| 5 | `spi_offset[7:0]` | Signed 16-bit LSB |
+| 6 | `enc_step[7:0]` | Q8 step per encoder click (0–255) |
+| 7 | — | reserved |
 
-MicroPython example — 1 kHz square wave on channel 0:
+### MicroPython example — 10 kHz, 500-cycle lag, encoder fine-tune
 
 ```python
-from machine import SPI, Pin
+from machine import Pin, SoftSPI
 
-spi = SPI(0, baudrate=1_000_000, polarity=0, phase=1)
-cs  = Pin(5, Pin.OUT, value=1)
+spi = SoftSPI(baudrate=100_000, polarity=0, phase=0, bits=8,
+              firstbit=SoftSPI.MSB,
+              sck=Pin(30), mosi=Pin(31), miso=Pin(28))
+cs = Pin(29, Pin.OUT, value=1)
 
-def write_reg(reg, val):
-    cs.value(0)
-    spi.write(bytes([0x80 | reg, val]))
-    cs.value(1)
+def write_reg(addr, val):
+    cs(0); spi.write(bytes([0x80 | addr, val])); cs(1)
 
-# 1 kHz: on = off = 25_000_000 // 1_000 = 25_000
-on = off = 25_000
-for i, v in enumerate([(on>>8)&0xFF, on&0xFF,
-                        (off>>8)&0xFF, off&0xFF]):
-    write_reg(i, v)
+# ch0: 10 kHz, 50% duty (on=2500, off=2500 @ 50 MHz)
+write_reg(0, 0x09); write_reg(1, 0xC4)  # on_count  = 2500
+write_reg(2, 0x09); write_reg(3, 0xC4)  # off_count = 2500
+
+# ch1: 500-cycle static lag (10 µs)
+offset = 500  # cycles
+write_reg(4, (offset >> 8) & 0xFF)
+write_reg(5,  offset       & 0xFF)
+
+# Encoder: 0.25 cycles/click for fine phase adjustment
+write_reg(10, 64)
 ```
 
 For RP2350 on the TT demo board, `scripts/demo.py` provides ready-made helpers
-(`set_channel`, `silence`, `silence_all`) using the correct GPIO pin numbers.
+(`set_ch0`, `set_ch0_counts`, `set_phase_offset`, `set_enc_step`, `silence`).
+Use `scripts/run_freq.py` to program from the command line:
+
+```
+python scripts/run_freq.py 1000 --offset 500 --enc-step 64
+```
+
+### Encoder hardware
+
+Connect a [Digilent PModEnc](https://digilent.com/reference/pmod/pmodenc/start)
+to the **bottom row** of the input Pmod connector on the Tiny Tapeout demo
+board. This maps the encoder A/B outputs to `ui[4]` and `ui[5]`.
 
 ## Testing
 
 ### Simulation (cocotb)
-
-Four tests exercising the full design in simulation:
 
 ```bash
 source /home/matt/oss-cad-suite/environment
@@ -71,35 +131,22 @@ cd test && make
 
 | Test | What it checks |
 |------|----------------|
-| `test_spi_registers` | Round-trip read/write of all 24 config registers |
-| `test_frequency_generation` | Each channel outputs correct frequency (edge count) |
-| `test_channel_independence` | All 4 channels run simultaneously without interference |
-| `test_channel_silence` | on_count=0, off_count=0 holds output LOW |
+| `test_spi_registers` | Round-trip read/write of all config registers |
+| `test_frequency_generation` | ch0 outputs correct frequency (edge count) |
+| `test_ch1_inphase` | offset=0 → ch1 fires simultaneously with ch0 |
+| `test_spi_phase_offset` | Positive SPI offset → ch1 lags ch0 by correct cycle count |
+| `test_channel_silence` | on_count=0 holds both outputs LOW |
+| `test_encoder_integer_phase` | Encoder clicks accumulate to integer cycle offset |
+| `test_encoder_sigma_delta` | Fractional enc_step dithers delay via sigma-delta |
 
 ### Hardware-in-the-loop (HIL)
 
-`test/test_hil.py` verifies frequency accuracy on real hardware using a Keysight
-oscilloscope (pyvisa) and the RP2350 (mpremote). Channels 0 and 1 are tested across
-1 kHz – 1 MHz.
-
-**Prerequisites:**
-- `scripts/demo.py` copied to the RP2350: `mpremote cp scripts/demo.py :`
-- Scope connected via LAN, probes on `uo[0]` (CH1) and `uo[1]` (CH2)
-- `pip install pyvisa pyvisa-py pytest`
-
-```bash
-pytest test/test_hil.py -v
-# override defaults:
-SCOPE_RESOURCE=TCPIP0::192.168.50.11::inst0::INSTR \
-MPREMOTE_DEV=/dev/serial/by-id/... \
-pytest test/test_hil.py -v
-```
-
-Each test case boots the TT SDK, enables the design, starts the 50 MHz clock,
-programs the target frequency, sets the scope timebase, and asserts the measured
-frequency is within 2% of expected.
+`test/test_hil.py` verifies frequency accuracy on real hardware using a
+Keysight oscilloscope and the RP2350. Probes on `uo[0]` (CH1) and `uo[1]` (CH2).
 
 ## External hardware
 
 - RP2350 (or any SPI master) connected to `uio[6:4]` (MOSI, CLK, CS_N) and `uio[3]` (MISO)
-- Oscilloscope or frequency counter on `uo[1:0]`
+- [Digilent PModEnc](https://digilent.com/reference/pmod/pmodenc/start) on the bottom row of the input Pmod connector (→ `ui[4]`=A, `ui[5]`=B)
+- Oscilloscope on `uo[1:0]`
+- SR latch with S=`uo[0]` and R=`uo[1]` (or vice versa) for metastability experiments
