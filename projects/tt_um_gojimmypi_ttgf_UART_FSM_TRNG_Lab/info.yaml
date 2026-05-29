@@ -1,0 +1,65 @@
+# Tiny Tapeout project information
+project:
+  title:        "UART FSM TRNG PUF Explorer"      # Project title
+  author:       "gojimmypi"      # Your name
+  discord:      "gojimmypi"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "Universal Asynchronous Receiver/Transmitter Finite State Machine for Exploring ASIC Hardware Physically Unclonable Function True Random Number Generators"      # One line description of what your project does
+  language:     "Verilog" # other examples include Verilog, Amaranth, VHDL, etc
+  clock_hz:     25000000       # Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 340x160 uM.
+  tiles: "1x2"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 3x4 or 4x4
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_gojimmypi_ttgf_UART_FSM_TRNG_Lab"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  # Files for this project are included explicitly in project.v for TT builds.
+  source_files:
+    - "project.v"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+# This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
+pinout:
+# Inputs
+  ui[0]: "reserved_in0"        # Currently unused by RTL
+  ui[1]: "reserved_in1"        # Currently unused by RTL
+  ui[2]: "reserved_in2"        # Currently unused by RTL
+  ui[3]: "uart_rx"             # UART receive input to the core
+  ui[4]: "reserved_in4"        # Currently unused by RTL
+  ui[5]: "reserved_in5"        # Currently unused by RTL
+  ui[6]: "reserved_in6"        # Currently unused by RTL
+  ui[7]: "reserved_in7"        # Currently unused by RTL
+
+  # Outputs
+  uo[0]: "trng_bit"            # Raw/sample TRNG bit output
+  uo[1]: "status0"             # reg_status[0]
+  uo[2]: "status1"             # reg_status[1]
+  uo[3]: "status2"             # reg_status[2]
+  uo[4]: "uart_tx"             # UART transmit output from the core
+  uo[5]: "rawlo0"              # reg_rawlo[0]
+  uo[6]: "rawlo1"              # reg_rawlo[1]
+  uo[7]: "rawlo2"              # reg_rawlo[2]
+
+  # Bidirectional pins
+  uio[0]: "spi_cs_n"           # SPI chip-select input, active low
+  uio[1]: "spi_mosi"           # SPI MOSI input
+  uio[2]: "spi_miso"           # SPI MISO output
+  uio[3]: "spi_sck"            # SPI clock input
+  uio[4]: "rawhi4"             # reg_rawhi[4] output
+  uio[5]: "rawhi5"             # reg_rawhi[5] output
+  uio[6]: "rawhi6"             # reg_rawhi[6] output
+  uio[7]: "rawhi7"             # reg_rawhi[7] output
+
+  # Analog pins - make sure to also set "analog_pins" above, else the pins won't be connected
+  # ua[0]: ""
+  # ua[1]: ""
+  # ua[2]: ""
+  # ua[3]: ""
+  # ua[4]: ""
+  # ua[5]: ""
+
+# Do not change!
+yaml_version: 6
