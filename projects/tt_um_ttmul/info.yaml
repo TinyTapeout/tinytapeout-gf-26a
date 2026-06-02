@@ -1,0 +1,53 @@
+# Tiny Tapeout project information
+project:
+  title:        "Balanced Ternary Multiplier"
+  author:       "Serge Rabyking"
+  discord:      ""                          # TODO: your discord username (optional)
+  description:  "Serial balanced-ternary multiplier: two 8-bit signed in, 16-bit signed out"
+  language:     "Amaranth"
+  clock_hz:     50000000                    # 50 MHz target (CLOCK_PERIOD 20ns)
+
+  # How many tiles your design occupies? A single tile is about 340x160 uM (GF180).
+  tiles: "1x1"          # ~28.6k um^2 GF180 cells (~53% of a 1x1 tile)
+
+  # Your top module name must start with "tt_um_".
+  top_module:  "tt_um_ttmul"
+
+  # List your project's source files here. Must be in ./src.
+  source_files:
+    - "project.v"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: "sdi_a - operand A serial data in (MSB first, two's complement)"
+  ui[1]: "sdi_b - operand B serial data in (MSB first, two's complement)"
+  ui[2]: "wr    - shift-in strobe (shifts one bit of A and B per asserted clk)"
+  ui[3]: "go    - start multiply (pulse after both operands loaded)"
+  ui[4]: "rd    - shift-out strobe (advance to next result bit)"
+  ui[5]: ""
+  ui[6]: ""
+  ui[7]: ""
+
+  # Outputs
+  uo[0]: "sdo   - serial data out (result bit, MSB first, two's complement)"
+  uo[1]: "busy  - convert/multiply/convert in progress"
+  uo[2]: "ready - result available, drive rd to read it out"
+  uo[3]: "done  - high in the cycle the last result bit is shifted out"
+  uo[4]: ""
+  uo[5]: ""
+  uo[6]: ""
+  uo[7]: ""
+
+  # Bidirectional pins (unused)
+  uio[0]: ""
+  uio[1]: ""
+  uio[2]: ""
+  uio[3]: ""
+  uio[4]: ""
+  uio[5]: ""
+  uio[6]: ""
+  uio[7]: ""
+
+# Do not change!
+yaml_version: 6
