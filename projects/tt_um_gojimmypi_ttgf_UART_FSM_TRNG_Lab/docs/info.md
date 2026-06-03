@@ -19,9 +19,37 @@ Implemented:
 
 - Functional UART
 - Functional FSM 
-- Initial demo of SPI (static reply) See [ULX3S ESP32 Demo](../ulx3s/ESP32/README.md)
+- Functional SPI; See [ULX3S ESP32 Demo](../ulx3s/ESP32/README.md)
 - TRNG for SKY130 and GF180, as well as a stub for testing.
-- Next: Mirror UART query onto SPI, add primitive JTAG
+- Test JTAG
+
+## Testing ULX3S / TT
+
+First run this script in one bash terminal, note test pause "Press Enter to continue..." (see `Testing ESP32`, below)
+
+```bash
+cd /mnt/c/workspace/ttsky-UART-FSM-TRNG-Lab/test-hw
+
+./run_tests.sh  --with-build  --ulx3s-board-version v307  --ignore-combinational-warning  --no-warning-pause  --port /dev/ttyS12 --pause-for-test
+```
+
+## Testing ESP32
+
+Current testing scripts:
+
+```bash
+cd /mnt/c/SysGCC/esp32-master/esp-idf/v5.5
+
+. ./export.sh
+
+cd /mnt/c/workspace/ttsky-UART-FSM-TRNG-Lab/ulx3s/ESP32
+idf.py build
+
+idf.py -p /dev/ttyS3 -b 115200 flash
+
+idf.py -p /dev/ttyS3 -b 115200 monitor
+```
+
 
 ## How it works
 
@@ -36,6 +64,8 @@ At a high level:
 - A sampling clock (controlled by a divider) captures this behavior
 - Control and configuration are managed through memory-mapped registers
 - Data and status are read back over the same UART interface
+
+See [spec sheet](./spec_sheet.md)
 
 ---
 
@@ -161,7 +191,7 @@ Version query:
 
 Connect with your favorite terminal program such as putty.
 
-For the ULX3S FPGA, the UART is connected to pins XX and YY The default baud rate is 115200.
+For the ULX3S FPGA, the UART is connected to pins `gp0` and `gp1` The default baud rate is 115200.
 
 See the [default reference ULX3S ulx3s_v20.lpf restraint file](https://github.com/emard/ulx3s/blob/master/doc/constraints/ulx3s_v20.lpf).
 
