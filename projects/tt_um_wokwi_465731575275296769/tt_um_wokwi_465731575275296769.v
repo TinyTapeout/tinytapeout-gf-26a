@@ -2462,11 +2462,27 @@ module tt_um_wokwi_465731575275296769 (clk,
     .VNW(VPWR),
     .VPW(VGND),
     .VSS(VGND));
- gf180mcu_fd_sc_mcu7t5v0__fillcap_16 FILLER_37_492 (.VDD(VPWR),
+ gf180mcu_fd_sc_mcu7t5v0__fillcap_8 FILLER_37_492 (.VDD(VPWR),
     .VNW(VPWR),
     .VPW(VGND),
     .VSS(VGND));
- gf180mcu_fd_sc_mcu7t5v0__fill_2 FILLER_37_508 (.VDD(VPWR),
+ gf180mcu_fd_sc_mcu7t5v0__fill_2 FILLER_37_500 (.VDD(VPWR),
+    .VNW(VPWR),
+    .VPW(VGND),
+    .VSS(VGND));
+ gf180mcu_fd_sc_mcu7t5v0__fill_2 FILLER_37_510 (.VDD(VPWR),
+    .VNW(VPWR),
+    .VPW(VGND),
+    .VSS(VGND));
+ gf180mcu_fd_sc_mcu7t5v0__fill_1 FILLER_37_512 (.VDD(VPWR),
+    .VNW(VPWR),
+    .VPW(VGND),
+    .VSS(VGND));
+ gf180mcu_fd_sc_mcu7t5v0__fillcap_4 FILLER_37_529 (.VDD(VPWR),
+    .VNW(VPWR),
+    .VPW(VGND),
+    .VSS(VGND));
+ gf180mcu_fd_sc_mcu7t5v0__fill_1 FILLER_37_533 (.VDD(VPWR),
     .VNW(VPWR),
     .VPW(VGND),
     .VSS(VGND));
@@ -2662,19 +2678,31 @@ module tt_um_wokwi_465731575275296769 (clk,
     .VNW(VPWR),
     .VPW(VGND),
     .VSS(VGND));
- gf180mcu_fd_sc_mcu7t5v0__fillcap_4 FILLER_38_330 (.VDD(VPWR),
+ gf180mcu_fd_sc_mcu7t5v0__fillcap_8 FILLER_38_330 (.VDD(VPWR),
     .VNW(VPWR),
     .VPW(VGND),
     .VSS(VGND));
- gf180mcu_fd_sc_mcu7t5v0__fill_2 FILLER_38_334 (.VDD(VPWR),
+ gf180mcu_fd_sc_mcu7t5v0__fill_2 FILLER_38_338 (.VDD(VPWR),
     .VNW(VPWR),
     .VPW(VGND),
     .VSS(VGND));
- gf180mcu_fd_sc_mcu7t5v0__fillcap_32 FILLER_38_342 (.VDD(VPWR),
+ gf180mcu_fd_sc_mcu7t5v0__fillcap_8 FILLER_38_342 (.VDD(VPWR),
+    .VNW(VPWR),
+    .VPW(VGND),
+    .VSS(VGND));
+ gf180mcu_fd_sc_mcu7t5v0__fill_2 FILLER_38_350 (.VDD(VPWR),
+    .VNW(VPWR),
+    .VPW(VGND),
+    .VSS(VGND));
+ gf180mcu_fd_sc_mcu7t5v0__fillcap_16 FILLER_38_356 (.VDD(VPWR),
     .VNW(VPWR),
     .VPW(VGND),
     .VSS(VGND));
  gf180mcu_fd_sc_mcu7t5v0__fillcap_16 FILLER_38_36 (.VDD(VPWR),
+    .VNW(VPWR),
+    .VPW(VGND),
+    .VSS(VGND));
+ gf180mcu_fd_sc_mcu7t5v0__fill_2 FILLER_38_372 (.VDD(VPWR),
     .VNW(VPWR),
     .VPW(VGND),
     .VSS(VGND));
@@ -2698,11 +2726,11 @@ module tt_um_wokwi_465731575275296769 (clk,
     .VNW(VPWR),
     .VPW(VGND),
     .VSS(VGND));
- gf180mcu_fd_sc_mcu7t5v0__fill_2 FILLER_38_498 (.VDD(VPWR),
+ gf180mcu_fd_sc_mcu7t5v0__fill_1 FILLER_38_498 (.VDD(VPWR),
     .VNW(VPWR),
     .VPW(VGND),
     .VSS(VGND));
- gf180mcu_fd_sc_mcu7t5v0__fill_1 FILLER_38_500 (.VDD(VPWR),
+ gf180mcu_fd_sc_mcu7t5v0__fill_2 FILLER_38_507 (.VDD(VPWR),
     .VNW(VPWR),
     .VPW(VGND),
     .VSS(VGND));
@@ -4195,7 +4223,7 @@ module tt_um_wokwi_465731575275296769 (clk,
  gf180mcu_fd_sc_mcu7t5v0__filltie TAP_TAPCELL_ROW_9_170 (.VDD(VPWR),
     .VSS(VGND));
  gf180mcu_fd_sc_mcu7t5v0__buf_2 _23_ (.I(net7),
-    .Z(uo_out[0]),
+    .Z(uo_out[1]),
     .VDD(VPWR),
     .VNW(VPWR),
     .VPW(VGND),
@@ -4402,7 +4430,7 @@ module tt_um_wokwi_465731575275296769 (clk,
  assign uio_out[5] = net12;
  assign uio_out[6] = net17;
  assign uio_out[7] = net18;
- assign uo_out[1] = net19;
+ assign uo_out[0] = net19;
  assign uo_out[2] = net20;
  assign uo_out[3] = net21;
  assign uo_out[4] = net22;
