@@ -34,7 +34,9 @@ jobs:
 
       - name: Install GF180MCU PDK
         working-directory: gf180mcu-precheck
-        run: make clone-pdk
+        run: |
+          pip install 'ciel>=2.0,<3.0'
+          make clone-pdk
 
       - name: Download artifact (run id = ${{ github.event.workflow_run.id }})
         uses: dawidd6/action-download-artifact@v6
