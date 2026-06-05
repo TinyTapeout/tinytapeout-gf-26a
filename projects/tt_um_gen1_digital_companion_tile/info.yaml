@@ -1,0 +1,40 @@
+# Tiny Tapeout project information
+project:
+  title: "Gen1 Digital Companion Tile"
+  author: "Juan Fernandez"
+  discord: ""
+  description: "Symbolic pulse-update and write-verify companion tile for a future local memristive AI chip"
+  language: "Verilog"
+  clock_hz: 20000000
+  tiles: "1x1"
+  top_module: "tt_um_gen1_digital_companion_tile"
+  source_files:
+    - "project.v"
+
+pinout:
+  ui[0]: "data0"
+  ui[1]: "data1"
+  ui[2]: "data2"
+  ui[3]: "data3"
+  ui[4]: "data4"
+  ui[5]: "data5"
+  ui[6]: "cmd0"
+  ui[7]: "cmd1"
+  uo[0]: "privacy_ok"
+  uo[1]: "verify_ok"
+  uo[2]: "pulse_down"
+  uo[3]: "pulse_up"
+  uo[4]: "fault"
+  uo[5]: "done"
+  uo[6]: "busy"
+  uo[7]: "ready"
+  uio[0]: "state0"
+  uio[1]: "state1"
+  uio[2]: "state2"
+  uio[3]: "state3"
+  uio[4]: "attempt0"
+  uio[5]: "attempt1"
+  uio[6]: "attempt2"
+  uio[7]: "attempt3"
+
+yaml_version: 6
