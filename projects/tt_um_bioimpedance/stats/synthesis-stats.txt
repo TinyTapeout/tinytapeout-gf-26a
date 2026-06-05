@@ -1,0 +1,48 @@
+132. Printing statistics.
+
+=== tt_um_bioimpedance ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     1380        - wires
+     1415        - wire bits
+      407        - public wires
+      442        - public wire bits
+        8        - ports
+       43        - port bits
+     1396 4.96E+04 cells
+       28  491.725   gf180mcu_fd_sc_mcu7t5v0__and2_1
+       14  307.328   gf180mcu_fd_sc_mcu7t5v0__and3_1
+       27  651.974   gf180mcu_fd_sc_mcu7t5v0__and4_1
+        7  153.664   gf180mcu_fd_sc_mcu7t5v0__aoi211_1
+       49  860.518   gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+        6  144.883   gf180mcu_fd_sc_mcu7t5v0__aoi221_1
+        9  276.595   gf180mcu_fd_sc_mcu7t5v0__aoi222_1
+      110 2.17E+03   gf180mcu_fd_sc_mcu7t5v0__aoi22_1
+        7   92.198   gf180mcu_fd_sc_mcu7t5v0__buf_1
+       79  693.683   gf180mcu_fd_sc_mcu7t5v0__clkinv_1
+        8  597.094   gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1
+        8  509.286   gf180mcu_fd_sc_mcu7t5v0__dffq_1
+      382 2.85E+04   gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+        1   79.027   gf180mcu_fd_sc_mcu7t5v0__dffsnq_1
+      112 3.69E+03   gf180mcu_fd_sc_mcu7t5v0__mux2_2
+      107 1.17E+03   gf180mcu_fd_sc_mcu7t5v0__nand2_1
+       62  952.717   gf180mcu_fd_sc_mcu7t5v0__nand3_1
+       33  651.974   gf180mcu_fd_sc_mcu7t5v0__nand4_1
+       66  869.299   gf180mcu_fd_sc_mcu7t5v0__nor2_1
+       24  421.478   gf180mcu_fd_sc_mcu7t5v0__nor3_1
+       12  263.424   gf180mcu_fd_sc_mcu7t5v0__nor4_1
+       31   544.41   gf180mcu_fd_sc_mcu7t5v0__oai21_1
+        7  153.664   gf180mcu_fd_sc_mcu7t5v0__oai22_1
+        2   48.294   gf180mcu_fd_sc_mcu7t5v0__oai31_1
+        7  122.931   gf180mcu_fd_sc_mcu7t5v0__or2_1
+        1   21.952   gf180mcu_fd_sc_mcu7t5v0__or3_1
+        8   70.246   gf180mcu_fd_sc_mcu7t5v0__tieh
+        6   52.685   gf180mcu_fd_sc_mcu7t5v0__tiel
+       92 2.63E+03   gf180mcu_fd_sc_mcu7t5v0__xnor2_1
+       91  2.4E+03   gf180mcu_fd_sc_mcu7t5v0__xor2_1
+
+   Chip area for module '\tt_um_bioimpedance': 49600.544000
+     of which used for sequential elements: 29696.665600 (59.87%)
+
