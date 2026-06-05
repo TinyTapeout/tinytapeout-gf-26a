@@ -145,17 +145,17 @@
     [ "ttin:EXTRST_N", "btn2:1.r", "orange", [ "h-38.4", "v-96" ] ],
     [ "btn2:1.l", "r2:2", "green", [ "h0" ] ],
     [ "pwr5:VCC", "r2:1", "red", [ "v0" ] ],
-    [ "ttin:IN0", "or1:A", "green", [ "h0" ] ],
-    [ "ttin:IN1", "or2:A", "green", [ "h96", "v163.2", "h-105.6" ] ],
-    [ "ttin:IN2", "or3:A", "green", [ "h86.4", "v144", "h-211.2" ] ],
-    [ "ttin:IN3", "or4:A", "green", [ "h76.8", "v124.8", "h-326.4" ] ],
+    [ "ttin:IN0", "or1:A", "black", [ "h0" ] ],
+    [ "ttin:IN1", "or2:A", "#8f4814", [ "h96", "v163.2", "h-105.6" ] ],
+    [ "ttin:IN2", "or3:A", "red", [ "h86.4", "v144", "h-211.2" ] ],
+    [ "ttin:IN3", "or4:A", "orange", [ "h76.8", "v124.8", "h-326.4" ] ],
     [ "or4:OUT", "or3:B", "green", [ "v0" ] ],
     [ "or3:OUT", "or2:B", "green", [ "v0" ] ],
     [ "or2:OUT", "or1:B", "green", [ "v0" ] ],
-    [ "or1:OUT", "ttout:OUT0", "green", [ "v0" ] ],
-    [ "ttin:IN6", "or5:A", "green", [ "h67.2", "v86.4", "h-470.4" ] ],
+    [ "ttin:IN6", "or5:A", "blue", [ "h67.2", "v86.4", "h-470.4" ] ],
     [ "or5:OUT", "or4:B", "green", [ "v0" ] ],
-    [ "or5:B", "ttin:IN7", "green", [ "h-9.6", "v-105.6", "h451.2", "v-67.2" ] ]
+    [ "or5:B", "ttin:IN7", "violet", [ "h-9.6", "v-105.6", "h451.2", "v-67.2" ] ],
+    [ "or1:OUT", "ttout:OUT1", "green", [ "v0", "h38.4", "v-182.4" ] ]
   ],
   "dependencies": {}
 }
