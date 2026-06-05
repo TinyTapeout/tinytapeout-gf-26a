@@ -1,0 +1,64 @@
+# Tiny Tapeout project information
+project:
+  title:        "spiPWMio"      # Project title
+  author:       "Sönke Appel"      # Your name
+  discord:      "sonkeappel_04726"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "A PWM input and PWM generator are configurable via input pins, readable via output pins, and accessible via SPI for read and write operations."      # One line description of what your project does
+  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     12000000       # Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 340x160 uM.
+  tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 3x4 or 4x4
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_fhw_appel_spiPWMio"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  source_files:
+    - "tt_um_fhw-appel_spiPWMio.v"
+    - "if_spi.v"
+    - "in_stage.v"
+    - "out_stage.v"
+    - "pwm_gen.v"
+    - "pwm_inout_top.v"
+    - "pwm_input.v"
+    - "register.v"
+
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+# This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
+pinout:
+  # Inputs
+  ui[0]: "ipins[0]"
+  ui[1]: "ipins[1]"
+  ui[2]: "ipins[2]"
+  ui[3]: "ipins[3]"
+  ui[4]: "ipins[4]"
+  ui[5]: "ipins[5]"
+  ui[6]: "ipins[6]"
+  ui[7]: "pwm_in"
+
+  # Outputs
+  uo[0]: "opins[0]"
+  uo[1]: "opins[1]"
+  uo[2]: "opins[2]"
+  uo[3]: "opins[3]"
+  uo[4]: "opins[4]"
+  uo[5]: "opins[5]"
+  uo[6]: "opins[6]"
+  uo[7]: "pwm_sig"
+
+  # Bidirectional pins
+  uio[0]: ""
+  uio[1]: ""
+  uio[2]: ""
+  uio[3]: ""
+  uio[4]: "spi_cs_n"
+  uio[5]: "spi_mosi"
+  uio[6]: "spi_miso"
+  uio[7]: "spi_sck"
+
+# Do not change!
+yaml_version: 6
