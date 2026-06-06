@@ -1,0 +1,52 @@
+146. Printing statistics.
+
+=== tt_um_roberto_tiny_radar_tile ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     1668        - wires
+     1703        - wire bits
+      270        - public wires
+      305        - public wire bits
+        8        - ports
+       43        - port bits
+     1684 4.06E+04 cells
+       40  702.464   gf180mcu_fd_sc_mcu7t5v0__and2_1
+       23  504.896   gf180mcu_fd_sc_mcu7t5v0__and3_1
+        3   72.442   gf180mcu_fd_sc_mcu7t5v0__and4_1
+       28  614.656   gf180mcu_fd_sc_mcu7t5v0__aoi211_1
+      182  3.2E+03   gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+       11  265.619   gf180mcu_fd_sc_mcu7t5v0__aoi221_1
+        3   92.198   gf180mcu_fd_sc_mcu7t5v0__aoi222_1
+       26  513.677   gf180mcu_fd_sc_mcu7t5v0__aoi22_1
+        3   39.514   gf180mcu_fd_sc_mcu7t5v0__buf_1
+      139 1.22E+03   gf180mcu_fd_sc_mcu7t5v0__clkinv_1
+      262 1.67E+04   gf180mcu_fd_sc_mcu7t5v0__dffq_1
+        7  230.496   gf180mcu_fd_sc_mcu7t5v0__mux2_2
+      261 2.86E+03   gf180mcu_fd_sc_mcu7t5v0__nand2_1
+       36   553.19   gf180mcu_fd_sc_mcu7t5v0__nand3_1
+        4   79.027   gf180mcu_fd_sc_mcu7t5v0__nand4_1
+      175  2304.96   gf180mcu_fd_sc_mcu7t5v0__nor2_1
+       44   772.71   gf180mcu_fd_sc_mcu7t5v0__nor3_1
+       10   219.52   gf180mcu_fd_sc_mcu7t5v0__nor4_1
+       45   987.84   gf180mcu_fd_sc_mcu7t5v0__oai211_1
+      115 2.02E+03   gf180mcu_fd_sc_mcu7t5v0__oai21_1
+       20  526.848   gf180mcu_fd_sc_mcu7t5v0__oai221_1
+       11  241.472   gf180mcu_fd_sc_mcu7t5v0__oai22_1
+       12  289.766   gf180mcu_fd_sc_mcu7t5v0__oai31_1
+        4   105.37   gf180mcu_fd_sc_mcu7t5v0__oai32_1
+        1   32.928   gf180mcu_fd_sc_mcu7t5v0__oai33_1
+       35  614.656   gf180mcu_fd_sc_mcu7t5v0__or2_1
+        9  197.568   gf180mcu_fd_sc_mcu7t5v0__or3_1
+        5  131.712   gf180mcu_fd_sc_mcu7t5v0__or4_1
+        3   26.342   gf180mcu_fd_sc_mcu7t5v0__tieh
+       10   87.808   gf180mcu_fd_sc_mcu7t5v0__tiel
+       36 1.03E+03   gf180mcu_fd_sc_mcu7t5v0__xnor2_1
+        2   105.37   gf180mcu_fd_sc_mcu7t5v0__xnor3_1
+      112 2.95E+03   gf180mcu_fd_sc_mcu7t5v0__xor2_1
+        7  353.427   gf180mcu_fd_sc_mcu7t5v0__xor3_1
+
+   Chip area for module '\tt_um_roberto_tiny_radar_tile': 40624.371200
+     of which used for sequential elements: 16679.129600 (41.06%)
+

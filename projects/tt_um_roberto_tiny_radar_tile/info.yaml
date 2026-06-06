@@ -1,0 +1,55 @@
+# Tiny Tapeout project information
+project:
+  title:        "BioPulse Tile"
+  author:       "Roberto Medina"
+  discord:      ""
+  description:  "A tiny vital-sign radar event detector: tracks an 8-bit signal baseline, detects breathing cycles, and flags normal/fast/slow/irregular breathing and apnea."
+  language:     "Verilog"
+  clock_hz:     1000        # run slow so events occur at breathing timescales
+
+  # How many tiles your design occupies. A single tile is 1x1.
+  tiles:        "1x1"
+
+  # Your top module name. It must start with "tt_um_".
+  top_module:   "tt_um_roberto_tiny_radar_tile"
+
+  # List your source files here. Source files must be in ./src and you must
+  # list each source file separately, one per line.
+  source_files:
+    - "project.v"
+
+# The pinout of your project. Leave unused pins blank. DO NOT add or change
+# the structure of this section, just fill in the relevant pins.
+pinout:
+  # Inputs
+  ui[0]: "sample[0] - 8-bit radar/biosignal sample (external mode)"
+  ui[1]: "sample[1]"
+  ui[2]: "sample[2]"
+  ui[3]: "sample[3]"
+  ui[4]: "sample[4]"
+  ui[5]: "sample[5]"
+  ui[6]: "sample[6]"
+  ui[7]: "sample[7]"
+
+  # Outputs (flags when uio[2]=0; 8-bit breaths-per-minute when uio[2]=1)
+  uo[0]: "breathing detected / BPM[0]"
+  uo[1]: "apnea warning / BPM[1]"
+  uo[2]: "fast breathing / BPM[2]"
+  uo[3]: "slow breathing / BPM[3]"
+  uo[4]: "irregular signal / BPM[4]"
+  uo[5]: "heartbeat detected / BPM[5]"
+  uo[6]: "signal quality good / BPM[6]"
+  uo[7]: "valid / status / BPM[7]"
+
+  # Bidirectional pins
+  uio[0]: "demo mode enable (in)"
+  uio[1]: "sensitivity select (in)"
+  uio[2]: "BPM readout select (in)"
+  uio[3]: "demo pattern select [0] (in)"
+  uio[4]: "demo pattern select [1] (in)"
+  uio[5]: "UART TX - streams metrics (out)"
+  uio[6]: "coarse breaths-per-min [6] (out)"
+  uio[7]: "coarse breaths-per-min [7] (out)"
+
+# Do not change!
+yaml_version: 6
