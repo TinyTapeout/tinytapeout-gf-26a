@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: recursive
 
@@ -37,7 +37,7 @@ jobs:
           android: false
 
       - name: setup python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
           cache: 'pip'
@@ -109,14 +109,14 @@ jobs:
 
       - name: upload GDS artifact
         if: success() || failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: GDS
           path: tt-multiplexer/ol2/tt_top/runs/RUN_*/*
 
       - name: upload macros artifact
         if: success() || failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: macros
           path: |
@@ -130,13 +130,13 @@ jobs:
 
       - name: upload shuttle_index.json
         if: success() || failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: shuttle_index
           path: shuttle_index.json
 
       - name: upload foundry submission directory
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: foundry_submission
           path: foundry_submission
@@ -159,7 +159,7 @@ jobs:
 
       - name: upload GL test results
         if: success() || failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: gl_test_vcd
           path: |
