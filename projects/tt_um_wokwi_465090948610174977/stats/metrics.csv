@@ -113,8 +113,8 @@ design__instance__count__class:endcap_cell,78
 design__instance__area__class:endcap_cell,342.451
 design__instance__count__class:tap_cell,348
 design__instance__area__class:tap_cell,1527.86
-design__power_grid_violation__count__net:VGND,0
 design__power_grid_violation__count__net:VPWR,0
+design__power_grid_violation__count__net:VGND,0
 design__power_grid_violation__count,0
 timing__drv__floating__nets,2
 timing__drv__floating__pins,0
