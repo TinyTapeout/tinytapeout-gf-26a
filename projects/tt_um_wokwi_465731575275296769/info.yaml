@@ -25,14 +25,14 @@ pinout:
   ui[7]: "pin7"
 
   # Outputs
-  uo[0]: ""
-  uo[1]: ""
-  uo[2]: ""
-  uo[3]: ""
-  uo[4]: ""
-  uo[5]: ""
-  uo[6]: ""
-  uo[7]: ""
+  uo[0]: "sevSeg0"
+  uo[1]: "sevSeg1"
+  uo[2]: "sevSeg2"
+  uo[3]: "sevSeg3"
+  uo[4]: "sevSeg4"
+  uo[5]: "sevSeg5"
+  uo[6]: "sevSeg6"
+  uo[7]: "sevSeg7"
 
   # Bidirectional pins
   uio[0]: ""
