@@ -5,6 +5,8 @@ sections.
 
 You can also include images in this folder and reference them in the markdown. Each image must be less than
 512 kb in size, and the combined size of all images must be less than 1 MB.
+
+Ensure full URL paths are included for files outside this directory, as the full repo is not used for publishing.
 -->
 
 ## How it works
@@ -25,9 +27,21 @@ At a high level:
 
 ---
 
+## External Hardware
+
+It can be helpful to have a TTY-UART USB adapter on hand to interact with the FSM and TRNG on the FPGA or ASIC. This can be used to send commands and read responses from the FSM and TRNG.
+
+Most of the scripts to test assume the external UART. Testing and interactive commands could still be entered via the TT prompt.
+
+---
+
 ## How to test
 
-The TT projects usually start in a reset mode = `True`. Connect to TT Breakout (or Demoboard) USB.
+The TT projects usually start in a reset mode = `True`. Connect to TT [Breakout](https://tinytapeout.com/guides/get-started-demoboard-etr/) (or [Demoboard](https://tinytapeout.com/guides/get-started-demoboard/)) USB.
+
+Once connected, there should be a [Python repl command prompt](https://tinytapeout.com/guides/get-started-demoboard-etr/#accessing-the-repl). 
+
+Don't confuse the TT board serial connection with the external UART.
 
 Select project, set clock to 25MHZ, and reset:
 
@@ -49,16 +63,47 @@ Connect a UART terminal (e.g. PuTTY) to the TT Breakout (or Demoboard) I/O pins 
 
 - UART/TTY USB Tx to `IN3/Rx`
 - UART/TTY USB Rx to `OUT4/Tx`
-- GND to GND
+- GND to `GND`
 
 ![PMOD-connector-test1.png](./PMOD-connector-test1.jpg)
+
+Project config:
+
+- `clock_hz: 25000000` in `info.yaml` 
+- `define PROJECT_CLOCK_HZ 32'd25_000_000` in `src/project_config.v`
+- `define PROJECT_UART_BAUD 32'd115_200` in `src/project_config.v`
+
+At 25MHz: Terminal is 115,200 baud
+
+- `CLKS_PER_BIT = CLOCK_HZ / UART_BAUD` = 217
+
+At 50MHz: Terminal is 230,400 baud
+
+- `CLKS_PER_BIT = CLOCK_HZ / UART_BAUD` = 434   
+
+Terminal session at 25MHz clock is
+
+- 115,200 baud
+- 8 data bits
+- No parity
+- 1 Stop
+- No flow control (Although the default XON/XOFF should also work, but ignored)
+
+Or:
+
+```bash
+stty -F "$PORT" "$BAUD" cs8 -cstopb -parenb -ixon -ixoff -crtscts raw -echo min 0 time 5
+```
 
 Press type `V` and then press `Enter` to query the version string (if enabled in the build). 
 Then you can send commands to configure the TRNG and read back entropy samples.
 
-Connect to the UART and send the appropriate commands to configure and read from the TRNG core.
+Although there are case-insensitive settings available for local builds, they have been disabled 
+for TT ASIC due to increased slew and setup violations.
 
-### Quickstart simulation
+Send the appropriate commands to configure and read from the TRNG core. See Register Overview, below.
+
+### Quickstart Simulation
 
 ```bash
 cd /mnt/c/workspace/ttgf-UART-FSM-TRNG-Lab/test
@@ -80,6 +125,12 @@ cd /mnt/c/workspace/ttgf-UART-FSM-TRNG-Lab/ice40
 ./project_reset.sh
 ./run_tests.sh
 ```
+
+Despite the "F" that may be repeatedly displayed on the 7-segment display during testing, that does not indicate failure:
+
+![Demoboard_F_is_for_Fun_Success.jpg](./Demoboard_F_is_for_Fun_Success.jpg)
+
+From [youtube.com/shorts/zFnfsl1DQHE](https://www.youtube.com/shorts/zFnfsl1DQHE)
 
 ### Quickstart Testing on ULX3S
 
@@ -831,9 +882,9 @@ I (231760) ulx3s_spi: SPI regs: R0=00 R1=00 R2=01 R3=00 R4=00 R5=00 R6=2A R7=EF 
 
 ### TT Simulation tests
 
-Commit changes. See results in [actions](./actions/).
+Commit changes. See results in [actions](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/actions/).
 
-In particular, note the output of the [gds workflow](./actions/workflows/gds.yaml):
+In particular, note the output of the [gds workflow](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/actions/workflows/gds.yaml):
 
 - Linter output
 - Routing Stats
@@ -846,11 +897,11 @@ In particular, note the output of the [gds workflow](./actions/workflows/gds.yam
 
 Build and flash the bitstream to the FPGA, then run the test script. The test script will print the output of the FSM and TRNG.
 
-Test locally with ULX3S FPGA in [/ulx3s/](../ulx3s/README.md) directory.
+Test locally with [ULX3S](https://radiona.org/ulx3s/) ECP5 FPGA in [/ulx3s/](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/actions/ulx3s/README.md) directory.
 
-- [verilator_lint.sh](../ulx3s/verilator_lint.sh)
-- [ulx3s_build.sh](../ulx3s/ulx3s_build.sh)
-- [ulx3s_flash.sh](../ulx3s/ulx3s_flash.sh)
+- [verilator_lint.sh](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/tree/main/scripts/verilator_lint.sh)
+- [ulx3s_build.sh](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/tree/main/scripts/ulx3s/ulx3s_build.sh)
+- [ulx3s_flash.sh](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/tree/main/scripts/ulx3s/ulx3s_flash.sh)
 
 Example:
 
@@ -926,10 +977,10 @@ cd "$TT_PROJECT_ROOT/test-hw
 
 ### Local Automated Hardware Operation Tests
 
-Generic local hardware operation tests in [/test-hw/](../test-hw/README.md).
+Generic local hardware operation tests in [/test-hw/](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/tree/main/test-hw/README.md).
 
-- [tt_ulx3s_uart_test.py](../test-hw/tt_ulx3s_uart_test.py) - Python script to test the UART functionality of the FSM and TRNG on the ULX3S FPGA. It sends commands to the FPGA and reads the responses to verify correct operation.
-- [run_tests.sh](../test-hw/run_tests.sh) - Shell script to run the hardware tests. It can be configured to build the FPGA bitstream, flash it to the FPGA, and run the Python test script.
+- [tt_ulx3s_uart_test.py](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/tree/main/test-hw/tt_ulx3s_uart_test.py) - Python script to test the UART functionality of the FSM and TRNG on the ULX3S FPGA. It sends commands to the FPGA and reads the responses to verify correct operation.
+- [run_tests.sh](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/tree/main/test-hw/test-hw/run_tests.sh) - Shell script to run the hardware tests. It can be configured to build the FPGA bitstream, flash it to the FPGA, and run the Python test script.
 
 ```bash
 cd test-hw
@@ -939,16 +990,12 @@ cd test-hw
 
 
 
-## External hardware
-
-It can be helpful to have a TTY-UART adapter on hand to interact with the FSM and TRNG on the FPGA or ASIC. This can be used to send commands and read responses from the FSM and TRNG.
-
 <!-- ************************************************************************************************ -->
 
 ## UART FSM TRNG Lab Datasheet
 
-Document revision: 0.1.6
-RTL revision string: `Version 0.1.6 6/4/2026`  
+Document revision: 0.1.7
+RTL revision string: `Version 0.1.7 6/7/2026`  
 Project family: Tiny Tapeout UART/SPI configurable TRNG experiment  
 Primary top modules: `tt_um_gojimmypi_ttsky_UART_FSM_TRNG_Lab`, `tt_um_gojimmypi_ttgf_UART_FSM_TRNG_Lab`  
 License: Apache-2.0, as declared in the source files
@@ -1169,7 +1216,7 @@ Invalid syntax returns `?<CR>`.
 #### UART command examples
 
 ```text
-V<CR>       -> Version 0.1.6 6/4/2026<CR>
+V<CR>       -> Version 0.1.7 6/7/2026<CR>
 R2<CR>      -> R2=10<CR>
 E1<CR>      -> OK<CR>
 D10<CR>     -> OK<CR>
