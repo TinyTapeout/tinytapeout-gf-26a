@@ -28,7 +28,7 @@ project:
                   "
   wokwi_id:       451184391728659457
   external_hw: "None"
-  picture: "image/SimpleSprinkler.drawio.png"
+  
 pinout:
   # Inputs
   ui[0]: "Rain (A)"
