@@ -11,19 +11,34 @@ Ensure full URL paths are included for files outside this directory, as the full
 
 ## How it works
 
-There's a [ring oscillator](https://en.wikipedia.org/wiki/Ring_oscillator) implemented at the core of this project for a TRNG (True Random Number Generator.
+A [ring oscillator](https://en.wikipedia.org/wiki/Ring_oscillator) is implemented at the core of this project as an entropy source for a TRNG (True Random Number Generator).
 
 ![ttgf-UART-FSM-TRNG-Lab-block-diagram.png](./ttgf-UART-FSM-TRNG-Lab-block-diagram.jpg)
 
-This design exposes a UART-controlled interface to a ring-oscillator-based entropy source (TRNG). 
-A host (PC, ESP32, etc.) sends simple ASCII commands over UART to configure internal 
-registers, control the oscillator network, and read back raw entropy data.
+This project exposes a UART-controlled interface to a ring-oscillator-based entropy source. 
+A host such as a PC, ESP32, or test script can send simple ASCII commands over UART to configure internal 
+registers, control the oscillator network, and read back raw entropy samples.
 
 At a high level:
+
 - A bank of ring oscillators generates jitter-based entropy
 - A sampling clock (controlled by a divider) captures this behavior
 - Control and configuration are managed through memory-mapped registers
 - Data and status are read back over the same UART interface
+
+Why? NIST notes that random numbers are essential for cryptographic and security applications, and that cryptography 
+makes extensive use of random numbers and random bits, particularly for generating cryptographic keying material.
+
+See presentations:
+
+- [NIST Standards on Random Bit Generation](https://csrc.nist.gov/csrc/media/Presentations/2023/overview-of-nist-rng-standards-90a-90b-90c-22/images-media/session-1-turan-overview-talk.pdf) slides. 
+- [Why Random Numbers for Cryptography?](https://csrc.nist.gov/csrc/media/events/random-number-generation-workshop-2004/documents/developmenthistory.pdf)
+
+Development will continue beyond Tiny Tapeout submission deadline. For future updates, visit:
+
+https://gojimmypi.github.io/trng/
+
+https://gojimmypi.github.io/tinytapeout/
 
 ---
 
@@ -39,11 +54,11 @@ Most of the scripts to test assume the external UART. Testing and interactive co
 
 The TT projects usually start in a reset mode = `True`. Connect to TT [Breakout](https://tinytapeout.com/guides/get-started-demoboard-etr/) (or [Demoboard](https://tinytapeout.com/guides/get-started-demoboard/)) USB.
 
-Once connected, there should be a [Python repl command prompt](https://tinytapeout.com/guides/get-started-demoboard-etr/#accessing-the-repl). 
+Once connected, there should be a [Python REPL command prompt](https://tinytapeout.com/guides/get-started-demoboard-etr/#accessing-the-repl). 
 
 Don't confuse the TT board serial connection with the external UART.
 
-Select project, set clock to 25MHZ, and reset:
+Select project, set clock to 25 MHZ, and reset:
 
 ```
 # select project and reset ttsky
@@ -67,21 +82,27 @@ Connect a UART terminal (e.g. PuTTY) to the TT Breakout (or Demoboard) I/O pins 
 
 ![PMOD-connector-test1.png](./PMOD-connector-test1.jpg)
 
+Note: `IN3` and `OUT4` are Tiny Tapeout logical signal names, not PMOD physical pin numbers. On the shown PMOD adapter, `in3` is PMOD IO4 / physical pin 4, and `out4` is PMOD IO5 / physical pin 7.
+
 Project config:
 
 - `clock_hz: 25000000` in `info.yaml` 
 - `define PROJECT_CLOCK_HZ 32'd25_000_000` in `src/project_config.v`
 - `define PROJECT_UART_BAUD 32'd115_200` in `src/project_config.v`
 
-At 25MHz: Terminal is 115,200 baud
+At a 25 MHz project clock with `PROJECT_UART_BAUD = 115_200`:
 
-- `CLKS_PER_BIT = CLOCK_HZ / UART_BAUD` = 217
+- `CLKS_PER_BIT = 25_000_000 / 115_200` = 217
+- Terminal baud rate: 115,200
 
-At 50MHz: Terminal is 230,400 baud
+At a 50 MHz project clock, if the design is rebuilt with `PROJECT_CLOCK_HZ = 50_000_000`:
 
-- `CLKS_PER_BIT = CLOCK_HZ / UART_BAUD` = 434   
+- `CLKS_PER_BIT = 50_000_000 / 115_200` = 434
+- Terminal baud rate: 115,200
 
-Terminal session at 25MHz clock is
+If the bitstream was built for 25 MHz but the board is actually clocked at 50 MHz, the effective UART baud rate doubles to approximately 230,400.
+
+Terminal session at 25 MHz clock is
 
 - 115,200 baud
 - 8 data bits
@@ -95,13 +116,66 @@ Or:
 stty -F "$PORT" "$BAUD" cs8 -cstopb -parenb -ixon -ixoff -crtscts raw -echo min 0 time 5
 ```
 
-Press type `V` and then press `Enter` to query the version string (if enabled in the build). 
+Type `V` and press `Enter` to query the version string (if enabled in the build). 
 Then you can send commands to configure the TRNG and read back entropy samples.
 
 Although there are case-insensitive settings available for local builds, they have been disabled 
 for TT ASIC due to increased slew and setup violations.
 
 Send the appropriate commands to configure and read from the TRNG core. See Register Overview, below.
+
+### NIST Validation
+
+[NIST](https://www.nist.gov/) has a [Resource for Random Bit Generation](https://csrc.nist.gov/Projects/random-bit-generation) testing:
+
+[![pic](./NIST-random-number-generation.jpg)](https://csrc.nist.gov/Projects/random-bit-generation)
+
+_Image credit: screen snip from [csrc.nist.gov/Projects/random-bit-generation](https://csrc.nist.gov/Projects/random-bit-generation)_
+
+See the [`capture_trng_raw_uart.py`](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/tree/main/test-hw/capture_trng_raw_uart.py) 
+script to capture a binary file of random data from this project, large enough for 100 runs of 1,000,000-bit 
+[NIST-style tests](https://csrc.nist.gov/projects/random-bit-generation/documentation-and-software):
+
+```
+./capture_trng_raw_uart.py  --port /dev/ttyS12  --bytes 16777216  --out trng_raw.bin
+```
+
+This script requires a build with `TRNG_BINARY_STREAM` enabled.
+
+The raw output is intended for experimentation and characterization. It is not a certified cryptographic random number generator.
+
+When the optional `define TRNG_CONDITIONED_STREAM` is used in `project_config.v`, 
+the conditioned output can be generated with the `--conditioned` option:
+```
+./capture_trng_raw_uart.py \
+    --port /dev/ttyS12 \
+    --bytes 16777216 \
+    --out trng_conditioned.bin \
+    --fast-baud \
+    --conditioned
+```
+
+See also:
+
+```
+# The official STS package from NIST CSRC:
+# https://csrc.nist.gov/CSRC/media/Projects/Random-Bit-Generation/documents/sts-2_1_2.zip
+
+unzip sts-2_1_2.zip
+cd sts-2.1.2
+make
+
+# 
+# or this UNOFFICIAL mirror:
+# https://github.com/terrillmoore/NIST-Statistical-Test-Suite.git
+
+cd NIST-Statistical-Test-Suite
+./setup.sh
+cd sts
+make
+```
+
+For further testing information see [NIST Random Bit Generation RBG - Guide to the Statistical Tests](https://csrc.nist.gov/projects/random-bit-generation/documentation-and-software/guide-to-the-statistical-tests).
 
 ### Quickstart Simulation
 
@@ -203,9 +277,11 @@ This simple interface allows interactive exploration of TRNG behavior directly f
 ## UART TRNG Command Interface
 
 All commands are ASCII and terminated with `\r`.  
-Responses are ASCII, typically:
+Responses are ASCII for normal register/configuration commands, typically:
 
 `` R<n>=<value> ``
+
+The optional `Bxx` raw stream command returns binary bytes and does not append `OK<CR>`.
 
 ---
 
@@ -265,6 +341,19 @@ Version query:
 
     V\r -> Version x.x.x <date>
 
+
+Binary raw stream, when enabled:
+
+```text
+B10<CR> -> 16 raw binary bytes
+B64<CR> -> 100 raw binary bytes
+BFF<CR> -> 255 raw binary bytes
+B00<CR> -> ?<CR>
+```
+The `xx` byte count is hexadecimal, not decimal.
+
+Do not use a normal terminal to view `Bxx` output. The response may contain arbitrary byte values, including control characters. Use `capture_trng_raw_uart.py` or another binary-safe capture tool.
+
 ---
 
 ### Notes
@@ -280,25 +369,10 @@ Connect with your favorite terminal program such as putty.
 
 For the ULX3S FPGA, the UART is connected to pins `gp0` and `gp1` The default baud rate is 115200.
 
-See the [default reference ULX3S ulx3s_v20.lpf restraint file](https://github.com/emard/ulx3s/blob/master/doc/constraints/ulx3s_v20.lpf).
+See the [default reference ULX3S `ulx3s_v20.lpf` restraint file](https://github.com/emard/ulx3s/blob/master/doc/constraints/ulx3s_v20.lpf).
 
-Disabled:
-
-```
-# FREQUENCY PORT "gn[12]" 50 MHZ;
-# FREQUENCY PORT "gn12" 50 MHZ;
-```
-
-Previously:
-
-The `B11` and `A10` pins were updated with new names:
-
-```
-LOCATE COMP "gp[0]" SITE "B11"; # J1_5+  GP0 PCLK
-LOCATE COMP "gp[1]" SITE "A10"; # J1_7+  GP1 PCLK
-```
-
-These
+The `B11` (aka `gp[0]` or `gp0`) is Rx, to UART Tx. 
+The `A10` (aka `gp[1]` or `gp1`) is Tx, to UART Rx. 
 
 ```
 # UART pins for testing
@@ -979,7 +1053,7 @@ cd "$TT_PROJECT_ROOT/test-hw
 
 Generic local hardware operation tests in [/test-hw/](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/tree/main/test-hw/README.md).
 
-- [tt_ulx3s_uart_test.py](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/tree/main/test-hw/tt_ulx3s_uart_test.py) - Python script to test the UART functionality of the FSM and TRNG on the ULX3S FPGA. It sends commands to the FPGA and reads the responses to verify correct operation.
+- [tt_uart_test.py](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/tree/main/test-hw/tt_uart_test.py) - Python script to test the UART functionality of the FSM and TRNG on the ULX3S FPGA. It sends commands to the FPGA and reads the responses to verify correct operation.
 - [run_tests.sh](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/tree/main/test-hw/test-hw/run_tests.sh) - Shell script to run the hardware tests. It can be configured to build the FPGA bitstream, flash it to the FPGA, and run the Python test script.
 
 ```bash
@@ -1086,6 +1160,7 @@ The `ULX3S_USE_GN12_50MHZ` configuration path can set `PROJECT_CLOCK_HZ` to 50 M
 | `USE_LONG_STRINGS` | Enables the long version string reply path |
 | `TRNG_USE_RO` | Requests the real ring-oscillator TRNG path |
 | `TRNG_ALLOW_REAL_RO` | Explicit guard required with `TRNG_USE_RO` |
+| `TRNG_BINARY_STREAM` | Enables the UART `Bxx` raw binary byte-stream command |
 | `PDK_TARGET_SKY130` | Selects SKY130 inverter cell instantiation |
 | `PDK_TARGET_GF180` | Selects GF180 inverter cell instantiation |
 | `ULX3S` | Selects ULX3S FPGA wrapper/build behavior |
@@ -1147,7 +1222,7 @@ The TRNG lab core internally resets the LFSR to `0x1ACE`, clears `sample_shift`,
 | Pin | Direction | Function |
 | --- | --- | --- |
 | `ui_in[7:5]` | Input | Reserved / unused |
-| `ui_in[4]`   | Input | SPI/JTAG select, 1 = SPI, 0 = JTAG |
+| `ui_in[4]`   | Input | SPI/JTAG select, 1 = SPI, 0 = JTAG (when JTAG_ENABLED is defined) |
 | `ui_in[3]`   | Input | UART RX |
 | `ui_in[2:0]` | Input | Reserved / unused |
 
@@ -1157,10 +1232,10 @@ The UART RX input is synchronized through a two-stage synchronizer before it ent
 
 | Pin | Direction | Function |
 | --- | --- | --- |
-| `uo_out[0]` | Output | `trng_bit` |
-| `uo_out[1]` | Output | `reg_status[0]` |
-| `uo_out[2]` | Output | `reg_status[1]` |
-| `uo_out[3]` | Output | `reg_status[2]` |
+| `uo_out[0]` | Output | Debug visibility: `trng_bit` |
+| `uo_out[1]` | Output | Debug visibility: `reg_status[0]` |
+| `uo_out[2]` | Output | Debug visibility: `reg_status[1]` |
+| `uo_out[3]` | Output | Debug visibility: `reg_status[2]` |
 | `uo_out[4]` | Output | UART TX |
 | `uo_out[5]` | Output | `reg_rawlo[0]` |
 | `uo_out[6]` | Output | `reg_rawlo[1]` |
@@ -1201,6 +1276,7 @@ Line feed, `0x0A`, is ignored in command wait states, allowing common CRLF termi
 
 | Command | Arguments | Effect | Reply |
 | --- | --- | --- | --- |
+| `Bxx` | 2 hex nibbles, `01..FF` | Stream `xx` raw binary bytes from `reg_rawlo`/`reg_rawhi` alternately, when `TRNG_BINARY_STREAM` is enabled | Binary bytes, no `OK<CR>` |
 | `E0` / `E1` | 1 hex nibble | Write `reg_ctrl[0]`, TRNG enable | `OK<CR>` |
 | `Sx` | 1 hex nibble | Write `reg_src[1:0]` | `OK<CR>` |
 | `Vx` | 1 hex nibble | Write `reg_ctrl[1]`, deterministic single-step request | `OK<CR>` |
