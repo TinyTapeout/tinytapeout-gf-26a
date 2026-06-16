@@ -11,9 +11,10 @@ Ensure full URL paths are included for files outside this directory, as the full
 
 ## How it works
 
-A [ring oscillator](https://en.wikipedia.org/wiki/Ring_oscillator) is implemented at the core of this project as an entropy source for a TRNG (True Random Number Generator).
+A [ring oscillator](https://en.wikipedia.org/wiki/Ring_oscillator) is implemented at the core of this project as an 
+[entropy](https://en.wikipedia.org/wiki/Entropy) source for a TRNG (True [Hardware Random Number Generator](https://en.wikipedia.org/wiki/Hardware_random_number_generator)).
 
-![ttgf-UART-FSM-TRNG-Lab-block-diagram.png](./ttgf-UART-FSM-TRNG-Lab-block-diagram.jpg)
+![UART-FSM-TRNG-Lab-block-diagram.png](./UART-FSM-TRNG-Lab-block-diagram.jpg)
 
 This project exposes a UART-controlled interface to a ring-oscillator-based entropy source. 
 A host such as a PC, ESP32, or test script can send simple ASCII commands over UART to configure internal 
@@ -26,7 +27,7 @@ At a high level:
 - Control and configuration are managed through memory-mapped registers
 - Data and status are read back over the same UART interface
 
-Why? NIST notes that random numbers are essential for cryptographic and security applications, and that cryptography 
+Why? The National Institute of Standards and Technology ([NIST](https://www.nist.gov/)) notes that random numbers are essential for cryptographic and security applications, and that cryptography 
 makes extensive use of random numbers and random bits, particularly for generating cryptographic keying material.
 
 See presentations:
@@ -34,7 +35,7 @@ See presentations:
 - [NIST Standards on Random Bit Generation](https://csrc.nist.gov/csrc/media/Presentations/2023/overview-of-nist-rng-standards-90a-90b-90c-22/images-media/session-1-turan-overview-talk.pdf) slides. 
 - [Why Random Numbers for Cryptography?](https://csrc.nist.gov/csrc/media/events/random-number-generation-workshop-2004/documents/developmenthistory.pdf)
 
-Development will continue beyond Tiny Tapeout submission deadline. For future updates, visit:
+For additional related information:
 
 https://gojimmypi.github.io/trng/
 
@@ -58,20 +59,15 @@ Once connected, there should be a [Python REPL command prompt](https://tinytapeo
 
 Don't confuse the TT board serial connection with the external UART.
 
-Select project, set clock to 25 MHZ, and reset:
+Select project, set clock to 25 MHZ, and reset (see [project_reset.py](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/blob/main/ice40/project_reset.py):
 
 ```
-# select project and reset ttsky
-# send "tt.shuttle. tt_um_gojimmypi_ttsky_UART_FSM_TRNG_Lab.enable()"
-
-# or
-
 # select project and reset ttgf
-send "tt.shuttle. tt_um_gojimmypi_ttgf_UART_FSM_TRNG_Lab.enable()"
+tt.shuttle.tt_um_gojimmypi_ttgf_UART_FSM_TRNG_Lab.enable()
 
-send "tt.clock_project_PWM(25000000)"
-send "tt.reset_project(True)"
-send "tt.reset_project(False)"
+tt.clock_project_PWM(25000000)
+tt.reset_project(True)
+tt.reset_project(False)
 ```
 
 Connect a UART terminal (e.g. PuTTY) to the TT Breakout (or Demoboard) I/O pins with the following connections:
@@ -82,7 +78,16 @@ Connect a UART terminal (e.g. PuTTY) to the TT Breakout (or Demoboard) I/O pins 
 
 ![PMOD-connector-test1.png](./PMOD-connector-test1.jpg)
 
-Note: `IN3` and `OUT4` are Tiny Tapeout logical signal names, not PMOD physical pin numbers. On the shown PMOD adapter, `in3` is PMOD IO4 / physical pin 4, and `out4` is PMOD IO5 / physical pin 7.
+&#x26A0; ** **CAUTION** ** Pins are 3v3 and NOT expected to be 5v tolerant.
+
+&#x26A0; ** **CAUTION** ** TT IO pins such as `Tx` and `Rx` are likely  ** **NOT** ** tolerant to reversal. See [TT Discord](https://discord.com/channels/1009193568256135208/1009193568256135211/1500537741245419541). 
+
+> That's the same as shorting them. They're definitely not designed for it, but they won't die immediately either.
+
+Note: `IN3` and `OUT4` are Tiny Tapeout logical signal names, not PMOD physical pin numbers. On the shown PMOD adapter:
+
+- `in3` is PMOD `IO4` /physical pin 4.
+- `out4` is PMOD` IO5` / physical pin 7.
 
 Project config:
 
@@ -100,7 +105,7 @@ At a 50 MHz project clock, if the design is rebuilt with `PROJECT_CLOCK_HZ = 50_
 - `CLKS_PER_BIT = 50_000_000 / 115_200` = 434
 - Terminal baud rate: 115,200
 
-If the bitstream was built for 25 MHz but the board is actually clocked at 50 MHz, the effective UART baud rate doubles to approximately 230,400.
+If the bitstream was built for 25 MHz but the board is actually clocked at 50 MHz, the effective UART baud rate doubles to approximately 230,400 baud.
 
 Terminal session at 25 MHz clock is
 
@@ -112,17 +117,17 @@ Terminal session at 25 MHz clock is
 
 Or:
 
-```bash
+```text
 stty -F "$PORT" "$BAUD" cs8 -cstopb -parenb -ixon -ixoff -crtscts raw -echo min 0 time 5
 ```
 
-Type `V` and press `Enter` to query the version string (if enabled in the build). 
+Type `V` and press `Enter` to query the version string (if enabled in the build, on by default for TT). 
 Then you can send commands to configure the TRNG and read back entropy samples.
 
-Although there are case-insensitive settings available for local builds, they have been disabled 
-for TT ASIC due to increased slew and setup violations.
+&#x26A0; The TT Build is Case Sensitive. Although there are case-insensitive settings available for local FPGA builds, 
+they have been disabled for TT ASIC due to observed increased slew and setup violations.
 
-Send the appropriate commands to configure and read from the TRNG core. See Register Overview, below.
+Send the appropriate commands to configure and read from the TRNG core. See [Register Overview](./info.md#register-overview), below.
 
 ### NIST Validation
 
@@ -136,7 +141,9 @@ See the [`capture_trng_raw_uart.py`](https://github.com/gojimmypi/ttgf-UART-FSM-
 script to capture a binary file of random data from this project, large enough for 100 runs of 1,000,000-bit 
 [NIST-style tests](https://csrc.nist.gov/projects/random-bit-generation/documentation-and-software):
 
-```
+```bash
+# WSL /dev/ttyS[n] == COM[n] on Windows, other Linux: /dev/ttyUSB[n], /dev/ttyACM[n], etc
+
 ./capture_trng_raw_uart.py  --port /dev/ttyS12  --bytes 16777216  --out trng_raw.bin
 ```
 
@@ -146,7 +153,8 @@ The raw output is intended for experimentation and characterization. It is not a
 
 When the optional `define TRNG_CONDITIONED_STREAM` is used in `project_config.v`, 
 the conditioned output can be generated with the `--conditioned` option:
-```
+
+```bash
 ./capture_trng_raw_uart.py \
     --port /dev/ttyS12 \
     --bytes 16777216 \
@@ -157,7 +165,7 @@ the conditioned output can be generated with the `--conditioned` option:
 
 See also:
 
-```
+```bash
 # The official STS package from NIST CSRC:
 # https://csrc.nist.gov/CSRC/media/Projects/Random-Bit-Generation/documents/sts-2_1_2.zip
 
@@ -194,7 +202,7 @@ If all the toolchains are installed:
 ```bash
 cd /mnt/c/workspace/ttgf-UART-FSM-TRNG-Lab/ice40
 
-. ./env_ice40.sh
+source ./env_ice40.sh
 ./build_and_flash.sh
 ./project_reset.sh
 ./run_tests.sh
@@ -421,7 +429,7 @@ Current testing scripts:
 # change directory to your ESP-IDF directory:
 cd /mnt/c/SysGCC/esp32-master/esp-idf/v5.5
 
-. ./export.sh
+source ./export.sh
 
 cd "$TT_PROJECT_ROOT/ulx3s/ESP32"
 idf.py build
@@ -432,8 +440,7 @@ idf.py -p /dev/ttyS3 -b 115200 monitor
 ```
 
 There should be output from the ESP32 showing the SPI transactions and register values. 
-This can be used to verify that the SPI interface is working correctly and that the TRNG lab core is responding to commands. For example:
-
+This can be used to verify that the SPI interface is working correctly and that the TRNG lab core is responding to commands. (See [example output](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/blob/main/docs/example_esp32_output.md)):
 ```text
 gojimmypi:/mnt/c/workspace/ttgf-UART-FSM-TRNG-Lab/ulx3s/ESP32
 $ idf.py -p /dev/ttyS3 -b 115200 monitor
@@ -443,106 +450,23 @@ Executing "/home/gojimmypi/.espressif/python_env/idf5.5_py3.10_env/bin/python /m
 --- esp-idf-monitor 1.6.2 on /dev/ttyS3 115200
 --- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H
 I (13) boot: ESP-IDF v5.5 2nd stage bootloader
-I (13) boot: compile time Jun  4 2026 08:25:56
-I (13) boot: Multicore bootloader
-I (13) boot: chip revision: v1.0
-I (16) boot.esp32: SPI Speed      : 40MHz
-I (20) boot.esp32: SPI Mode       : DIO
-I (23) boot.esp32: SPI Flash Size : 2MB
-I (27) boot: Enabling RNG early entropy source...
-I (31) boot: Partition Table:
-I (34) boot: ## Label            Usage          Type ST Offset   Length
-I (40) boot:  0 nvs              WiFi data        01 02 00009000 00006000
-I (47) boot:  1 phy_init         RF data          01 01 0000f000 00001000
-I (53) boot:  2 factory          factory app      00 00 00010000 00100000
-I (60) boot: End of partition table
-I (63) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=0a3b0h ( 41904) map
-I (85) esp_image: segment 1: paddr=0001a3d8 vaddr=3ff80000 size=00020h (    32) load
-I (85) esp_image: segment 2: paddr=0001a400 vaddr=3ffb0000 size=023dch (  9180) load
-I (92) esp_image: segment 3: paddr=0001c7e4 vaddr=40080000 size=03834h ( 14388) load
-I (102) esp_image: segment 4: paddr=00020020 vaddr=400d0020 size=13374h ( 78708) map
-I (131) esp_image: segment 5: paddr=0003339c vaddr=40083834 size=0b144h ( 45380) load
-I (156) boot: Loaded app from partition at offset 0x10000
-I (156) boot: Disabling RNG early entropy source...
-I (166) cpu_start: Multicore app
-I (174) cpu_start: Pro cpu start user code
-I (175) cpu_start: cpu freq: 160000000 Hz
-I (175) app_init: Application information:
-I (177) app_init: Project name:     ulx3s_esp32
-I (183) app_init: App version:      0.1.5-8-gfc18cf9-dirty
-I (189) app_init: Compile time:     Jun  4 2026 08:25:35
-I (195) app_init: ELF file SHA256:  ca2f9cedc...
-I (200) app_init: ESP-IDF:          v5.5
-I (205) efuse_init: Min chip rev:     v0.0
-I (209) efuse_init: Max chip rev:     v3.99
-I (214) efuse_init: Chip rev:         v1.0
-I (220) heap_init: Initializing. RAM available for dynamic allocation:
-I (227) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM
-I (233) heap_init: At 3FFB2C90 len 0002D370 (180 KiB): DRAM
-I (239) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM
-I (245) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM
-I (252) heap_init: At 4008E978 len 00011688 (69 KiB): IRAM
-I (259) spi_flash: detected chip: generic
-I (262) spi_flash: flash io: dio
-W (266) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
-I (280) main_task: Started on CPU0
-I (290) main_task: Calling app_main()
-I (290) main: ------------------- ULX3S ESP32 Example ----------------
-I (290) main: --------------------------------------------------------
-I (300) main: --------------------------------------------------------
-I (300) main: ---------------------- BEGIN MAIN ----------------------
-I (310) main: --------------------------------------------------------
-I (320) main: --------------------------------------------------------
-I (330) main: Stack Start: 0x0
-I (330) main: Stack HWM: 2400
 
-Hello world 3!
-This is esp32 chip with 2 CPU core(s), WiFi/BTBLE, silicon revision v1.0, 2MB external flash
-Minimum free heap size: 305496 bytes
+  [... snip. etc ... ]
 I (350) main: SPI write mode: boot config once
 I (350) ulx3s_spi: SPI regs: R0=00 R1=00 R2=10 R3=00 R4=01 R5=04 R6=3E R7=84 raw=0x843E status=0x04 src=0 div=0x10 mode=0x00 oscen=0x01
 I (460) main: TRNG deterministic LFSR test
 I (460) main: lfsr test sample 00: raw=0x7F2E status=0x00
 I (460) main: lfsr test sample 01: raw=0x9F33 status=0x00
-I (460) main: lfsr test sample 02: raw=0xFC1C status=0x00
-I (470) main: lfsr test sample 03: raw=0x6F03 status=0x00
-I (480) main: lfsr test sample 04: raw=0x4B7D status=0x00
-I (480) main: lfsr test sample 05: raw=0x52C8 status=0x00
-I (490) main: lfsr test sample 06: raw=0xD6B7 status=0x00
-I (490) main: lfsr test sample 07: raw=0xEF2A status=0x00
-I (500) main: TRNG live source test: S1 RO0/fallback
-I (510) main: S1 RO0/fallback sample 00: raw=0xAE11 status=0x0C
-I (520) main: S1 RO0/fallback sample 01: raw=0x7826 status=0x0C
-I (530) main: S1 RO0/fallback sample 02: raw=0x6F7D status=0x0C
-I (540) main: S1 RO0/fallback sample 03: raw=0xDA87 status=0x0C
-I (550) main: S1 RO0/fallback sample 04: raw=0x616F status=0x0C
-I (560) main: S1 RO0/fallback sample 05: raw=0xD14E status=0x0C
-I (570) main: S1 RO0/fallback sample 06: raw=0xE2E6 status=0x0C
-I (580) main: S1 RO0/fallback sample 07: raw=0xB874 status=0x0C
-I (580) main: TRNG live source test: S2 ROX/fallback
-I (590) main: S2 ROX/fallback sample 00: raw=0xC060 status=0x14
-I (600) main: S2 ROX/fallback sample 01: raw=0x64E4 status=0x14
-I (610) main: S2 ROX/fallback sample 02: raw=0xA9DE status=0x14
-I (620) main: S2 ROX/fallback sample 03: raw=0x6CB7 status=0x14
-I (630) main: S2 ROX/fallback sample 04: raw=0xAF8F status=0x14
-I (640) main: S2 ROX/fallback sample 05: raw=0x9E9C status=0x14
-I (650) main: S2 ROX/fallback sample 06: raw=0x8E83 status=0x14
-I (660) main: S2 ROX/fallback sample 07: raw=0xA7C1 status=0x14
-I (660) main: TRNG live source test: S3 MIX/fallback
-I (670) main: S3 MIX/fallback sample 00: raw=0x0D45 status=0x1C
-I (680) main: S3 MIX/fallback sample 01: raw=0x55D6 status=0x1C
-I (690) main: S3 MIX/fallback sample 02: raw=0x138C status=0x1C
-I (700) main: S3 MIX/fallback sample 03: raw=0x1815 status=0x1C
-I (710) main: S3 MIX/fallback sample 04: raw=0x7104 status=0x1C
-I (720) main: S3 MIX/fallback sample 05: raw=0xFD98 status=0x1C
-I (730) main: S3 MIX/fallback sample 06: raw=0x1BE8 status=0x1C
-I (740) main: S3 MIX/fallback sample 07: raw=0x843E status=0x1C
+
+
+  [... snip. etc ... ]
+
 I (740) ulx3s_spi: SPI regs: R0=00 R1=00 R2=10 R3=00 R4=01 R5=04 R6=3E R7=84 raw=0x843E status=0x04 src=0 div=0x10 mode=0x00 oscen=0x01
 I (740) ulx3s_spi: SPI regs: R0=00 R1=00 R2=10 R3=00 R4=01 R5=04 R6=3E R7=84 raw=0x843E status=0x04 src=0 div=0x10 mode=0x00 oscen=0x01
 ```
 
 If the `./run_tests.sh` was left at the `Press Enter to continue...` prompt, press `Enter` to continue with the next set of tests.
-The output should look something like this:
+The output should look something like [this example](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/blob/main/docs/example_test_results.md):
 
 ```text
 Build PASSED
@@ -563,344 +487,12 @@ Running: version_if_present
 Version probe response: b'Version 0.1.5d 6/3/2026\r'
 PASS: Version command
 
-Running: power_on_defaults
-PASS: R0 default reg_ctrl
-PASS: R1 default reg_src
-PASS: R2 default reg_div
-PASS: R3 default reg_mode
-PASS: R4 default reg_oscen
-
-Running: single_nibble_writes
-PASS: E1 write enable
-PASS: R0 after E1
-PASS: E0 clear enable
-PASS: R0 after E0
-PASS: V1 set ctrl bit 1
-PASS: R0 after V1
-PASS: W1 set ctrl bit 2
-PASS: R0 after W1
-PASS: S3 set source
-PASS: R1 after S3
-PASS: S0 clear source
-PASS: R1 after S0
-
-Running: two_nibble_writes
-PASS: D2A write divider
-PASS: R2 after D2A
-PASS: M5C write mode
-PASS: R3 after M5C
-PASS: O0F write oscillator enable
-PASS: R4 after O0F
-
-Running: read_only_registers_format
-PASS: R5 status format
-PASS: R6 rawlo format
-PASS: R7 rawhi format
-
-Running: crlf_handling
-PASS: CRLF read accepted
-
-Running: error_cases
-PASS: Unknown command
-PASS: Bad hex digit
-PASS: Bad read register
-PASS: Missing second digit
-PASS: Unexpected extra byte
-
-Running: repeated_reads
-PASS: Repeated R2 read 1
-PASS: Repeated R2 read 2
-PASS: Repeated R2 read 3
-PASS: Repeated R2 read 4
-PASS: Repeated R2 read 5
-
-Command test coverage:
-PASS: all known commands have tests
-
-Tests passed: 8
-Tests skipped: 0
-Tests failed: 0
-
-PASS
-
-Running: reset_config_registers
-PASS: Reset E0
-PASS: Reset V0
-PASS: Reset W0
-PASS: Reset S0
-PASS: Reset D10
-PASS: Reset M00
-PASS: Reset O01
-
-Running: version_if_present
-Version probe response: b'Version 0.1.5d 6/3/2026\r'
-PASS: Version command
-
-Running: power_on_defaults
-PASS: R0 default reg_ctrl
-PASS: R1 default reg_src
-PASS: R2 default reg_div
-PASS: R3 default reg_mode
-PASS: R4 default reg_oscen
-
-Running: single_nibble_writes
-PASS: E1 write enable
-PASS: R0 after E1
-PASS: E0 clear enable
-PASS: R0 after E0
-PASS: V1 set ctrl bit 1
-PASS: R0 after V1
-PASS: W1 set ctrl bit 2
-PASS: R0 after W1
-PASS: S3 set source
-PASS: R1 after S3
-PASS: S0 clear source
-PASS: R1 after S0
-
-Running: two_nibble_writes
-PASS: D2A write divider
-PASS: R2 after D2A
-PASS: M5C write mode
-PASS: R3 after M5C
-PASS: O0F write oscillator enable
-PASS: R4 after O0F
-
-Running: read_only_registers_format
-PASS: R5 status format
-PASS: R6 rawlo format
-PASS: R7 rawhi format
-
-Running: crlf_handling
-PASS: CRLF read accepted
-
-Running: error_cases
-PASS: Unknown command
-PASS: Bad hex digit
-PASS: Bad read register
-PASS: Missing second digit
-PASS: Unexpected extra byte
-
-Running: repeated_reads
-PASS: Repeated R2 read 1
-PASS: Repeated R2 read 2
-PASS: Repeated R2 read 3
-PASS: Repeated R2 read 4
-PASS: Repeated R2 read 5
-
-Command test coverage:
-PASS: all known commands have tests
-
-Running: final_reset_config_registers
-PASS: Reset E0
-PASS: Reset V0
-PASS: Reset W0
-PASS: Reset S0
-PASS: Reset D10
-PASS: Reset M00
-PASS: Reset O01
-
-Tests passed: 10
-Tests skipped: 0
-Tests failed: 0
-
-PASS
-
-Running: TRNG S0 LFSR frozen samples
-PASS: Configure E0
-PASS: Configure source
-PASS: Configure oscillator mask
-PASS: Configure divider
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 01: 0x1F34
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 02: 0x4CE6
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 03: 0xA63E
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 04: 0x2381
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 05: 0xAF56
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 06: 0x81E9
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 07: 0x1A72
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 08: 0xA6FD
-
-Evaluation: TRNG S0 LFSR frozen samples
-  Samples:      8
-  Unique:       8
-  Zero samples: 0
-  0xFFFF count: 0
-  One bits:     65/128
-  One ratio:    0.508
-PASS: sample output changes
-PASS: bit balance is reasonable for this small sample set
-
-Running: TRNG S1 RO0/fallback path
-PASS: Configure E0
-PASS: Configure source
-PASS: Configure oscillator mask
-PASS: Configure divider
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 01: 0x2B08
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 02: 0x5E58
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 03: 0x60B3
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 04: 0x3295
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 05: 0xE318
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 06: 0x6387
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 07: 0xCB05
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 08: 0x3867
-
-Evaluation: TRNG S1 RO0/fallback path
-  Samples:      8
-  Unique:       8
-  Zero samples: 0
-  0xFFFF count: 0
-  One bits:     57/128
-  One ratio:    0.445
-PASS: sample output changes
-PASS: bit balance is reasonable for this small sample set
-
-Running: TRNG S2 ROX/fallback path
-PASS: Configure E0
-PASS: Configure source
-PASS: Configure oscillator mask
-PASS: Configure divider
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 01: 0x4241
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 02: 0x4634
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 03: 0x26DA
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 04: 0xD9AD
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 05: 0xF7A3
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 06: 0xC774
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 07: 0xB924
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 08: 0x73C0
-
-Evaluation: TRNG S2 ROX/fallback path
-  Samples:      8
-  Unique:       8
-  Zero samples: 0
-  0xFFFF count: 0
-  One bits:     62/128
-  One ratio:    0.484
-PASS: sample output changes
-PASS: bit balance is reasonable for this small sample set
-
-Running: TRNG S3 MIX/fallback path
-PASS: Configure E0
-PASS: Configure source
-PASS: Configure oscillator mask
-PASS: Configure divider
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 01: 0xBD3F
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 02: 0xC635
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 03: 0xD417
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 04: 0x43E2
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 05: 0xC7E5
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 06: 0x565C
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 07: 0x1669
-PASS: Enable sampling
-PASS: Freeze sampling
-  sample 08: 0xD573
-
-Evaluation: TRNG S3 MIX/fallback path
-  Samples:      8
-  Unique:       8
-  Zero samples: 0
-  0xFFFF count: 0
-  One bits:     70/128
-  One ratio:    0.547
-PASS: sample output changes
-PASS: bit balance is reasonable for this small sample set
-
-PASS
-
-First LFSR sequence
-  sample 01: 0x7F2E
-  sample 02: 0x9F33
-  sample 03: 0xFC1C
-  sample 04: 0x6F03
-  sample 05: 0x4B7D
-  sample 06: 0x52C8
-  sample 07: 0xD6B7
-  sample 08: 0xEF2A
-
-Second LFSR sequence
-  sample 01: 0x7F2E
-  sample 02: 0x9F33
-  sample 03: 0xFC1C
-  sample 04: 0x6F03
-  sample 05: 0x4B7D
-  sample 06: 0x52C8
-  sample 07: 0xD6B7
-  sample 08: 0xEF2A
-
-Reproducibility evaluation:
-PASS: LFSR sequence is reproducible
-
-Sequence quality check:
-  Samples:      8
-  Unique:       8
-  Zero samples: 0
-  0xFFFF count: 0
-  One bits:     75/128
-  One ratio:    0.586
-PASS: deterministic sequence is not stuck
-
-PASS
+  [... snip. etc ... ]
 ```
+
+
+
+
 
 
 The continued output from the ESP32 in the separate TTY window should look something like this:
@@ -909,49 +501,6 @@ The continued output from the ESP32 in the separate TTY window should look somet
 I (186760) ulx3s_spi: SPI regs: R0=06 R1=00 R2=10 R3=00 R4=01 R5=00 R6=00 R7=00 raw=0x0000 status=0x00 src=0 div=0x10 mode=0x00 oscen=0x01
 I (187760) ulx3s_spi: SPI regs: R0=06 R1=00 R2=2A R3=5C R4=0F R5=00 R6=00 R7=00 raw=0x0000 status=0x00 src=0 div=0x2A mode=0x5C oscen=0x0F
 I (188760) ulx3s_spi: SPI regs: R0=00 R1=00 R2=10 R3=00 R4=01 R5=04 R6=00 R7=00 raw=0x0000 status=0x04 src=0 div=0x10 mode=0x00 oscen=0x01
-I (189760) ulx3s_spi: SPI regs: R0=06 R1=00 R2=2A R3=5C R4=01 R5=00 R6=00 R7=00 raw=0x0000 status=0x00 src=0 div=0x2A mode=0x5C oscen=0x01
-I (190760) ulx3s_spi: SPI regs: R0=06 R1=00 R2=2A R3=5C R4=0F R5=00 R6=00 R7=00 raw=0x0000 status=0x00 src=0 div=0x2A mode=0x5C oscen=0x0F
-I (191760) ulx3s_spi: SPI regs: R0=00 R1=00 R2=01 R3=00 R4=00 R5=00 R6=34 R7=1F raw=0x1F34 status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (192760) ulx3s_spi: SPI regs: R0=00 R1=00 R2=01 R3=00 R4=00 R5=00 R6=E9 R7=81 raw=0x81E9 status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (193760) ulx3s_spi: SPI regs: R0=00 R1=01 R2=01 R3=00 R4=01 R5=0C R6=08 R7=2B raw=0x2B08 status=0x0C src=1 div=0x01 mode=0x00 oscen=0x01
-I (194760) ulx3s_spi: SPI regs: R0=00 R1=01 R2=01 R3=00 R4=01 R5=0C R6=87 R7=63 raw=0x6387 status=0x0C src=1 div=0x01 mode=0x00 oscen=0x01
-I (195760) ulx3s_spi: SPI regs: R0=00 R1=02 R2=01 R3=00 R4=FF R5=14 R6=41 R7=42 raw=0x4241 status=0x14 src=2 div=0x01 mode=0x00 oscen=0xFF
-I (196760) ulx3s_spi: SPI regs: R0=01 R1=02 R2=01 R3=00 R4=FF R5=17 R6=B1 R7=67 raw=0x67B1 status=0x17 src=2 div=0x01 mode=0x00 oscen=0xFF
-I (197760) ulx3s_spi: SPI regs: R0=00 R1=03 R2=01 R3=00 R4=FF R5=1C R6=3F R7=BD raw=0xBD3F status=0x1C src=3 div=0x01 mode=0x00 oscen=0xFF
-I (198760) ulx3s_spi: SPI regs: R0=01 R1=03 R2=01 R3=00 R4=FF R5=1D R6=E6 R7=19 raw=0x19E6 status=0x1D src=3 div=0x01 mode=0x00 oscen=0xFF
-I (199760) ulx3s_spi: SPI regs: R0=04 R1=03 R2=01 R3=00 R4=FF R5=00 R6=00 R7=00 raw=0x0000 status=0x00 src=3 div=0x01 mode=0x00 oscen=0xFF
-I (200760) ulx3s_spi: SPI regs: R0=02 R1=00 R2=01 R3=00 R4=00 R5=00 R6=3F R7=00 raw=0x003F status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (201760) ulx3s_spi: SPI regs: R0=02 R1=00 R2=01 R3=00 R4=00 R5=00 R6=2E R7=7F raw=0x7F2E status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (202760) ulx3s_spi: SPI regs: R0=00 R1=00 R2=01 R3=00 R4=00 R5=00 R6=4F R7=97 raw=0x974F status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (203760) ulx3s_spi: SPI regs: R0=00 R1=00 R2=01 R3=00 R4=00 R5=00 R6=33 R7=9F raw=0x9F33 status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (204760) ulx3s_spi: SPI regs: R0=02 R1=00 R2=01 R3=00 R4=00 R5=00 R6=FC R7=33 raw=0x33FC status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (205760) ulx3s_spi: SPI regs: R0=00 R1=00 R2=01 R3=00 R4=00 R5=00 R6=1C R7=FC raw=0xFC1C status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (206760) ulx3s_spi: SPI regs: R0=00 R1=00 R2=01 R3=00 R4=00 R5=00 R6=6F R7=1C raw=0x1C6F status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (207760) ulx3s_spi: SPI regs: R0=00 R1=00 R2=01 R3=00 R4=00 R5=00 R6=03 R7=6F raw=0x6F03 status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (208760) ulx3s_spi: SPI regs: R0=02 R1=00 R2=01 R3=00 R4=00 R5=00 R6=96 R7=06 raw=0x0696 status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (209760) ulx3s_spi: SPI regs: R0=00 R1=00 R2=01 R3=00 R4=00 R5=00 R6=7D R7=4B raw=0x4B7D status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (210760) ulx3s_spi: SPI regs: R0=00 R1=00 R2=01 R3=00 R4=00 R5=00 R6=A5 R7=FA raw=0xFAA5 status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (211760) ulx3s_spi: SPI regs: R0=00 R1=00 R2=01 R3=00 R4=00 R5=00 R6=C8 R7=52 raw=0x52C8 status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (212760) ulx3s_spi: SPI regs: R0=00 R1=00 R2=01 R3=00 R4=00 R5=00 R6=AD R7=91 raw=0x91AD status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (213760) ulx3s_spi: SPI regs: R0=02 R1=00 R2=01 R3=00 R4=00 R5=00 R6=6F R7=AD raw=0xAD6F status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (214760) ulx3s_spi: SPI regs: R0=02 R1=00 R2=01 R3=00 R4=00 R5=00 R6=BC R7=DF raw=0xDFBC status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (215760) ulx3s_spi: SPI regs: R0=04 R1=00 R2=01 R3=00 R4=00 R5=00 R6=00 R7=00 raw=0x0000 status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (216760) ulx3s_spi: SPI regs: R0=02 R1=00 R2=01 R3=00 R4=00 R5=00 R6=3F R7=00 raw=0x003F status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (217760) ulx3s_spi: SPI regs: R0=02 R1=00 R2=01 R3=00 R4=00 R5=00 R6=2E R7=7F raw=0x7F2E status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (218760) ulx3s_spi: SPI regs: R0=00 R1=00 R2=01 R3=00 R4=00 R5=00 R6=4F R7=97 raw=0x974F status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (219760) ulx3s_spi: SPI regs: R0=00 R1=00 R2=01 R3=00 R4=00 R5=00 R6=33 R7=9F raw=0x9F33 status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (220760) ulx3s_spi: SPI regs: R0=02 R1=00 R2=01 R3=00 R4=00 R5=00 R6=FC R7=33 raw=0x33FC status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (221760) ulx3s_spi: SPI regs: R0=00 R1=00 R2=01 R3=00 R4=00 R5=00 R6=1C R7=FC raw=0xFC1C status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (222760) ulx3s_spi: SPI regs: R0=02 R1=00 R2=01 R3=00 R4=00 R5=00 R6=6F R7=1C raw=0x1C6F status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (223760) ulx3s_spi: SPI regs: R0=00 R1=00 R2=01 R3=00 R4=00 R5=00 R6=03 R7=6F raw=0x6F03 status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (224760) ulx3s_spi: SPI regs: R0=00 R1=00 R2=01 R3=00 R4=00 R5=00 R6=4B R7=03 raw=0x034B status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (225760) ulx3s_spi: SPI regs: R0=00 R1=00 R2=01 R3=00 R4=00 R5=00 R6=7D R7=4B raw=0x4B7D status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (226760) ulx3s_spi: SPI regs: R0=02 R1=00 R2=01 R3=00 R4=00 R5=00 R6=A5 R7=FA raw=0xFAA5 status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (227760) ulx3s_spi: SPI regs: R0=00 R1=00 R2=01 R3=00 R4=00 R5=00 R6=C8 R7=52 raw=0x52C8 status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (228760) ulx3s_spi: SPI regs: R0=00 R1=00 R2=01 R3=00 R4=00 R5=00 R6=AD R7=91 raw=0x91AD status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (229760) ulx3s_spi: SPI regs: R0=02 R1=00 R2=01 R3=00 R4=00 R5=00 R6=6F R7=AD raw=0xAD6F status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (230760) ulx3s_spi: SPI regs: R0=02 R1=00 R2=01 R3=00 R4=00 R5=00 R6=BC R7=DF raw=0xDFBC status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
-I (231760) ulx3s_spi: SPI regs: R0=00 R1=00 R2=01 R3=00 R4=00 R5=00 R6=2A R7=EF raw=0xEF2A status=0x00 src=0 div=0x01 mode=0x00 oscen=0x00
 ```
 
 ### TT Simulation tests
@@ -974,8 +523,8 @@ Build and flash the bitstream to the FPGA, then run the test script. The test sc
 Test locally with [ULX3S](https://radiona.org/ulx3s/) ECP5 FPGA in [/ulx3s/](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/actions/ulx3s/README.md) directory.
 
 - [verilator_lint.sh](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/tree/main/scripts/verilator_lint.sh)
-- [ulx3s_build.sh](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/tree/main/scripts/ulx3s/ulx3s_build.sh)
-- [ulx3s_flash.sh](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/tree/main/scripts/ulx3s/ulx3s_flash.sh)
+- [ulx3s_build.sh](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/tree/main/ulx3s/ulx3s_build.sh)
+- [ulx3s_flash.sh](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/tree/main/ulx3s/ulx3s_flash.sh)
 
 Example:
 
@@ -1071,7 +620,7 @@ cd test-hw
 Document revision: 0.1.7
 RTL revision string: `Version 0.1.7 6/7/2026`  
 Project family: Tiny Tapeout UART/SPI configurable TRNG experiment  
-Primary top modules: `tt_um_gojimmypi_ttsky_UART_FSM_TRNG_Lab`, `tt_um_gojimmypi_ttgf_UART_FSM_TRNG_Lab`  
+Primary top modules: `tt_um_gojimmypi_ttgf_UART_FSM_TRNG_Lab` (conditional based on build)
 License: Apache-2.0, as declared in the source files
 
 ### 1. Overview
@@ -1606,3 +1155,9 @@ For security use, add a conditioning function and a health-test strategy appropr
 | --- | --- | --- |
 | 0.1 | 2026-05-23 | Initial datasheet generated from current TRNG source package |
 
+## Example Outputs
+
+<!--- Are all markdown files included during publish? This will test: --->
+
+- [Example ESP32 Output](./example_esp32_output.md)
+- [Example Text Results](./example_test_results.md)
