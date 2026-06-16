@@ -1,6 +1,6 @@
 # Tiny Tapeout project information
 project:
-  title:        "Programmable_Pipeline-RISV-V"      # Project title
+  title:        "Programmable_Pipeline-RISC-V"      # Project title
   author:       "Prem"      # Your name
   discord:      "prem_42503"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
   description:  "Zero to ASIC demo project"      # One line description of what your project does
@@ -70,7 +70,7 @@ pinout:
   uio[2]: "SPI_MISO_TOP"
   uio[3]: "SPI_SCLK_TOP"
   uio[4]: "GPIO1_TOP"
-  uio[5]: ""
+  uio[5]: "SPI_CS_GPIO3_TOP"
   uio[6]: ""
   uio[7]: ""
 
