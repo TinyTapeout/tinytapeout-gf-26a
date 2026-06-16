@@ -1,51 +1,53 @@
-132. Printing statistics.
+133. Printing statistics.
 
 === tt_um_mattvenn_signal_generator ===
 
         +----------Local Count, excluding submodules.
         |        +-Local Area, excluding submodules.
         |        | 
-     1403        - wires
-     1438        - wire bits
-      201        - public wires
-      236        - public wire bits
+     1463        - wires
+     1498        - wire bits
+      212        - public wires
+      247        - public wire bits
         8        - ports
        43        - port bits
-     1419 3.75E+04 cells
-       42  737.587   gf180mcu_fd_sc_mcu7t5v0__and2_1
-       12  263.424   gf180mcu_fd_sc_mcu7t5v0__and3_1
-        6  144.883   gf180mcu_fd_sc_mcu7t5v0__and4_1
+     1479 3.88E+04 cells
+       47  825.395   gf180mcu_fd_sc_mcu7t5v0__and2_1
+       13  285.376   gf180mcu_fd_sc_mcu7t5v0__and3_1
+        1   24.147   gf180mcu_fd_sc_mcu7t5v0__and4_1
        13  285.376   gf180mcu_fd_sc_mcu7t5v0__aoi211_1
-       90 1.58E+03   gf180mcu_fd_sc_mcu7t5v0__aoi21_1
-       43  1038.33   gf180mcu_fd_sc_mcu7t5v0__aoi221_1
-        9  276.595   gf180mcu_fd_sc_mcu7t5v0__aoi222_1
-       47   928.57   gf180mcu_fd_sc_mcu7t5v0__aoi22_1
-        3   39.514   gf180mcu_fd_sc_mcu7t5v0__buf_1
-       95  834.176   gf180mcu_fd_sc_mcu7t5v0__clkinv_1
-      190 1.42E+04   gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
-        3  237.082   gf180mcu_fd_sc_mcu7t5v0__dffsnq_1
-       92 3.03E+03   gf180mcu_fd_sc_mcu7t5v0__mux2_2
-      191  2.1E+03   gf180mcu_fd_sc_mcu7t5v0__nand2_1
-       55  845.152   gf180mcu_fd_sc_mcu7t5v0__nand3_1
-        5   98.784   gf180mcu_fd_sc_mcu7t5v0__nand4_1
-      110 1.45E+03   gf180mcu_fd_sc_mcu7t5v0__nor2_1
-       22  386.355   gf180mcu_fd_sc_mcu7t5v0__nor3_1
-       14  307.328   gf180mcu_fd_sc_mcu7t5v0__nor4_1
-       42  921.984   gf180mcu_fd_sc_mcu7t5v0__oai211_1
-       73 1.28E+03   gf180mcu_fd_sc_mcu7t5v0__oai21_1
-        7  184.397   gf180mcu_fd_sc_mcu7t5v0__oai221_1
-       19  417.088   gf180mcu_fd_sc_mcu7t5v0__oai22_1
-       18   434.65   gf180mcu_fd_sc_mcu7t5v0__oai31_1
-        5  131.712   gf180mcu_fd_sc_mcu7t5v0__oai32_1
-       37  649.779   gf180mcu_fd_sc_mcu7t5v0__or2_1
-        9  197.568   gf180mcu_fd_sc_mcu7t5v0__or3_1
+       86 1.51E+03   gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+       24  579.533   gf180mcu_fd_sc_mcu7t5v0__aoi221_1
+        7   215.13   gf180mcu_fd_sc_mcu7t5v0__aoi222_1
+       41  810.029   gf180mcu_fd_sc_mcu7t5v0__aoi22_1
+        4   52.685   gf180mcu_fd_sc_mcu7t5v0__buf_1
+      108  948.326   gf180mcu_fd_sc_mcu7t5v0__clkinv_1
+      175 1.31E+04   gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+       13 1.03E+03   gf180mcu_fd_sc_mcu7t5v0__dffsnq_1
+       98 3.23E+03   gf180mcu_fd_sc_mcu7t5v0__mux2_2
+      190  2085.44   gf180mcu_fd_sc_mcu7t5v0__nand2_1
+       40  614.656   gf180mcu_fd_sc_mcu7t5v0__nand3_1
+        4   79.027   gf180mcu_fd_sc_mcu7t5v0__nand4_1
+      130 1.71E+03   gf180mcu_fd_sc_mcu7t5v0__nor2_1
+       33  579.533   gf180mcu_fd_sc_mcu7t5v0__nor3_1
+        4   87.808   gf180mcu_fd_sc_mcu7t5v0__nor4_1
+       27  592.704   gf180mcu_fd_sc_mcu7t5v0__oai211_1
+      100  1756.16   gf180mcu_fd_sc_mcu7t5v0__oai21_1
+        8  210.739   gf180mcu_fd_sc_mcu7t5v0__oai221_1
+        1   32.928   gf180mcu_fd_sc_mcu7t5v0__oai222_1
+       22  482.944   gf180mcu_fd_sc_mcu7t5v0__oai22_1
+       14  338.061   gf180mcu_fd_sc_mcu7t5v0__oai31_1
+       11  289.766   gf180mcu_fd_sc_mcu7t5v0__oai32_1
+       31   544.41   gf180mcu_fd_sc_mcu7t5v0__or2_1
+        8  175.616   gf180mcu_fd_sc_mcu7t5v0__or3_1
+        2   52.685   gf180mcu_fd_sc_mcu7t5v0__or4_1
         1    8.781   gf180mcu_fd_sc_mcu7t5v0__tieh
-       20  175.616   gf180mcu_fd_sc_mcu7t5v0__tiel
-       26  741.978   gf180mcu_fd_sc_mcu7t5v0__xnor2_1
-        5  263.424   gf180mcu_fd_sc_mcu7t5v0__xnor3_1
-      103 2.71E+03   gf180mcu_fd_sc_mcu7t5v0__xor2_1
-       12  605.875   gf180mcu_fd_sc_mcu7t5v0__xor3_1
+       19  166.835   gf180mcu_fd_sc_mcu7t5v0__tiel
+       37 1.06E+03   gf180mcu_fd_sc_mcu7t5v0__xnor2_1
+        3  158.054   gf180mcu_fd_sc_mcu7t5v0__xnor3_1
+      138 3.64E+03   gf180mcu_fd_sc_mcu7t5v0__xor2_1
+       26  1312.73   gf180mcu_fd_sc_mcu7t5v0__xor3_1
 
-   Chip area for module '\tt_um_mattvenn_signal_generator': 37487.430400
-     of which used for sequential elements: 14418.073600 (38.46%)
+   Chip area for module '\tt_um_mattvenn_signal_generator': 38824.307200
+     of which used for sequential elements: 14088.793600 (36.29%)
 
