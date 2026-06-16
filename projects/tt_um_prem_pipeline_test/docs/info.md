@@ -135,6 +135,7 @@ The following assembly routine demonstrates a practical I/O sequence:
 # ==============================================================================
 # RISC-V MMIO SPI Polling and UART2 Relay Loop
 # Target: 32-Bit Pipelined Core (RV32I)
+# SPI to UART test
 # ==============================================================================
 
     # --- Setup Base Address Pointers ---
@@ -192,7 +193,7 @@ The following assembly routine demonstrates a practical I/O sequence:
         ecall                    # Halt simulation
 ```
 
-### Compiled Machine Code
+### Compiled Machine Code (SPI to UART)
 
 Corresponding 32-bit hexadecimal instruction sequence: (link:https://riscvasm.lucasteske.dev/#)
 
@@ -223,6 +224,78 @@ Corresponding 32-bit hexadecimal instruction sequence: (link:https://riscvasm.lu
 0xfff28293,  # addi  x5, x5, -1
 0xfd9ff06f,  # jal   x0, loop
 0x00372023,  # sw    x3, 0(x14) [release_cs]
+0x00000073,  # ecall
+0xBAADF00D   # SENTINEL VALUE (bootloader halt marker)
+```
+```assembly
+# ==============================================================================
+# RISC-V MMIO SPI Polling and UART2 Relay Loop
+# Target: 32-Bit Pipelined Core (RV32I)
+#GPIO test
+# ==============================================================================
+
+    lui   x13, 0x30000        /* GPIO1 base = 0x30000000 GPIO1*/
+    addi  x14, x13, 4         /* GPIO2 = 0x30000004 GPIO2*/
+
+    addi  x5, x0, 10          /* loop counter */
+
+    addi  x6, x0, 1           /* HIGH */
+    addi  x7, x0, 0           /* LOW */
+
+loop:
+
+    /* BOTH OFF */
+    sw    x7, 0(x13)
+    sw    x7, 0(x14)
+
+    /* delay */
+    addi  x3, x0, 1000
+delay1:
+    addi  x3, x3, -1
+    bne   x3, x0, delay1
+
+    /* BOTH ON */
+    sw    x6, 0(x13)
+    sw    x6, 0(x14)
+
+    /* delay */
+    addi  x3, x0, 1000
+delay2:
+    addi  x3, x3, -1
+    bne   x3, x0, delay2
+
+    addi  x5, x5, -1
+    bne   x5, x0, loop
+
+    /* OFF both */
+    sw    x7, 0(x13)
+    sw    x7, 0(x14)
+
+    ecall
+```
+
+### Compiled Machine Code (GPIO test)
+
+```
+0x300006B7
+0x00468713
+0x00A00293
+0x00100313
+0x00000393
+0x0076A023
+0x00772023
+0x3E800193
+0xFFF18193
+0xFE019EE3
+0x0066A023
+0x00672023
+0x3E800193
+0xFFF18193
+0xFE019EE3
+0xFFF28293
+0xFA029EE3
+0x0076A023
+0x00772023
 0x00000073,  # ecall
 0xBAADF00D   # SENTINEL VALUE (bootloader halt marker)
 ```
@@ -260,7 +333,10 @@ Standard external signals required for operation:
 
 ## Notes
 
-- The bootloader expects a **little-endian** byte order for 32-bit instructions
-- Status register Bit 0 is the only bit currently used for ready/valid flags
-- The SPI interface operates as a master only; peripheral (slave) functionality is not supported
-- Interrupt support is not implemented; use polling exclusively for peripheral status checking
+- This project is an educational, hands-on RISC-V SoC design
+- It is developed for learning CPU architecture, pipeline execution, and hardware-software interaction
+- Intended for academic and experimental use in Nepal
+- Focus is on clarity and understanding rather than commercial optimization
+- The design prioritizes simplicity, determinism, and observability of CPU behavior
+- No interrupt system is implemented; all peripherals use polling only
+- Instruction format assumes little-endian byte ordering
