@@ -11,11 +11,18 @@ A table of features and maturity is below:
 
 | Requirement ID |  State | Description |
 | :---: | :---: | :--- |
-| 1.0 | ❌ | Support search for acquisition |
-| 1.1 | ❌ | Generate Gold Codes for GPS L1 | 
-| 1.2 | ❌ | Generate NCO for frequency correction |
-| 1.3 | ❌ | Generate timing signal for frame |
- 
+| 1.0 | ☑️ | Support search for acquisition |
+| 1.1 | ☑️ | Generate Gold Codes for GPS L1 | 
+| 1.2 | ☑️ | Generate NCO for frequency correction |
+| 1.3 | ☑️ | Generate timing signal for frame |
+| 2.0 | ☑️ | Provide SPI slave interface for command and control |
+| 2.1 | ☑️ | support clock domain crossing between SPI clock and sample clock |
+| 2.2 | ☑️ | Provide readback for acquisition registers |
+| 2.3 | ☑️ | provide readback for tracking registers |
+| 3.0 | ☑️ | Enable tracking channel for time, freq, sv settings |
+| 3.1 | ☑️ | provide update mechanism for tracking channels |
+| 3.2 | ☑️ | provide early/mid/late tracking for tracking channels to improve acquition performance |
+| 3.3 | ❌ | support selectable correlation duration
 
 
 ## How to test
