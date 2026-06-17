@@ -1,23 +1,23 @@
 # Tiny Tapeout project information
 project:
-  title:        "FER 8-bit Risc"      # Project title
-  author:       "Jan"      # Your name
+  title:        "8-bit RISC CPU"      # Project title
+  author:       "Jan Kozina"      # Your name
   discord:      "johndoe1285"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "8-bit Risc uP"      # One line description of what your project does
+  description:  "8-bit RISC CPU with ALU, registers, data memory and external 16-bit instructions"      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
-  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
+  clock_hz:     5000000       # Clock frequency in Hz (or 0 if not applicable)
 
   # How many tiles your design occupies? A single tile is about 340x160 uM.
   tiles: "1x2"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 3x4 or 4x4
 
   # Your top module name must start with "tt_um_". Make it unique by including your github username:
-  top_module:  "tt_um_asic_cpu"
+  top_module:  "tt_um_8bit_risc_cpu"
 
   # List your project's source files here.
   # Source files must be in ./src and you must list each source file separately, one per line.
   # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
   source_files:
-    - "project.v"
+    - "tt_um_8bit_risc_cpu.v"
     - "Adder.v"
     - "ALU.v"
     - "Branch_Control.v"
@@ -25,7 +25,7 @@ project:
     - "CPU_Core.v"
     - "Data_Memory.v"
     - "Imm_Gen.v"
-    - "Muxes.v"
+    - "Mux1.v"
     - "PCplus4Adder.v"
     - "Program_Counter.v"
     - "Registers.v"
@@ -34,14 +34,14 @@ project:
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
   # Inputs
-  ui[0]: "instruction[0]"
-  ui[1]: "instruction[1]"
-  ui[2]: "instruction[2]"
-  ui[3]: "instruction[3]"
-  ui[4]: "instruction[4]"
-  ui[5]: "instruction[5]"
-  ui[6]: "instruction[6]"
-  ui[7]: "instruction[7]"
+  ui[0]: "instruction[8]"
+  ui[1]: "instruction[9]"
+  ui[2]: "instruction[10]"
+  ui[3]: "instruction[11]"
+  ui[4]: "instruction[12]"
+  ui[5]: "instruction[13]"
+  ui[6]: "instruction[14]"
+  ui[7]: "instruction[15]"
 
   # Outputs
   uo[0]: "CPU_Out[0]"
@@ -54,14 +54,14 @@ pinout:
   uo[7]: "CPU_Out[7]"
 
   # Bidirectional pins
-  uio[0]: "instruction[8]"
-  uio[1]: "instruction[9]"
-  uio[2]: "instruction[10]"
-  uio[3]: "instruction[11]"
-  uio[4]: "instruction[12]"
-  uio[5]: "instruction[13]"
-  uio[6]: "instruction[14]"
-  uio[7]: "instruction[15]"
+  uio[0]: "instruction[0]"
+  uio[1]: "instruction[1]"
+  uio[2]: "instruction[2]"
+  uio[3]: "instruction[3]"
+  uio[4]: "instruction[4]"
+  uio[5]: "instruction[5]"
+  uio[6]: "instruction[6]"
+  uio[7]: "instruction[7]"
 
 # Do not change!
 yaml_version: 6
