@@ -117,8 +117,8 @@ design__instance__count__class:endcap_cell,162
 design__instance__area__class:endcap_cell,711.245
 design__instance__count__class:tap_cell,2245
 design__instance__area__class:tap_cell,9856.45
-design__power_grid_violation__count__net:VPWR,0
 design__power_grid_violation__count__net:VGND,0
+design__power_grid_violation__count__net:VPWR,0
 design__power_grid_violation__count,0
 flow__warnings__count:GPL-0302,1
 flow__warnings__count:GRT-0281,2
