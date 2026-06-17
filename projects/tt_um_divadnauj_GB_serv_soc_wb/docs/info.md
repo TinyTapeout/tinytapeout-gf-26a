@@ -13,11 +13,11 @@ You can also include images in this folder and reference them in the markdown. E
 
 This is a RISC-V SoC based on the SERV and SERVILE cores from [https://github.com/olofk/serv.git](https://github.com/olofk/serv.git). The SERV core has been adapted to support the RV32E specifications. The register file was implemented via an DFF-based SRAM of 19x32 bit, 15 General Purpose Registers (GPR) and 4 CSR. 
 
-The SoC is composed of a [SERV](https://github.com/olofk/serv.git) core, a [GPIO](https://github.com/open-design/riscv-soc-cores/tree/master/cores/gpio), an [UART](https://github.com/olofk/uart16550) a 64-bit timer and a [QSPI](https://github.com/by17s/RISCV-KianV-BareMetalStyle/blob/main/src/qqspi.v) controller. All components are interconected via a wishbone bus interconect. The QSPI controller allows the SoC to access an external QSPI FLASH and RAM memories using the [QSPI Pmod](https://github.com/mole99/qspi-pmod/tree/main) board. 
+The SoC is composed of a [SERV](https://github.com/olofk/serv.git) core, a [GPIO](https://github.com/open-design/riscv-soc-cores/tree/master/cores/gpio), an [UART](https://github.com/olofk/uart16550) a 64-bit timer and a [QSPI](https://github.com/by17s/RISCV-KianV-BareMetalStyle/blob/main/src/qqspi.v) controller. All components connected via a wishbone bus interconect. The QSPI controller allows the SoC to access an external QSPI FLASH and RAM memories using the [QSPI Pmod](https://github.com/mole99/qspi-pmod/tree/main) board. 
 
 The following diagram ilustrates the main system interconection. 
 
-![alt text](serv-e-wb-soc.png)
+![alt text](serv-e-wb-soc.svg)
 
 
 ### Memory Map
@@ -35,36 +35,29 @@ The following diagram ilustrates the main system interconection.
 |MTIMECMPL | 0xFFFFFFF8 - 0xFFFFFFFB|
 |MTIMECMPH | 0xFFFFFFFC - 0xFFFFFFFF|
 
-NOTE: The whole system works maximum at 25Mhz on gf180mcu and 50MHz on sky130A. 
+> **NOTE:** The whole system works maximum at 25Mhz on gf180mcu and 50MHz on sky130A. 
 
-It is worth mentioning that the SoC can execute code from both FLASH and SRAM memories, the execution from SRAM is posible thanks to an small bootloader loaded in flash that recives the program from the uart and dumps it into the SRAM. 
+It is worth mentioning that the SoC can execute code from both FLASH and SRAM memories, the execution from SRAM is posible thanks to an small bootloader loaded into the FLASH that receives the program from the UART and dumps it into the SRAM. 
 
 ### Pinout interface
 
-The following is the pinout on the tinty tapeout chip: 
+The following is the pinout on the tiny tapeout chip: 
 
-The gpio_o can be connected to any type of putput, LEDs, LCDs, etc and the gpio_i can be connected to any kind of input, buttons, sensors etc.
+The gpio_o can be connected to any type of output, LEDs, LCDs, etc and the gpio_i can be connected to any kind of input, buttons, sensors etc.
 
-The uart must be connected to the pc via an usb-serial converter (e.g., rs232rl or similar) .
+The uart must be connected to your laptop via an usb-serial converter (e.g., rs232rl or similar).
 
-||||
-|-|-|-|
-|tt-io| direction | SoC pinout
-|clk|input  |clk|
-|rst_n|input  |rst_n|
-|ui[6:0]|input  |gpio_i[6:0]|
-|ui[7]|input  |uart0_rx|
-|uo[6:0]|output |gpio_o[6:0]|
-|uo[7]|output |uart0_tx|
-|uio[0]|output |cs_flash|
-|uio[1]|inout  |sio0|
-|uio[2]|inout  |sio1|
-|uio[3]|output |sck|
-|uio[4]|output |sio2|
-|uio[5]|input  |sio3|
-|uio[6]|output |cs_ram0|
-|uio[7]|output |cs_ram1|
-
+|||||
+|-|-|-|-|
+|#|Input (ui)|Output (uo) |Bidirectional (uio)|
+|0|gpio_i[0] | gpio_o[0] | cs_flash |
+|1|gpio_i[1] | gpio_o[1] | sio0 |
+|2|gpio_i[2] | gpio_o[2] | sio1 |
+|3|gpio_i[3] | gpio_o[3] | sck |
+|4|gpio_i[4] | gpio_o[4] | sio2 |
+|5|gpio_i[5] | gpio_o[5] | sio3 |
+|6|gpio_i[6] | gpio_o[6] | cs_ram0 |
+|7|uart0_rx  | uart0_tx  | cs_ram1 |
 
 ## How to test
 
@@ -88,17 +81,30 @@ brew install python3 gawk gnu-sed make gmp mpfr libmpc isl zlib expat texinfo fl
 ```bash
 git clone --recursive https://github.com/riscv/riscv-gnu-toolchain.git
 cd riscv-gnu-toolchain
-mkdir -p /opt/riscv32e
+mkdir -p /opt/riscv32e # you can pickup any location in your system, this examples is for ubuntu
 ./configure --prefix=/opt/riscv32e --with-arch=rv32e --with-abi=ilp32e
 make -j$(nproc)
-export PATH=/opt/riscv32e/bin:$PATH
+# Make the instalation directory available and accesible ( you need to run this every time you open a new terminal session)
+export PATH=/opt/riscv32e/bin:$PATH 
+# This command will permanently add the toolchain directory to your user environment; In this way the toolchain will be available everytime you open a terminal session.
+echo 'export PATH=/opt/riscv32e/bin:$PATH' >> ~/.bashrc 
 ```
 
 ### Run Examples
 
+> The following sugested schematic should be implemented to try out the proposed examples. The SoC requires external Flash and SRAM memories under the SPI or QSPI protocols; you can either use the [QSPI Pmod](https://github.com/mole99/qspi-pmod/tree/main) board or individual memories W25Q128 and APS6404L as depicted in the schematic. The clock must be established to run at 25MHz, which is the maximum achievable SoC frequency. It is worth noting that any lower clk frequency can be used, in that case you need to modify the bootloader frequency accordingly. 
+
+> The examples require to connect switches to the **gpio_i[\*]** ports and LEDs to the **gpio_o[\*]** ports. However, if you want to try your own programs, you can use these ports to connect any peripheral of your preference.
+
+> Finally, an USB to Serial converter is required to evaluate and interact with most of the examples. Furthermore, programming the SoC is also possible via the UART. 
+
+> ![alt text](schematic.svg)
+
+
 1. Flash the nmon bootloader: 
 
     - Program the flash memory using the [nmon_25MHz.bin](../sw/0-riscv-nmon/nmon_25MHz.bin) bootloader, this step is required to be done only once. You can use any FLASH programer (e.g., serprog).
+    > Eventually further guidelines might be provided regarding options for flashing the bootloader
 
 2. Compile the program
     ```bash
@@ -110,8 +116,9 @@ export PATH=/opt/riscv32e/bin:$PATH
     # check the actual USB port in your system
     expect nmon-loader.sh application.nmon /dev/ttyUSB0 115200
     ```
+    > Eventually another way of programming the SoC can be provided in the future.
 
-The following is a set of basic examples that have been prepared to use the SERV-E SoC. Every example has details about how to compile and program on the SERV-E- SoC.
+The following is a set of basic examples that have been prepared to use the SERV-E SoC. Every example has details about how to compile and program on the SERV-E SoC.
 
 [0-ricv-nmon](../sw/0-riscv-nmon/): This is a basic bootloader living in the flash memory, it can be used to dump a program into de SRAM comming from the uart port.
 
@@ -119,9 +126,9 @@ The following is a set of basic examples that have been prepared to use the SERV
 
 [2-gpio_echo](../sw/2-gpio_echo/): Simple GPIO echo, copies inputs and put it to the outputs.
 
-[3-uart_stub_1](../sw/3-uart_stub_1/): Uses the nmon uar function to access the uart.
+[3-uart_stub_1](../sw/3-uart_stub_1/): Uses the nmon uart function to access the uart.
 
-[4-uart_stub_2](../sw/4-uart_stub_2/): Uses the nmon uar function to access the uart.
+[4-uart_stub_2](../sw/4-uart_stub_2/): Uses the nmon uart function to access the uart.
 
 [5-uart_puts](../sw/5-uart_puts/): Explicit uart driver implementation, just transmision from SoC to PC.
 
@@ -135,8 +142,9 @@ The following is a set of basic examples that have been prepared to use the SERV
 
 
 
-
-
 ## External hardware
 
-This project requires an external SPI Flash/Ram memory. The project ahs been proven using [QPMOD](https://github.com/mole99/qspi-pmod/tree/main). You also need to connect an USB to Serial conversor to interact with the system. 
+This project requires an external SPI Flash/Ram memory. The project has been proven using [QPMOD](https://github.com/mole99/qspi-pmod/tree/main). You also need to connect an USB to Serial conversor to interact with the system. 
+
+## FPGA proven design
+This design has been proved on an FPGA device via the DE10-nano board. Currently working on porting the design into an open source friendly FPGA device.  

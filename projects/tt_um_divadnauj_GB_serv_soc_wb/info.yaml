@@ -69,7 +69,7 @@ pinout:
   ui[4]: "gpio_i[4]"
   ui[5]: "gpio_i[5]"
   ui[6]: "gpio_i[6]"
-  ui[7]: "gpio_i[7]"
+  ui[7]: "uart0_rx"
 
   # Outputs
   uo[0]: "gpio_o[0]"
@@ -79,15 +79,15 @@ pinout:
   uo[4]: "gpio_o[4]"
   uo[5]: "gpio_o[5]"
   uo[6]: "gpio_o[6]"
-  uo[7]: "gpio_o[7]"
+  uo[7]: "uart0_tx"
 
   # Bidirectional pins
   uio[0]: "cs_flash"
   uio[1]: "sio0"
   uio[2]: "sio1"
   uio[3]: "sck"
-  uio[4]: "uart0_tx"
-  uio[5]: "uart0_rx"
+  uio[4]: "sio2"
+  uio[5]: "sio3"
   uio[6]: "cs_ram0"
   uio[7]: "cs_ram1"
 
