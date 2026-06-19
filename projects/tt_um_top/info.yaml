@@ -1,0 +1,57 @@
+# Tiny Tapeout project information
+project:
+  title:        "RHD2164-MCU-SPI Bridge"      # Project title
+  author:       "Manuel Monge"      # Your name
+  discord:      "manuelmonge85"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "Various SPIs"      # One line description of what your project does
+  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     50000000       # Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 340x160 uM.
+  tiles: "1x2"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 3x4 or 4x4
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_top"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  source_files:
+    - "tt_um_top.v"
+    - "intan.vh"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+# This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
+pinout:
+  # Inputs
+  ui[0]: "SC_SDI"
+  ui[1]: "SC_SCLK"
+  ui[2]: "SC_SEN"
+  ui[3]: "REG_MOSI"
+  ui[4]: "REG_SCK"
+  ui[5]: "REG_CSb"
+  ui[6]: "SR_CLK"
+  ui[7]: "SR_EN"
+
+  # Outputs
+  uo[0]: "RHD_MOSI"
+  uo[1]: "RHD_SCK"
+  uo[2]: "RHD_CSb"
+  uo[3]: "MCU_MISO"
+  uo[4]: "SC_SDO"
+  uo[5]: "REG_MISO"
+  uo[6]: "SR_DO"
+  uo[7]: ""
+
+  # Bidirectional pins
+  uio[0]: "RHD_MISO0"
+  uio[1]: "RHD_MISO1"
+  uio[2]: "MCU_MOSI"
+  uio[3]: "MCU_SCK"
+  uio[4]: "MCU_CSb"
+  uio[5]: "SELM0"
+  uio[6]: ""
+  uio[7]: ""
+
+# Do not change!
+yaml_version: 6
