@@ -49,6 +49,26 @@ It can be helpful to have a TTY-UART USB adapter on hand to interact with the FS
 
 Most of the scripts to test assume the external UART. Testing and interactive commands could still be entered via the TT prompt.
 
+## FPGA Tests
+
+This project can be tested on an FPGA such as these examples:
+
+- [Tiny Tapeout FPGA Development Kit Demoboard](https://store.tinytapeout.com/products/FPGA-Development-Kit-p813805747) in the [`ice40`](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/tree/main/ice40) directory.
+- [ULX3S ECP5 + ESP32 FPGA Development Board](https://radiona.org/ulx3s/) in the [`ulx3s`](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/tree/main/ulx3s) directory, and [ESP32 SPI Example](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/tree/main/ulx3s/ESP32).
+
+Note that the ring oscillators will not be implemented on the FPGA builds, rather a deterministic 
+[Linear-Feedback Shift Register](https://en.wikipedia.org/wiki/Linear-feedback_shift_register) (LFSR) is used 
+in [trng_lab_core.v](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/blob/main/src/TRNG/trng_lab_core.v) to
+simulate the TRNG bitstream.
+
+See the `FPGA_NIST_PRNG_SOURCE` and `FPGA_BASIC_LFSR_RO_TAPS` options in [`project_config.v`](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/blob/main/src/project_config.v) 
+that are disabled for the TT build.
+
+## Commander App Tests
+
+Use the [commander.tinytapeout.com](https://commander.tinytapeout.com/) to connect to the 
+[tt-commander-app](https://github.com/TinyTapeout/tt-commander-app)
+
 ---
 
 ## How to test
@@ -870,7 +890,7 @@ The SPI interface is available when `SPI_ENABLED` and `SPI_REG_ACCESS` are enabl
 | CPHA | 0 |
 | Bit order | MSB first |
 | Chip select | Active low, `CS_N` |
-| Register address width | 3 bits |
+| Register address width | 3 .. 7 bits (see project_config.v ) |
 
 #### SPI command byte
 
@@ -878,7 +898,7 @@ The SPI interface is available when `SPI_ENABLED` and `SPI_REG_ACCESS` are enabl
 | --- | --- |
 | `bit[7]` | `1` = read, `0` = write |
 | `bit[6:3]` | Ignored |
-| `bit[2:0]` | Register address `0..7` |
+| `bit[2:0]` | Register address `0..7` or `0..15` or `0..127` (see project_config.v ) |
 
 #### SPI read transaction
 
