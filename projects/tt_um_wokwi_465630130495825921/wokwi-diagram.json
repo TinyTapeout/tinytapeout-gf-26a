@@ -1,0 +1,279 @@
+{
+  "version": 1,
+  "author": "APG siningua",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-text",
+      "id": "lbl",
+      "top": -90,
+      "left": 20,
+      "attrs": {
+        "text": "RAM 2 x 1 bit (TinyTapeout)\nIN0 = Reset (asincrono)\nIN1 = Direccion (0=pos0, 1=pos1)\nIN2 = Escribir (1) / Leer (0)\nIN3 = Dato\nCLK = reloj del bloque INPUT\nOUT0 = bit leido de la posicion seleccionada"
+      }
+    },
+    {
+      "type": "board-tt-block-input",
+      "id": "ttin",
+      "top": 200,
+      "left": 40,
+      "attrs": {
+        "verilogRole": "input"
+      }
+    },
+    {
+      "type": "wokwi-gate-not",
+      "id": "not1",
+      "top": 120,
+      "left": 360,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-gate-and-2",
+      "id": "and1",
+      "top": 210,
+      "left": 360,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-gate-and-2",
+      "id": "and2",
+      "top": 340,
+      "left": 360,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-mux-2",
+      "id": "muxD0",
+      "top": 110,
+      "left": 540,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-mux-2",
+      "id": "muxD1",
+      "top": 360,
+      "left": 540,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-flip-flop-dsr",
+      "id": "flop1",
+      "top": 110,
+      "left": 740,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-flip-flop-dsr",
+      "id": "flop2",
+      "top": 360,
+      "left": 740,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-mux-2",
+      "id": "muxR",
+      "top": 240,
+      "left": 960,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-gnd",
+      "id": "gnd1",
+      "top": 520,
+      "left": 700,
+      "attrs": {}
+    },
+    {
+      "type": "board-tt-block-output",
+      "id": "ttout",
+      "top": 230,
+      "left": 1160,
+      "attrs": {
+        "verilogRole": "output"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "ttin:IN1",
+      "not1:IN",
+      "green",
+      []
+    ],
+    [
+      "ttin:IN2",
+      "and1:A",
+      "green",
+      []
+    ],
+    [
+      "not1:OUT",
+      "and1:B",
+      "green",
+      []
+    ],
+    [
+      "ttin:IN2",
+      "and2:A",
+      "green",
+      []
+    ],
+    [
+      "ttin:IN1",
+      "and2:B",
+      "green",
+      []
+    ],
+    [
+      "and1:OUT",
+      "muxD0:SEL",
+      "green",
+      []
+    ],
+    [
+      "and2:OUT",
+      "muxD1:SEL",
+      "green",
+      []
+    ],
+    [
+      "ttin:IN3",
+      "muxD0:B",
+      "green",
+      []
+    ],
+    [
+      "ttin:IN3",
+      "muxD1:B",
+      "green",
+      []
+    ],
+    [
+      "flop1:Q",
+      "muxD0:A",
+      "green",
+      []
+    ],
+    [
+      "flop2:Q",
+      "muxD1:A",
+      "green",
+      []
+    ],
+    [
+      "muxD0:OUT",
+      "flop1:D",
+      "green",
+      []
+    ],
+    [
+      "muxD1:OUT",
+      "flop2:D",
+      "green",
+      []
+    ],
+    [
+      "ttin:CLK",
+      "flop1:CLK",
+      "black",
+      []
+    ],
+    [
+      "ttin:CLK",
+      "flop2:CLK",
+      "black",
+      []
+    ],
+    [
+      "ttin:IN0",
+      "flop1:R",
+      "red",
+      []
+    ],
+    [
+      "ttin:IN0",
+      "flop2:R",
+      "red",
+      []
+    ],
+    [
+      "gnd1:GND",
+      "flop1:S",
+      "gray",
+      []
+    ],
+    [
+      "gnd1:GND",
+      "flop2:S",
+      "gray",
+      []
+    ],
+    [
+      "flop1:Q",
+      "muxR:A",
+      "green",
+      []
+    ],
+    [
+      "flop2:Q",
+      "muxR:B",
+      "green",
+      []
+    ],
+    [
+      "ttin:IN1",
+      "muxR:SEL",
+      "green",
+      []
+    ],
+    [
+      "muxR:OUT",
+      "ttout:OUT0",
+      "green",
+      []
+    ],
+    [
+      "gnd1:GND",
+      "ttout:OUT1",
+      "gray",
+      []
+    ],
+    [
+      "gnd1:GND",
+      "ttout:OUT2",
+      "gray",
+      []
+    ],
+    [
+      "gnd1:GND",
+      "ttout:OUT3",
+      "gray",
+      []
+    ],
+    [
+      "gnd1:GND",
+      "ttout:OUT4",
+      "gray",
+      []
+    ],
+    [
+      "gnd1:GND",
+      "ttout:OUT5",
+      "gray",
+      []
+    ],
+    [
+      "gnd1:GND",
+      "ttout:OUT6",
+      "gray",
+      []
+    ],
+    [
+      "gnd1:GND",
+      "ttout:OUT7",
+      "gray",
+      []
+    ]
+  ]
+}
