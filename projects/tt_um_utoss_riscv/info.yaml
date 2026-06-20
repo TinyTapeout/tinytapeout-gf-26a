@@ -25,7 +25,11 @@ project:
     - "utoss-risc-v/src/fetch.sv2v.v"
     - "utoss-risc-v/src/Instruction_Decode/Instruction_Decode.sv2v.v"
     - "utoss-risc-v/src/Instruction_Decode/MemoryLoader.sv2v.v"
-    - "utoss-risc-v/src/Instruction_Decode/registerFile.v"
+    - "utoss-risc-v/src/Instruction_Decode/RegisterFile.sv2v.v"
+    - "utoss-risc-v/src/uart_bus_master.sv2v.v"
+    - "utoss-risc-v/src/uart_rx.sv2v.v"
+    - "utoss-risc-v/src/uart_tx.sv2v.v"
+    - "utoss-risc-v/src/uart.sv2v.v"
     - "utoss-risc-v/src/utoss_riscv.sv2v.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
