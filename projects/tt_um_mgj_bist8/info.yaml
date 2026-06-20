@@ -1,0 +1,46 @@
+# Tiny Tapeout project information
+project:
+  title:       "BIST-8: Built-In Self-Test for 8-bit CLA Adder"
+  author:      "Mario Garcia Jimenez"
+  discord:     ""
+  description: "BIST architecture for an 8-bit Carry-Lookahead Adder. Includes 12-bit LFSR pattern generator, 16-bit MISR response compactor, fault injection and 4-state FSM controller. Golden signature 0xCF77."
+  language:    "Verilog"
+  clock_hz:    10000000
+  tiles:       "1x1"
+  top_module:  "tt_um_mgj_bist8"
+  source_files:
+    - "bist8_core.v"
+    - "bist8_tt.v"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: "bist_en"
+  ui[1]: "fault_inject"
+  ui[2]: "a_in[0]"
+  ui[3]: "a_in[1]"
+  ui[4]: "a_in[2]"
+  ui[5]: "a_in[3]"
+  ui[6]: "a_in[4]"
+  ui[7]: "a_in[5]"
+  # Outputs
+  uo[0]: "bist_pass"
+  uo[1]: "bist_fail"
+  uo[2]: "bist_done"
+  uo[3]: "sum_out[3]"
+  uo[4]: "sum_out[4]"
+  uo[5]: "sum_out[5]"
+  uo[6]: "sum_out[6]"
+  uo[7]: "sum_out[7]"
+  # Bidirectional pins
+  uio[0]: "cycle_count[0]"
+  uio[1]: "cycle_count[1]"
+  uio[2]: "cycle_count[2]"
+  uio[3]: "cycle_count[3]"
+  uio[4]: "cycle_count[4]"
+  uio[5]: "cycle_count[5]"
+  uio[6]: "a_in[6]"
+  uio[7]: "a_in[7]"
+
+# Do not change!
+yaml_version: 6
