@@ -1,0 +1,50 @@
+# Tiny Tapeout project information
+project:
+  title:        "Memristive Crossbar Peripheral Controller (GF180)"
+  author:       "Prof. Santhosh Sivasubramani, IIT Delhi"
+  discord:      ""
+  description:  "GF180mcuD port of the 8x8 memristive crossbar controller: READ/SET/RESET/FORMING/SWEEP modes, pulse trains, 16-bit pulse counter, compliance auto-abort with sticky history, V/2 half-select DAC, last-ADC-in-sweep snapshot. Direct cross-foundry sibling to the TTSKY26a xbar_ctrl for comparative characterisation."
+  language:     "Verilog"
+  clock_hz:     50000000
+
+  tiles: "1x1"
+
+  top_module:  "tt_um_santhosh_xbar_ctrl_gf"
+
+  source_files:
+    - "project.v"
+    - "spi_slave.v"
+
+pinout:
+  # Inputs
+  ui[0]: "sense_in"
+  ui[1]: "adc_ready"
+  ui[2]: "ext_irq"
+  ui[3]: ""
+  ui[4]: "adc_data[0]"
+  ui[5]: "adc_data[1]"
+  ui[6]: "adc_data[2]"
+  ui[7]: "adc_data[3]"
+
+  # Outputs
+  uo[0]: "pulse_out"
+  uo[1]: "row_enable"
+  uo[2]: "col_enable"
+  uo[3]: "op_done"
+  uo[4]: "dac_code[0]"
+  uo[5]: "dac_code[1]"
+  uo[6]: "dac_code[2]"
+  uo[7]: "dac_code[3]"
+
+  # Bidirectional pins
+  uio[0]: "spi_cs_n"
+  uio[1]: "spi_mosi"
+  uio[2]: "spi_miso"
+  uio[3]: "spi_sck"
+  uio[4]: "row_addr[0]"
+  uio[5]: "row_addr[1]"
+  uio[6]: "row_addr[2]"
+  uio[7]: "col_addr[0]"
+
+# Do not change!
+yaml_version: 6
