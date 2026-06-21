@@ -1,0 +1,54 @@
+148. Printing statistics.
+
+=== tt_um_santhosh_stoch_stdp_pair_gf ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     1872        - wires
+     1907        - wire bits
+      407        - public wires
+      442        - public wire bits
+        8        - ports
+       43        - port bits
+     1888 5.92E+04 cells
+       27  474.163   gf180mcu_fd_sc_mcu7t5v0__and2_1
+       14  307.328   gf180mcu_fd_sc_mcu7t5v0__and3_1
+        9  217.325   gf180mcu_fd_sc_mcu7t5v0__and4_1
+       15   329.28   gf180mcu_fd_sc_mcu7t5v0__aoi211_1
+       66 1.16E+03   gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+       39  941.741   gf180mcu_fd_sc_mcu7t5v0__aoi221_1
+       45 1.38E+03   gf180mcu_fd_sc_mcu7t5v0__aoi222_1
+      110 2.17E+03   gf180mcu_fd_sc_mcu7t5v0__aoi22_1
+        7   92.198   gf180mcu_fd_sc_mcu7t5v0__buf_1
+      103  904.422   gf180mcu_fd_sc_mcu7t5v0__clkinv_1
+      328 2.45E+04   gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+       59 4.66E+03   gf180mcu_fd_sc_mcu7t5v0__dffsnq_1
+      243    8E+03   gf180mcu_fd_sc_mcu7t5v0__mux2_2
+        7  491.725   gf180mcu_fd_sc_mcu7t5v0__mux4_1
+      206 2.26E+03   gf180mcu_fd_sc_mcu7t5v0__nand2_1
+       60  921.984   gf180mcu_fd_sc_mcu7t5v0__nand3_1
+       41  810.029   gf180mcu_fd_sc_mcu7t5v0__nand4_1
+      128 1.69E+03   gf180mcu_fd_sc_mcu7t5v0__nor2_1
+       72 1.26E+03   gf180mcu_fd_sc_mcu7t5v0__nor3_1
+        8  175.616   gf180mcu_fd_sc_mcu7t5v0__nor4_1
+       31  680.512   gf180mcu_fd_sc_mcu7t5v0__oai211_1
+      100  1756.16   gf180mcu_fd_sc_mcu7t5v0__oai21_1
+        7  184.397   gf180mcu_fd_sc_mcu7t5v0__oai221_1
+        1   32.928   gf180mcu_fd_sc_mcu7t5v0__oai222_1
+       24  526.848   gf180mcu_fd_sc_mcu7t5v0__oai22_1
+       17  410.502   gf180mcu_fd_sc_mcu7t5v0__oai31_1
+        5  131.712   gf180mcu_fd_sc_mcu7t5v0__oai32_1
+       28  491.725   gf180mcu_fd_sc_mcu7t5v0__or2_1
+        4   87.808   gf180mcu_fd_sc_mcu7t5v0__or3_1
+        6  158.054   gf180mcu_fd_sc_mcu7t5v0__or4_1
+        1    8.781   gf180mcu_fd_sc_mcu7t5v0__tieh
+       14  122.931   gf180mcu_fd_sc_mcu7t5v0__tiel
+       16  456.602   gf180mcu_fd_sc_mcu7t5v0__xnor2_1
+        1   52.685   gf180mcu_fd_sc_mcu7t5v0__xnor3_1
+       41 1.08E+03   gf180mcu_fd_sc_mcu7t5v0__xor2_1
+        5  252.448   gf180mcu_fd_sc_mcu7t5v0__xor3_1
+
+   Chip area for module '\tt_um_santhosh_stoch_stdp_pair_gf': 59171.616000
+     of which used for sequential elements: 29143.475200 (49.25%)
+
