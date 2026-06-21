@@ -1,0 +1,48 @@
+yaml_version: 6
+
+project:
+  title:        "Stochastic neuron + STDP controller (merged, GF180)"
+  author:       "Prof. Santhosh Sivasubramani, IIT Delhi"
+  discord:      ""
+  description:  "GF180mcuD merged-pair cell: an 8-bit saturating LIF/stochastic neuron with an 8-entry sigmoid LUT, 8-bit Galois LFSR, programmable refractory, per-clock leak, host-triggered stimulus on ext_input rising edge, homeostatic theta adaptation over a 256-clock window (theta_live floats between theta_min and theta_max depending on spike count vs reg_target), and a 16-clock Bayesian confidence window emitting a 2-bit conf output. The second block is an STDP controller with 8-bit pre/post spike traces, per-clock exponential-shift decay (reg_tau_plus / reg_tau_minus), an anti-Hebbian polarity bit and optional reward-gated learning; on every LTP event (post spike with pre trace != 0) or LTD event (pre spike with post trace != 0) a 1-cycle weight_update pulse is emitted along with a learn_dir bit and a magnitude latch read over SPI. All registers are programmable via an 8-bit-data SPI mode-0 slave shared with the other TTGF26a tiles. 25 MHz signoff."
+  language:     "Verilog"
+  clock_hz:     25000000
+
+  tiles: "1x2"
+
+  top_module:   "tt_um_santhosh_stoch_stdp_pair_gf"
+
+  source_files:
+    - "project.v"
+    - "spi_slave.v"
+
+pinout:
+  ui[0]: "mode_sel (0=LIF, 1=stochastic)"
+  ui[1]: "ext_input (pre-synaptic spike / drive)"
+  ui[2]: "learn_en"
+  ui[3]: "reward (R-STDP gate)"
+  ui[4]: "homeostatic_en"
+  ui[5]: "bayes_en"
+  ui[6]: "reserved"
+  ui[7]: "reserved"
+
+  uo[0]: "spike_out (post-synaptic spike)"
+  uo[1]: "weight_update (1-cycle STDP pulse)"
+  uo[2]: "theta_hi (theta_live at ceiling)"
+  uo[3]: "theta_lo (theta_live at floor)"
+  uo[4]: "bayes_conf[0]"
+  uo[5]: "bayes_conf[1]"
+  uo[6]: "learn_dir (1=LTP, 0=LTD)"
+  uo[7]: "busy (refractory OR weight_update in flight)"
+
+  uio[0]: "spi_cs_n (input)"
+  uio[1]: "spi_mosi (input)"
+  uio[2]: "spi_miso (output)"
+  uio[3]: "spi_sck (input)"
+  uio[4]: "reserved (input, tied off)"
+  uio[5]: "reserved (input, tied off)"
+  uio[6]: "reserved (input, tied off)"
+  uio[7]: "reserved (input, tied off)"
+
+yaml:
+  description: "Merged stochastic/LIF neuron with homeostatic theta adaptation, Bayesian confidence, and an STDP learning controller."
