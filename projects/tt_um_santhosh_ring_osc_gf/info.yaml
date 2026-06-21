@@ -1,0 +1,50 @@
+# Tiny Tapeout project information
+project:
+  title:        "Ring Oscillator PVT Sensor & TRNG (GF180)"
+  author:       "Prof. Santhosh Sivasubramani, IIT Delhi"
+  discord:      ""
+  description:  "GF180mcuD port of 5 SPI-configurable ring oscillators (7/11/15/21/31 gf180 stages) with 16-bit frequency counter, auto gate timer, configurable prescaler, XOR jitter TRNG, per-RO health history, differential RO beat-frequency mode, and frequency-bounds health monitor for cross-foundry PVT characterization"
+  language:     "Verilog"
+  clock_hz:     50000000
+
+  tiles: "1x1"
+
+  top_module:  "tt_um_santhosh_ring_osc_gf"
+
+  source_files:
+    - "project.v"
+    - "spi_slave.v"
+
+pinout:
+  # Inputs
+  ui[0]: "ro_sel[0]"
+  ui[1]: "ro_sel[1]"
+  ui[2]: "ro_sel[2]"
+  ui[3]: "cnt_enable"
+  ui[4]: "cnt_clear_latch"
+  ui[5]: "byte_sel"
+  ui[6]: "spi_mode"
+  ui[7]: ""
+
+  # Outputs
+  uo[0]: "freq_count[0]"
+  uo[1]: "freq_count[1]"
+  uo[2]: "freq_count[2]"
+  uo[3]: "freq_count[3]"
+  uo[4]: "freq_count[4]"
+  uo[5]: "freq_count[5]"
+  uo[6]: "freq_count[6]"
+  uo[7]: "freq_count[7]"
+
+  # Bidirectional pins
+  uio[0]: "spi_cs_n"
+  uio[1]: "spi_mosi"
+  uio[2]: "spi_miso"
+  uio[3]: "spi_sck"
+  uio[4]: "overflow"
+  uio[5]: "ro_raw_out"
+  uio[6]: "ro_synced"
+  uio[7]: "meas_done"
+
+# Do not change!
+yaml_version: 6
