@@ -35,6 +35,17 @@ See presentations:
 - [NIST Standards on Random Bit Generation](https://csrc.nist.gov/csrc/media/Presentations/2023/overview-of-nist-rng-standards-90a-90b-90c-22/images-media/session-1-turan-overview-talk.pdf) slides. 
 - [Why Random Numbers for Cryptography?](https://csrc.nist.gov/csrc/media/events/random-number-generation-workshop-2004/documents/developmenthistory.pdf)
 
+## SPI vs JTAG Special Note
+
+JTAG is experimental only.
+
+| Build / board |                 Physical setting | `ui_in[4]` | `debug_is_jtag` | Active interface |
+| ------------- | -------------------------------: | ---------: | --------------: | ---------------- |
+| TT Demoboard  |           INPUT `SW4/IN4` up/off |        `0` |             `0` | SPI              |
+| TT Demoboard  |          INPUT `SW4/IN4` down/on |        `1` |             `1` | JTAG             |
+| ULX3S         | `gp4` high / unconnected pull-up |        `1` |             `0` | SPI              |
+| ULX3S         |                 `gp4` pulled low |        `0` |             `1` | JTAG             |
+
 For additional related information:
 
 https://gojimmypi.github.io/trng/
@@ -79,7 +90,9 @@ Once connected, there should be a [Python REPL command prompt](https://tinytapeo
 
 Don't confuse the TT board serial connection with the external UART.
 
-Select project, set clock to 25 MHZ, and reset (see [project_reset.py](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/blob/main/ice40/project_reset.py):
+Ensure all the dip input switches are in the `up` default (off) position.
+
+Select the project, set the clock to 25 MHz, and reset. (see [project_reset.py](https://github.com/gojimmypi/ttgf-UART-FSM-TRNG-Lab/blob/main/ice40/project_reset.py)):
 
 ```
 # select project and reset ttgf
@@ -98,16 +111,16 @@ Connect a UART terminal (e.g. PuTTY) to the TT Breakout (or Demoboard) I/O pins 
 
 ![PMOD-connector-test1.png](./PMOD-connector-test1.jpg)
 
-&#x26A0; ** **CAUTION** ** Pins are 3v3 and NOT expected to be 5v tolerant.
+&#x26A0; ** **CAUTION:** ** Pins are 3v3 and NOT expected to be 5v tolerant.
 
-&#x26A0; ** **CAUTION** ** TT IO pins such as `Tx` and `Rx` are likely  ** **NOT** ** tolerant to reversal. See [TT Discord](https://discord.com/channels/1009193568256135208/1009193568256135211/1500537741245419541). 
+&#x26A0; ** **CAUTION:** ** TT IO pins such as `Tx` and `Rx` are likely  ** **NOT** ** tolerant to reversal. See [TT Discord](https://discord.com/channels/1009193568256135208/1009193568256135211/1500537741245419541). 
 
 > That's the same as shorting them. They're definitely not designed for it, but they won't die immediately either.
 
 Note: `IN3` and `OUT4` are Tiny Tapeout logical signal names, not PMOD physical pin numbers. On the shown PMOD adapter:
 
 - `in3` is PMOD `IO4` /physical pin 4.
-- `out4` is PMOD` IO5` / physical pin 7.
+- `out4` is PMOD `IO5` / physical pin 7.
 
 Project config:
 
@@ -146,6 +159,8 @@ Then you can send commands to configure the TRNG and read back entropy samples.
 
 &#x26A0; The TT Build is Case Sensitive. Although there are case-insensitive settings available for local FPGA builds, 
 they have been disabled for TT ASIC due to observed increased slew and setup violations.
+
+Type `RD` and press enter to view the Build Target ID. The expected value for GF180 ASIC is 42.
 
 Send the appropriate commands to configure and read from the TRNG core. See [Register Overview](./info.md#register-overview), below.
 
@@ -228,6 +243,10 @@ source ./env_ice40.sh
 ./run_tests.sh
 ```
 
+![TT-Demoboard-SOFT_UART-SOFT-SPI-Wiring.jpg](./TT-Demoboard-SOFT_UART-SOFT-SPI-Wiring.jpg)
+
+Sample Soft SPI connected to ESP32 and Soft UART connected to external USB/TTY UART.
+
 Despite the "F" that may be repeatedly displayed on the 7-segment display during testing, that does not indicate failure:
 
 ![Demoboard_F_is_for_Fun_Success.jpg](./Demoboard_F_is_for_Fun_Success.jpg)
@@ -236,22 +255,107 @@ From [youtube.com/shorts/zFnfsl1DQHE](https://www.youtube.com/shorts/zFnfsl1DQHE
 
 ### Quickstart Testing on ULX3S
 
+See the `[project]/ulx3s` and `[project]/test-hw` directories.
+
+#### ULX3S Connections
+
+All pins are 3v3 and assumed to NOT be 5v tolerant.
+
+#### Soft External UART
+
+&#x26A0; Do not connect to 5V TTY
+
+- `GND` on `J1` pin 4; Ground connection. Beware of adjacent `3v3` on `J1` pins 1 and 2.
+- `GP0` for `Rx` on `J1` pin 6 (connect to external USB/TTY UART `Tx`)
+- `GP1` for `Tx` on `J1` pin 8 (connect to external USB/TTY UART `Rx`)
+
+#### Soft SPI
+
+Select SPI by leaving TT `IN4` up/off, or leaving ULX3S `gp4` high/unconnected/pull-up.
+
+- For TT boards, `INPUT` Dip Switch `IN4` up/off gives `ui_in[4] = 0`, selecting SPI.
+- For ULX3S, `gp4` high/unconnected/pull-up gives `shared_spi_jtag_select = 1`, selecting SPI.
+
+Pins are already connected to the on-board ESP32 - but for debugging reference:
+
+- `GND` on `J1` pin 5; Ground connection. Beware of adjacent `3v3` on `J1` pins 1 and 2.
+- `GN2` -> (TT `uio[0]`) TMS
+- `GP2` -> (TT `uio[1]`) TDI
+- `GN3` <- (TT `uio[2]`) TDO
+- `GP3` -> (TT `uio[3]`) TCK
+
+See `/ulx3s/ESP32/main/ulx3s_spi_lib.c`
+
+&#x26A0;  Do not accidentally wire ESP32 `GPIO2` to PMOD `GP2`. `GPIO2` goes to `GN3`, because it is `MISO`/`TDO`. 
+Also be careful around `J1`: use pin 5 `GND`, not the adjacent `3v3` pins 1/2.
+
+#### ULX3S ESP32 SPI Pins
+
+```c
+#define PIN_NUM_MISO        2
+#define PIN_NUM_MOSI        15
+#define PIN_NUM_CLK         14
+#define PIN_NUM_CS          13
+#define SPI_CLOCK_HZ        1000000
+```
+
+| ESP32 signal     | ESP32 GPIO | TT/PMOD pin | TT signal | JTAG-style name | Direction     | Wire   |
+| ---------------- | ---------: | ----------- | --------- | --------------- | ------------- | ------ | 
+| `PIN_NUM_CS`     |     GPIO13 | `GN2`       | `uio[0]`  | `TMS`           | ESP32 -> TT   | Brown  |
+| `PIN_NUM_MOSI`   |     GPIO15 | `GP2`       | `uio[1]`  | `TDI`           | ESP32 -> TT   | Red    |
+| `PIN_NUM_MISO`   |      GPIO2 | `GN3`       | `uio[2]`  | `TDO`           | TT -> ESP32   | Orange |
+| `PIN_NUM_CLK`    |     GPIO14 | `GP3`       | `uio[3]`  | `TCK`           | ESP32 -> TT   | Yellow |
+| `GND`            |  ESP32 GND | `J1` pin 5  | `GND`     | -               | common ground | Green  |
+
+#### Stand-alone ESP32 SPI Pins
+
+&#x26A0; Do not use these pins on the ULX3S ESP32.
+
+Disable `IS_ULX3S_ESP32` macro in `ulx3s_spi_lib.c` to use external stand-alone ESP32:
+
+```c
+#define PIN_NUM_MISO        19
+#define PIN_NUM_MOSI        23
+#define PIN_NUM_CLK         18
+#define PIN_NUM_CS          21
+#define SPI_CLOCK_HZ        1000000
+```
+
+| ESP32 signal   |  ESP32 GPIO | TT/PMOD pin | TT signal             | Direction     | Wire   |
+| -------------- | ----------: | ----------- | --------------------- | ------------- | ------ |
+| `PIN_NUM_CS`   |      GPIO21 | `GN2`       | `uio[0]` / CS / TMS   | ESP32 -> TT   | Brown  |
+| `PIN_NUM_MOSI` |      GPIO23 | `GP2`       | `uio[1]` / MOSI / TDI | ESP32 -> TT   | Red    |
+| `PIN_NUM_MISO` |      GPIO19 | `GN3`       | `uio[2]` / MISO / TDO | TT -> ESP32   | Orange |
+| `PIN_NUM_CLK`  |      GPIO18 | `GP3`       | `uio[3]` / SCK / TCK  | ESP32 -> TT   | Yellow |
+| `GND`          |   ESP32 GND | `J1` pin 5  | `GND`                 | common ground | Green  |
+
+
+![ULX3S-Pin-Connections.jpg](./ULX3S-Pin-Connections.jpg)
+
+Build and run tests from the `./test-hw` directory.
+
 ```bash
 cd /mnt/c/workspace/ttgf-UART-FSM-TRNG-Lab/test-hw
 
 # may need to remove generated file
 rm  ../src/_tt_fpga_top.v
 
+# Edit board version as needed, tested on older v3.0.7:
 ./run_tests.sh  --with-build  --ulx3s-board-version v307  --ignore-combinational-warning  --no-warning-pause  --port /dev/ttyS12 --pause-for-test
 ```
 
 ### Quickstart on ULX3S ESP32
 
+The onboard ESP32 is pre-configured to work with this TT project. No external wiring is needed.
+
 ```bash
+# [project]/ulx3s/ESP32
 cd /mnt/c/workspace/ttgf-UART-FSM-TRNG-Lab/ulx3s/ESP32
 
-idf.py -p /dev/ttyS3 -b 115200 flash
-idf.py -p /dev/ttyS3 -b 115200 monitor
+PORT=/dev/ttyS3
+
+idf.py -p $PORT -b 115200 flash
+idf.py -p $PORT -b 115200 monitor
 ```
 
 See also [Comprehensive Testing](./info.md#comprehensive-testing) below and the [TT MicroPython SDK v3](https://github.com/TinyTapeout/tt-micropython-firmware#initialization).
@@ -637,8 +741,8 @@ cd test-hw
 
 ## UART FSM TRNG Lab Datasheet
 
-Document revision: 0.1.7
-RTL revision string: `Version 0.1.7 6/7/2026`  
+Document revision: 1.0.5
+RTL revision string: `Version 1.0.5 6/21/2026`  
 Project family: Tiny Tapeout UART/SPI configurable TRNG experiment  
 Primary top modules: `tt_um_gojimmypi_ttgf_UART_FSM_TRNG_Lab` (conditional based on build)
 License: Apache-2.0, as declared in the source files
@@ -791,7 +895,7 @@ The TRNG lab core internally resets the LFSR to `0x1ACE`, clears `sample_shift`,
 | Pin | Direction | Function |
 | --- | --- | --- |
 | `ui_in[7:5]` | Input | Reserved / unused |
-| `ui_in[4]`   | Input | SPI/JTAG select, 1 = SPI, 0 = JTAG (when JTAG_ENABLED is defined) |
+| `ui_in[4]`   | Input | SPI/JTAG select, 0 = SPI, 1 = JTAG (`INPUT` Dip Switch `SW4` down; when JTAG_ENABLED is defined) |
 | `ui_in[3]`   | Input | UART RX |
 | `ui_in[2:0]` | Input | Reserved / unused |
 
@@ -861,7 +965,7 @@ Invalid syntax returns `?<CR>`.
 #### UART command examples
 
 ```text
-V<CR>       -> Version 0.1.7 6/7/2026<CR>
+V<CR>       -> Version 1.0.5 6/21/2026<CR>
 R2<CR>      -> R2=10<CR>
 E1<CR>      -> OK<CR>
 D10<CR>     -> OK<CR>
@@ -998,16 +1102,20 @@ UART alias: `Mxx<CR>` writes the full mode byte.
 
 `reg_oscen` is an 8-bit enable mask for the ring oscillator instances in real RO builds.
 
+There's a conditional `BASIC_RO_SET` (not defined) in `trng_lab_core.v` for RO states 3 .. 17.
+
+The default build contains 7 .. 21 stages:
+
 | Bit | Real RO instance | Stage count |
 | ---: | --- | ---: |
-| 0 | `u_ro0` | 3 |
-| 1 | `u_ro1` | 5 |
-| 2 | `u_ro2` | 7 |
-| 3 | `u_ro3` | 9 |
-| 4 | `u_ro4` | 11 |
-| 5 | `u_ro5` | 13 |
-| 6 | `u_ro6` | 15 |
-| 7 | `u_ro7` | 17 |
+| 0 | `u_ro0` | 7 |
+| 1 | `u_ro1` | 9 |
+| 2 | `u_ro2` | 11 |
+| 3 | `u_ro3` | 13 |
+| 4 | `u_ro4` | 15 |
+| 5 | `u_ro5` | 17 |
+| 6 | `u_ro6` | 19 |
+| 7 | `u_ro7` | 21 |
 
 In FPGA and normal simulation builds, the RO raw bits are derived from LFSR taps instead of real ring oscillators.
 
@@ -1088,7 +1196,7 @@ This path is deterministic and should not be treated as an entropy source.
 
 ### 22. Ring Oscillator Path
 
-In real ASIC RO builds, the design instantiates eight odd-length ring oscillators with stage counts from 3 to 17. The oscillator outputs feed the source selection logic through synchronizers.
+In real ASIC RO builds, the default design instantiates eight odd-length ring oscillators with stage counts from 7 to 21. The oscillator outputs feed the source selection logic through synchronizers.
 
 In FPGA and normal simulation builds, real ring oscillators are not instantiated. Instead, the RO raw signals are mapped to LFSR taps so the rest of the design can be tested safely without combinational oscillator loops.
 
@@ -1097,7 +1205,7 @@ Supported real RO PDK cell paths in the current source are:
 | PDK define | Inverter cell |
 | --- | --- |
 | `PDK_TARGET_SKY130` | `sky130_fd_sc_hd__inv_2` |
-| `PDK_TARGET_GF180` | `gf180mcu_fd_sc_mcu7t5v0__inv_1` |
+| `PDK_TARGET_GF180` | `gf180mcu_fd_sc_mcu7t5v0__inv_2` |
 
 ### 23. Recommended Bring-Up Sequence
 

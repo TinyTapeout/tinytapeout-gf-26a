@@ -28,7 +28,7 @@ pinout:
   ui[1]: "reserved_in1"        # Currently unused by RTL
   ui[2]: "reserved_in2"        # Currently unused by RTL
   ui[3]: "uart_rx"             # UART receive input to the core
-  ui[4]: "spi_jtag_sel"        # SPI/JTAG select input; SPI/JTAG select, 1 = SPI, 0 = JTAG
+  ui[4]: "spi_jtag_sel"        # SPI/JTAG select input; 0 = SPI default (SW4 up/off), 1 = JTAG (SW4 down/on) on TT boards
   ui[5]: "reserved_in5"        # Currently unused by RTL
   ui[6]: "reserved_in6"        # Currently unused by RTL
   ui[7]: "reserved_in7"        # Currently unused by RTL
