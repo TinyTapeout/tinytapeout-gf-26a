@@ -1,40 +1,39 @@
 # Tiny Tapeout project information (Wokwi project)
 project:
   wokwi_id: "465737601403996161" # Set this to the ID of your Wokwi project (the number from the project's URL)
-  title: "Ernest Tiny Tapeout" # Project title
-  author: "Ernesto M" # Your name
+  title: "Tiny Number Simon"
+  author: "Ernesto M"
   discord: "" # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description: "Explanation of the project" # One line description of what your project does
+  description: "Simon-style digital memory game with eight number inputs and a 7-segment display"
   language: "Wokwi" # other examples include SystemVerilog, Amaranth, VHDL, etc
-  clock_hz: 0 # Clock frequency in Hz (or 0 if not applicable)
+  clock_hz: 2 # Clock frequency in Hz (or 0 if not applicable)
 
   # How many tiles your design occupies? A single tile is about 340x160 uM.
   tiles: "1x1" # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 3x4 or 4x4
 
-# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
-# This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
+# Datasheet and website pin names. Unused pins remain blank.
 pinout:
-  # Inputs
-  ui[0]: ""
-  ui[1]: ""
-  ui[2]: ""
-  ui[3]: ""
-  ui[4]: ""
-  ui[5]: ""
-  ui[6]: ""
-  ui[7]: ""
+  # Number-key inputs, active high
+  ui[0]: "KEY_1"
+  ui[1]: "KEY_2"
+  ui[2]: "KEY_3"
+  ui[3]: "KEY_4"
+  ui[4]: "KEY_5"
+  ui[5]: "KEY_6"
+  ui[6]: "KEY_7"
+  ui[7]: "KEY_8"
 
-  # Outputs
-  uo[0]: ""
-  uo[1]: ""
-  uo[2]: ""
-  uo[3]: ""
-  uo[4]: ""
-  uo[5]: ""
-  uo[6]: ""
-  uo[7]: ""
+  # Common-cathode 7-segment outputs, active high
+  uo[0]: "SEG_A"
+  uo[1]: "SEG_B"
+  uo[2]: "SEG_C"
+  uo[3]: "SEG_D"
+  uo[4]: "SEG_E"
+  uo[5]: "SEG_F"
+  uo[6]: "SEG_G"
+  uo[7]: "SEG_DP"
 
-  # Bidirectional pins
+  # Bidirectional pins are unused
   uio[0]: ""
   uio[1]: ""
   uio[2]: ""
@@ -44,5 +43,5 @@ pinout:
   uio[6]: ""
   uio[7]: ""
 
-# Do not change!
+# Do not change.
 yaml_version: 6
