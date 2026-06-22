@@ -1,0 +1,115 @@
+118. Printing statistics.
+
+=== GF_inverter ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+        2        - wires
+        2        - wire bits
+        2        - public wires
+        2        - public wire bits
+        2        - ports
+        2        - port bits
+        1    8.781 cells
+        1    8.781   gf180mcu_fd_sc_mcu7t5v0__inv_1
+
+   Chip area for module '\GF_inverter': 8.780800
+     of which used for sequential elements: 0.000000 (0.00%)
+
+=== tt_um_xoroshiro64plus_v2 ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     1000        - wires
+     1035        - wire bits
+      443        - public wires
+      478        - public wire bits
+        8        - ports
+       43        - port bits
+      686 1.83E+04 cells
+       22  386.355   gf180mcu_fd_sc_mcu7t5v0__and2_1
+        1   21.952   gf180mcu_fd_sc_mcu7t5v0__and3_1
+        9  197.568   gf180mcu_fd_sc_mcu7t5v0__aoi211_1
+       38  667.341   gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+       34  671.731   gf180mcu_fd_sc_mcu7t5v0__aoi22_1
+        4   52.685   gf180mcu_fd_sc_mcu7t5v0__buf_1
+       45  395.136   gf180mcu_fd_sc_mcu7t5v0__clkinv_1
+       61 4.55E+03   gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+       42 3.32E+03   gf180mcu_fd_sc_mcu7t5v0__dffsnq_1
+       23  757.344   gf180mcu_fd_sc_mcu7t5v0__mux2_2
+      147 1.61E+03   gf180mcu_fd_sc_mcu7t5v0__nand2_1
+        6   92.198   gf180mcu_fd_sc_mcu7t5v0__nand3_1
+       49  645.389   gf180mcu_fd_sc_mcu7t5v0__nor2_1
+        1   17.562   gf180mcu_fd_sc_mcu7t5v0__nor3_1
+       36  790.272   gf180mcu_fd_sc_mcu7t5v0__oai211_1
+       45  790.272   gf180mcu_fd_sc_mcu7t5v0__oai21_1
+        3   79.027   gf180mcu_fd_sc_mcu7t5v0__oai221_1
+       28  676.122   gf180mcu_fd_sc_mcu7t5v0__oai31_1
+        9  158.054   gf180mcu_fd_sc_mcu7t5v0__or2_1
+        1   21.952   gf180mcu_fd_sc_mcu7t5v0__or3_1
+        1   26.342   gf180mcu_fd_sc_mcu7t5v0__or4_1
+       20  175.616   gf180mcu_fd_sc_mcu7t5v0__tiel
+        7  199.763   gf180mcu_fd_sc_mcu7t5v0__xnor2_1
+       31  816.614   gf180mcu_fd_sc_mcu7t5v0__xor2_1
+       23 1.16E+03   gf180mcu_fd_sc_mcu7t5v0__xor3_1
+      330        - submodules
+      330        -   GF_inverter
+
+   Chip area for module '\tt_um_xoroshiro64plus_v2': 18286.016000
+     of which used for sequential elements: 7871.987200 (43.05%)
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        |        +-Area including submodules.
+        |        | 
+     1016 2.12E+04 tt_um_xoroshiro64plus_v2
+        1    8.781 GF_inverter
+
+        +----------Count including submodules.
+        |        +-Area including submodules.
+        |        | 
+     1660        - wires
+     1695        - wire bits
+     1103        - public wires
+     1138        - public wire bits
+      668        - ports
+      703        - port bits
+        -        - memories
+        -        - memory bits
+        -        - processes
+     1016 2.12E+04 cells
+       22  386.355   gf180mcu_fd_sc_mcu7t5v0__and2_1
+        1   21.952   gf180mcu_fd_sc_mcu7t5v0__and3_1
+        9  197.568   gf180mcu_fd_sc_mcu7t5v0__aoi211_1
+       38  667.341   gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+       34  671.731   gf180mcu_fd_sc_mcu7t5v0__aoi22_1
+        4   52.685   gf180mcu_fd_sc_mcu7t5v0__buf_1
+       45  395.136   gf180mcu_fd_sc_mcu7t5v0__clkinv_1
+       61 4.55E+03   gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+       42 3.32E+03   gf180mcu_fd_sc_mcu7t5v0__dffsnq_1
+      330  2.9E+03   gf180mcu_fd_sc_mcu7t5v0__inv_1
+       23  757.344   gf180mcu_fd_sc_mcu7t5v0__mux2_2
+      147 1.61E+03   gf180mcu_fd_sc_mcu7t5v0__nand2_1
+        6   92.198   gf180mcu_fd_sc_mcu7t5v0__nand3_1
+       49  645.389   gf180mcu_fd_sc_mcu7t5v0__nor2_1
+        1   17.562   gf180mcu_fd_sc_mcu7t5v0__nor3_1
+       36  790.272   gf180mcu_fd_sc_mcu7t5v0__oai211_1
+       45  790.272   gf180mcu_fd_sc_mcu7t5v0__oai21_1
+        3   79.027   gf180mcu_fd_sc_mcu7t5v0__oai221_1
+       28  676.122   gf180mcu_fd_sc_mcu7t5v0__oai31_1
+        9  158.054   gf180mcu_fd_sc_mcu7t5v0__or2_1
+        1   21.952   gf180mcu_fd_sc_mcu7t5v0__or3_1
+        1   26.342   gf180mcu_fd_sc_mcu7t5v0__or4_1
+       20  175.616   gf180mcu_fd_sc_mcu7t5v0__tiel
+        7  199.763   gf180mcu_fd_sc_mcu7t5v0__xnor2_1
+       31  816.614   gf180mcu_fd_sc_mcu7t5v0__xor2_1
+       23 1.16E+03   gf180mcu_fd_sc_mcu7t5v0__xor3_1
+      330  2.9E+03 submodules
+      330  2.9E+03   GF_inverter
+
+   Chip area for top module '\tt_um_xoroshiro64plus_v2': 21183.680000
+     of which used for sequential elements: 7871.987200 (37.16%)
+
