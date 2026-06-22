@@ -1,23 +1,30 @@
-# Tiny Tapeout project information (Wokwi project)
+# Tiny Tapeout project information
 project:
-  wokwi_id: "465731481873367041" # Set this to the ID of your Wokwi project (the number from the project's URL)
-  title: "Chip Design Nucleo" # Project title
-  author: "Jesus" # Your name
-  discord: "" # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description: "Tiny Tapeout course in Nucleo" # One line description of what your project does
-  language: "Wokwi" # other examples include SystemVerilog, Amaranth, VHDL, etc
-  clock_hz: 0 # Clock frequency in Hz (or 0 if not applicable)
+  wokwi_id:      "465731481873367041"
+  title:        "MIPS-Lite 8-bit Processor"
+  author:       "Jesus (jalperdev)"
+  discord:      ""
+  description:  "8-bit MIPS-inspired single-cycle processor with 8 registers, ALU, branches and jumps"
+  language:     "Verilog"
+  clock_hz:     50000000  # 50 MHz
 
   # How many tiles your design occupies? A single tile is about 340x160 uM.
-  tiles: "1x1" # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 3x4 or 4x4
+  tiles: "1x1"    # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 3x4 or 4x4
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_wokwi_465731481873367041"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line:
+  source_files:
+    - "project.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
-# This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
   # Inputs
-  ui[0]: ""
-  ui[1]: ""
-  ui[2]: ""
+  ui[0]: "reg_sel[0]"
+  ui[1]: "reg_sel[1]"
+  ui[2]: "reg_sel[2]"
   ui[3]: ""
   ui[4]: ""
   ui[5]: ""
@@ -25,23 +32,23 @@ pinout:
   ui[7]: ""
 
   # Outputs
-  uo[0]: ""
-  uo[1]: ""
-  uo[2]: ""
-  uo[3]: ""
-  uo[4]: ""
-  uo[5]: ""
-  uo[6]: ""
-  uo[7]: ""
+  uo[0]: "reg_data[0]"
+  uo[1]: "reg_data[1]"
+  uo[2]: "reg_data[2]"
+  uo[3]: "reg_data[3]"
+  uo[4]: "reg_data[4]"
+  uo[5]: "reg_data[5]"
+  uo[6]: "reg_data[6]"
+  uo[7]: "reg_data[7]"
 
   # Bidirectional pins
-  uio[0]: ""
-  uio[1]: ""
-  uio[2]: ""
-  uio[3]: ""
-  uio[4]: ""
-  uio[5]: ""
-  uio[6]: ""
+  uio[0]: "pc[0]"
+  uio[1]: "pc[1]"
+  uio[2]: "pc[2]"
+  uio[3]: "pc[3]"
+  uio[4]: "pc[4]"
+  uio[5]: "halt"
+  uio[6]: "alu_zero"
   uio[7]: ""
 
 # Do not change!
