@@ -1,3 +1,7 @@
+VERSION 5.7 ;
+  NOWIREEXTENSIONATPIN ON ;
+  DIVIDERCHAR "/" ;
+  BUSBITCHARS "[]" ;
 MACRO tt_um_algofoogle_ttgf26a_vco
   CLASS BLOCK ;
   FOREIGN tt_um_algofoogle_ttgf26a_vco ;
@@ -528,7 +532,7 @@ MACRO tt_um_algofoogle_ttgf26a_vco
         RECT 134.420 5.120 167.790 151.200 ;
         RECT 169.990 5.120 171.090 151.200 ;
         RECT 173.290 5.120 331.640 151.200 ;
-        RECT 25.100 2.200 331.640 5.120 ;
+        RECT 25.100 0.150 331.640 5.120 ;
   END
 END tt_um_algofoogle_ttgf26a_vco
 END LIBRARY
